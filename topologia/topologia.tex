@@ -1,0 +1,163 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{cancel}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm]{geometry}
+\usepackage[all]{xy}
+\usepackage{cancel}
+\usepackage{pictexwd}
+\usepackage{parskip}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usepackage{vmargin}
+
+
+\DeclarePairedDelimiter\Floor\lfloor\rfloor
+\DeclarePairedDelimiter\Ceil\lceil\rceil
+
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{definicion}[theorem]{Definición}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}{Lema}[theorem]
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}{Ejemplo}[theorem]
+\newtheorem{corolario}{Corolario}[theorem]
+\newtheorem{observation}{Observación}[theorem]
+\newtheorem{properties}{Propiedades}[theorem]
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+
+\author{Pablo Pallàs}
+\title{Topología general}
+\setlength{\parindent}{10pt}
+
+
+\begin{document}
+\rmfamily
+\maketitle
+\tableofcontents
+\parindent= 0cm
+
+\section{Espacios topológicos}
+\subsection{Espacios topológicos}
+Sea $X$ un conjunto y $\mathcal{P}(X) = \lbrace A : A \subset X \rbrace$ el conjunto de sus partes, entonces:
+
+\begin{definition}Una \textbf{topología} sobre un conjunto $X$ es un subconjunto $\tau \subseteq \mathcal{P}(X)$ que satisface: 
+ \renewcommand{\theenumi}{\roman{enumi}} %Números arábigos
+\begin{enumerate}
+\item El conjunto vacío $\emptyset$ y el conjunto total $X$ pertenecen a $\tau$.
+\item La unión arbitraria de elementos de $\tau$ también pertenece a $\tau$.
+\item La intersección finita de elementos de $\tau$ también pertenece a $\tau$.
+\end{enumerate}
+El par $(X,\tau)$ lo denominaremos \textbf{espacio topológico} y a los elementos de $\tau$ los llamaremos \textbf{abiertos}.
+\end{definition}
+
+Es decir, podríamos decir que una topología es una colección de subconjuntos que contiene al vacío y al total, y que es cerrada para las uniones arbitrarias y las intersecciones finitas.
+
+\begin{example}Sea $X$ un conjunto arbitrario y $\tau_D = \mathcal{P}(X)$. Entonces, $\tau_D$ es una topología en $X$ ya que contiene a todos los subconjuntos de $X$, en particular al vacío y al total, es cerrada para las uniones arbitrarias y para las intersecciones finitas. A esta topología la denominaremos \textbf{topología discreta}, y al conjunto $X$ dotada de esta topología \textbf{espacio discreto}.
+\end{example}
+\begin{example}Sea $X$ un conjunto arbitrario y $\tau_I = \lbrace \emptyset, X \rbrace$. Entonces la colección $\tau_I$ es una topología sobre $X$: contiene al vacío y al total, la unión de ambos es $X \in \tau_I$ y la intersección es $\emptyset \in \tau_I$. Esta topología la denominaremos \textbf{topología indiscreta}, y es la topología más simple que puede tener un conjunto. A un conjunto $X$ dotado con esta topología lo denominaremos \textbf{espacio indiscreto}.
+\end{example}
+
+\begin{definition}Dos topologías $\tau_1, \tau_2$ sobre un conjunto $X$ se dicen \textbf{comparables} si $\tau_1 \subset \tau_2$ ó $\tau_2 \subset \tau_1$. Si $\tau_1 \subset \tau_2$ diremos que $\tau_2$ es más \textbf{fina} (tiene más abiertos) que $\tau_1$.
+\end{definition}
+
+Intuitivamente podríamos decir que una topología $\tau'$ es más fina que otra $\tau$ si tiene todos los abiertos de $\tau$ y añgunos más. Una topología más fina distingue de forma ''más fina'' los puntos y sus alrededores. Evidentemente, sobre un conjunto $X$ cualquiera la topología más fina que podemos encontrar es la topología discreta $\tau_D$. Por otra parte, la topología indiscreta $\tau_I$ es la menos fina que podemos encontrar. Luego cualquier otra topología $\tau$ se encontrará entre estas dos: $\tau_I \subseteq \tau \subseteq \tau_D$.
+
+Notar que si $\tau_1$ y $\tau_2$ son dos topologías sobre $X$ es fácil ver que $\tau_1 \cap \tau_2$ es una topología sobre $X$. En general, la unión $\tau_1 \cup \tau_2$ no es necesariamente una topología.
+
+\begin{example}\label{eq:topUsual} Consideremos el siguiente conjunto: 
+
+$$\tau_u = \lbrace U \subset \mathbb{R}: \forall x \in U\hspace{0.1cm} \exists \epsilon > 0\hspace{0.1cm} \text{t.q}\hspace{0.1cm} (x-\epsilon, x+ \epsilon) \subset U \rbrace.$$
+
+Entonces: 
+\begin{enumerate}
+\item $\emptyset \in \tau_u$ trivialmente y $\mathbb{R} \in \tau_u$ ya que si tenemos un $x \in \mathbb{R}$ y $\epsilon = 1$, entonces $(x-1, x+1) \in \mathbb{R}.$
+\item Dada $\lbrace U_i \rbrace_{i\in J}$ una colección arbitraria de elementos de $\tau_u$ entonces,  si consideramos un $x \in \cup_i U_i$ existirá un $i_0 \in J$ tal que $x \in U_{i_0}$. Como $U_{i_0} \in \tau_u$ existirá un $\epsilon >0$ tal que $(x-\epsilon, x + \epsilon) \subset U_{i_0} \subset \cup_i U_i$ y así $\cup_i U_i \in \tau_u$.
+\item Sean $U, V \in \tau_u$, $x \in U \cap V$. Como $x \in U$ existirá un $\epsilon_1>0$ tal que $(x-\epsilon_1, x+\epsilon_1) \subset U$. Como $x \in V$ existirá un $\epsilon_2 >0$ tal que $(x-\epsilon_2, x+\epsilon_2) \subset V$. Ahora, si escogemos $\epsilon = \min \lbrace \epsilon_1, \epsilon_2 \rbrace$ entonces tendremos: $$(x-\epsilon, x+\epsilon) \subset U \subset U \cap V$$ $$ (x-\epsilon, x+\epsilon) \subset U \subset U \cap V$$ y así $ U \cap V \in \tau_u$.
+\end{enumerate}
+
+Luego $\tau_u$ es una topología, que denominaremos \textbf{topología usual}. Al espacio topológico $(\mathbb{R}, \tau_u)$ lo denominaremos \textbf{recta real}.
+\end{example}
+
+$\hfill \square$
+
+\begin{definition}Sea $(X, \tau)$ un espacio topológico, un conjunto $\mathfrak{B} \subset \tau$ de abiertos se dice \textbf{base} de $\tau$ si todo elemento de $\tau$ es unión de elementos de $\mathfrak{B}$. A estos elementos de $\mathfrak{B}$ los denominaremos \textbf{abiertos básicos}.
+\end{definition}
+
+\begin{example}Veamos algunos ejemplos:
+\begin{enumerate}
+\item La propia topología $\tau$ es base de sí misma.
+\item Es claro que $\mathfrak{B} = \lbrace \lbrace x \rbrace : x \in X \rbrace$ es base de la topología discreta $\tau_D$ sobre $	X$.
+\item El conjunto de intervalor $\mathfrak{B}_U = \lbrace (a,b):a,b \in \mathbb{R} \rbrace$ es una base para la topología usual sobre $\mathbb{R}$, $\tau_U.$
+\end{enumerate}
+\end{example}
+
+\begin{proposition}Sea $(X, \tau)$ un espacio topológico, entonces $\mathfrak{B} \subset \tau$ es una base si y sólo si para todo $U \in \tau$ y todo $x \in U$ existe $B \in \mathfrak{B}$ tal que $x \in B \subset U$.
+\end{proposition}
+\emph{Demostración: }Sea $x \in U$, si $\mathfrak{B} = \lbrace B_i : B_i \tau \rbrace $ es una base entonces $U \cup B_i$, por lo que existirá $B_k \in \mathfrak{B}$ tal que $x \in B_k \subset U$. Recíprocamente, dado $U \in \tau$, si para todo $x_i \in U$ existe $B_i \in \mathfrak{B}$ tal que $x_i \in B_i \subset U$ entonces es claro que $U = \cup B_i$.
+
+$\hfill \square$
+
+\begin{proposition}Sea $(X,\tau)$ un espacio topológico y $\mathfrak{B} \subset \tau$ una base, entonces $U \subset X$ es un abierto si y sólo si para todo $x \in U$ existe un $B \in \mathfrak{B}$ tal que $x \in B \subset U$.
+\end{proposition}
+
+Luego:
+
+\begin{corolario}Sea $(X, \tau)$ un espacio topológico y $A \subset X$, entonces $A$ es abierto si y sólo si para todo $x \in A$ existe un abierto $U \in \tau$ tal que $x \in U \subset A$.
+\end{corolario}
+
+Sin embargo, no toda familia de partes de un conjunto es una base para una topología. Para identificar a estos conjuntos especiales tenemos el siguiente resultado:
+
+\begin{proposition}Sea $\mathfrak{B} \subset \mathcal{P}(X)$ satisfaciendo: 
+\begin{enumerate}
+\item Para todo $x \in X$ existe un $B \in \mathfrak{B}$ tal que $x \in B$.
+\item Dados $B_1, B_2 \in \mathfrak{B}$ y $x \in B_1 \cap B_2$ existe $B \in \mathfrak{B}$ tal que $x \in B \subset B_1 \cap B_2$
+\end{enumerate}
+Entonces, el conjunto $\tau_{\mathfrak{B}} \subset \mathcal{P}(X)$ definido por $U \in \tau_{\mathfrak{B}}$ si y sólo si para todo $x \in U$ existe $B \in \mathfrak{B}$ tal que $x \in B \subset U$ es una topología sobre $X$ que tiene a $\mathfrak{B}$ como base. Llamaremos a $\tau_{\mathfrak{B}}$ topología generada por $\mathfrak{B}$.
+\end{proposition}
+\begin{proof}Trivialmente se tiene que $\emptyset \in \tau_{\mathfrak{B}}$ y también está claro que $X \in \tau_{\mathfrak{B}}$. 
+
+Sea ahora $\lbrace U_i\rbrace_{i\in J} \subset \tau_{\mathfrak{B}}$ y $U = \cup_i U_i$, dado un $x \in U$ entonces $x \in U_k$ para algún $k \in J$ y existirá $B \in \mathfrak{B}$ tal que $x \in B \subset U_k \subset U$, por lo que $U \in \tau_{\mathfrak{B}}$. 
+
+Sean ahora $U_1$ y $U_2 \in \tau_{\mathfrak{B}}$ y veamos que $U_1 \cap U_2 \in \tau_{\mathfrak{B}}$, en efecto, dado $x \in U_1 \cap U_2$ existirán $B_1, B_2 \in \mathfrak{B}$ tales que $x \in B_1 \subset U_1$ y $x \in B_2 \subset U_2$, entonces $x \in B_1 \cap B_2$ y así existirá un $B \in \mathfrak{B}$ tal que $x \in B \subset B_1 \cap B_2 \subset U_1 \cap U_2$, por lo que $U_1 \cap U_2 \in \tau_{\mathfrak{B}}$. 
+
+Por inducción finita se sigue para cualquier subfamilia finita $\lbrace U_1, \ldots U_n \rbrace \subset \tau_{\mathfrak{B}}$. Se concluye así que $\tau_{\mathfrak{B}}$ es una topología sobre $X$ con base $\mathfrak{B}$.
+
+\end{proof}
+
+\begin{proposition}Sean $\mathfrak{B}_1$ y $\mathfrak{B}_2$ bases de sendas topologías $\tau_1 $y $\tau_2$ sobre un conjunto $X$, entonces $\tau_2$ es más fina que $\tau_1$, es decir, $\tau_1 \subset \tau_2$ si y sólo si para todo $x\in X$ y todo $B_1 \in \mathfrak{B}_1$ tal que $x\in B_1$ existe $B_2 \in \mathfrak{B}_2$ tal que $x \in B_2 \subset B_1.$
+\end{proposition}
+\begin{proof}Supongamos que $\tau_1 \subset \tau_2$, dado $x \in X$ y $B_1\in \mathfrak{B}_1$ tal que $x \in B_1$, en particular $B_1 \in \tau_1$ y por tanto $B_1 \in \tau_2$, entonces existe $B_2 \in \mathfrak{B}_2$ tal que $x \in B_2 \subset B_1$.
+
+Recíprocamente, si $U \in \tau_1$ existirá $B_1 \in \mathfrak{B}_1$ tal que $x \in B_1 \subset U$ y como existe $B_2 \in \mathfrak{B}_2$ tal que $x \in B_2 \subset B_1$ se tiene entonces que $x \in B_2 \subset U$ y por tanto se sigue que $U \in \tau_2$.
+
+\end{proof}
+
+\begin{example}
+La familia $\mathfrak{B}_S$ de los intervalos semiabiertos de la forma $[a,b)$ satisfacen las condiciones de~~, luego forman base de una topología $\tau_S$ sobre $\mathbb{R}$. Al espacio topológico $(\mathbb{R},\tau_S)$ ó simplemente $\mathbb{R}_S$ se le conoce como \textbf{recta de Sorgenfrey}.
+
+Notar que para todo $x \in \mathbb{R}$ y todo intervalo $(a,b)$ tal que $x \in (a,b)$ está claro que $x \in [x,b) \subset (a,b)$, por lo que $\tau_U \subset \tau_S$, y como $[a,b) \notin \tau_U$ se sigue que la topología de Sorgenfrey es estrictamente más fina que la usual.
+\end{example}
+
+$\hfill \blacksquare$
+
+
+\section{Aplicaciones continuas y homeomorfismos}
+\section{Separación y numerabilidad}
+\section{Espacios métricos}
+\section{Compacidad}
+\section{Conexión}
+
+\end{document}
