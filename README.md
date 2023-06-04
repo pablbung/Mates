@@ -6,6 +6,7 @@ Este es un repositorio que va a ir contando con todo el material que vaya hacien
 Aquí se subirán apuntes que haga, ejercicios, código etc.
 
 Estructuras Algebraicas apuntes -- 1 versión 31/03/2023
+
 Estructuras Algebraicas apuntes -- 2 versión 31/05/2023
 
 
