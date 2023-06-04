@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{cancel}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm]{geometry}
+\usepackage[all]{xy}
+\usepackage{cancel}
+\usepackage{pictexwd}
+\usepackage{parskip}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usepackage{vmargin}
+\usepackage{hyperref}
+
+\DeclarePairedDelimiter\Floor\lfloor\rfloor
+\DeclarePairedDelimiter\Ceil\lceil\rceil
+
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{definicion}[theorem]{Definición}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}{Lema}[theorem]
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}{Ejemplo}[theorem]
+\newtheorem{corolario}{Corolario}[theorem]
+\newtheorem{observation}{Observación}[theorem]
+\newtheorem{properties}{Propiedades}[theorem]
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+
+\author{Pablo Pallàs}
+\title{Cálculo diferencial}
+\setlength{\parindent}{10pt}
+\begin{document}
+\rmfamily
+\maketitle
+\tableofcontents
+\parindent= 0cm
+
+
+\section{Preliminares}
+\subsection{Continuidad}
+\subsection{Diferenciabilidad}
+En esta sección definiremos y estudiaremos el concepto de derivada para funciones de varias variables. Partiremos de la definición de derivada para funciones de una variable:
+\begin{definition} Sea $I$ un intervalo abierto de $\mathbb{R}$, $f \colon I \longrightarrow \mathbb{R}$, con $a \in I$. La \textbf{derivada} de $f$ en $a$ es el límite $$f'(a)= \lim_{x\rightarrow a}\dfrac{f(x)-f(a)}{x-a},$$ cuando dicho límite existe.
+\end{definition}
+
+Sin embargo, cuando tengamos una función de $n$ variables, $x-a$ es un vector y no tiene sentido la división en el límite anterior. Por lo tanto, esta definición tal cómo está no se puede copiar en el contexto de varias variables. Manipularemos la definición anterior para encontrar alguna forma equivalente que sí se pueda extender.
+La existencia del anterior límite es equivalente a que $$\lim_{x\rightarrow a}\dfrac{f(x)-f(a)-f'(a)(x-a)}{x-a} = 0,$$ que se puede expresar así: $$f(x)-f(a)-f'(a)(x-a)=o(\abs{x-a}), \hspace{0.2cm} x\rightarrow a.$$
+
+Como sabemos, esta forma de ver la derivabilidad tiene una interpretración geométrica bastante interesante. Y es que la ecuación general de una recta que pasa por el punto del plano $(a, f(a))$ (excluida la recta vertical) es $$y_m(x)=f(a)+m(x-a),$$ con $m$ la pendiente. Todas estas rectas pasan por el punto $(a,f(a))$, con lo que $$\lim_{x \rightarrow a}(f(x)-y_m(x))=0,$$ pero sólo una recta (la que cumple $m = f'(a)$) que cumple la condición más fuerte de $$\lim_{x\rightarrow a} \dfrac{f(x)-y_m(x)}{x-a} =0.$$
+
+Es decir, esta recta especial entre todas las que pasan por el punto $(a,f(a))$ tiene un mayor contacto con la función cerca de $a$ y su existencia asegura que la gráfica de $f$ es suave en dicho punto.
+
+Ahora pensemos que las rectas que pasan por el origen (exceptuando la vertical $x=0$) no son sino aplicaciones lineales de la forma $$L_m(x) = mx,$$ y para conseguir que pasen por otro punto no hay más que trasladarlas (y entonces serán aplicaciones afines) $$y_m(x)= f(a) + L_m(x-a).$$
+
+Esta propiedad geométrica la podemos expresar analíticamente tal que así: \textit{Una función $f$ es derivable en $a$ si y sólo si existe una aplicación lineal $L$ ($L(x)=f'(a)x$) tal que} $$f(x)-f(a)-L(x-a)=o(\abs{x-a}), \hspace{0.2cm} x\rightarrow a.$$
+
+Y esta idea sí podemos llevarla al caso de funciones de varias variables. Podemos pensar en una función de dos variables $f(x,y)$ y en un punto $(a,b)$. Podríamos decir que $f$ tiene una gráfica suave en el punto $(a,b,f(a,b))$ si entre todos los planos que pasan por dicho punto hay uno que se "pega" más a la gráfica de la función. Expresemos esto correctamente: todos los planos que pasan por el origen $(0,0,0)$ (exceptuando los verticales) vienen dados por las aplicaciones lineales $$L(x,y)= \lambda x + \mu y.$$ Los que pasan por el punto $(a,b,f(a,b))$ son las aplicaciones afines $$z_{\lambda, \mu}(x,y) = f(a,b) + \lambda(x-a) + \mu(y-b).$$ Y que una de estas se pegue quiere decir que existan $\lambda, \mu$ tales que $$f(x,y) - z_{\lambda, \mu}(x,y)=o(\norm{(x,y)-(a,b)}), \hspace{0.2cm} (x,y) \rightarrow (a,b),$$ ó dicho de otra forma:$$\lim_{(x,y) \rightarrow (a,b)}\dfrac{f(x,y)-z_{\lambda,\mu}(x,y)}{\norm{(x,y)-(a,b)}} = 0,$$ y este límite tiene perfecto sentido plantearlo en $\mathbb{R}^2$. Así pues, llegamos a una especie de definición que nos servirá de forma provisional: 
+
+\textit{Diremos que $f(x,y)$ es derivable en el punto $(a,b)$ si existe una aplicación lineal $L \colon \mathbb{R}^2 \longrightarrow \mathbb{R}$ tal que } $$\lim_{(x,y)\rightarrow(a,b)}\dfrac{f(x,y)-f(a,b)-L(x-a,y-b)}{\norm{(x,y)-(a,b)}}=0.$$
+
+Esta definición, que no tiene ningún problema en extenderse al caso de más de dos variables, dará lugar a una productiva teoría similar a la de una variable.
+
+Con esta introducción, pasamos directamente a $\mathbb{R}^n$ y empezamos a dar rigor a todos estos conceptos. 
+
+Al hablar de aspectos relacionados con la derivabilidad, trataremos solamente con conjuntos abiertos que denotaremos por la letra $\Omega$.
+
+\begin{definition}Un conjunto $\Omega \subseteq \mathbb{R}^n$ se dice \textbf{abierto} si todo punto $a \in \Omega$ es interior, es decir, si $$\forall a \in \Omega \hspace{0.2cm} \exists \delta > 0 \ni B(a,\delta) \subseteq \Omega.$$
+\end{definition}
+
+Llamaremos \textbf{\textit{dirección}} en $\mathbb{R}^n$ a todo vector $v \in \mathbb{R}^n$ de norma $1$. Entonces, dado $a \in \mathbb{R}^n$, el conjunto de puntos $$R_v(a)= \lbrace a +tv :t \in \mathbb{R} \rbrace$$ constituyen la recta que pasa por $a$ con dirección $v$.
+
+Si tenemos una función $f: \Omega \subseteq \mathbb{R}^n \longrightarrow \mathbb{R}$ y $a \in \Omega$, considerar la función $f$ restringida a $\Omega \cap R_v(a)$ es tener la función de una variable $$g(t) = f(a+tv).$$ Como $\Omega$ es abierto se sigue que existe un $\delta >0$ tal que $g$ está definida para aquellos $t'$ tales que $|t|<\delta$. Es decir, $g$ está definida en un entorno del origen y cabe plantearse si es derivable en $0$. Si lo es, diremos que $f$ es derivable en $a$ según la dirección $v$. 
+
+\begin{definition}Sea $\Omega$ abierto en $\mathbb{R}^n$, $a \in \Omega$, $f\colon \Omega \longrightarrow \mathbb{R}$ y $v$ un dirección en $\mathbb{R}^n$. Diremos que $f$ es \textbf{derivable en $a$ según la dirección $v$} si existe el límite $$f_v(a) = \lim_{t\rightarrow 0}\dfrac{f(a+tv)-f(a)}{t}\in \mathbb{R}$$ y este límite se llama \textbf{derivada direccional de $f$ en $a$, según la dirección $v$}.
+
+Otra notación que se puede emplear para la derivada direccional es $\dfrac{\partial f}{\partial v}(a)$.
+\end{definition}
+
+Unos vectores muy significativos son los que señalan los ejes de coordenadas, es decir, los vectores $e_i$, con $i = 1, \ldots, n$ de la base canónica. Las derivadas según estas direcciones se llaman derivadas parciales.
+
+\begin{definition}Sea $\Omega$ abierto en $\mathbb{R}^n$, $a \in \Omega$, $f\colon \Omega \longrightarrow \mathbb{R}$, $i \in \lbrace 1, \ldots, n \rbrace$. Si existe, se llama \textbf{derivada parcial $i$-ésima de $f$ en $a$} a $$\dfrac{\partial f}{\partial x_i}(a) = f_{e_i}(a) = \lim_{x_i\rightarrow a_i}\dfrac{f(a_1, \ldots, a_{i-1}, x_i, a_{i+1}, \ldots, a_n)-f(a_1, \ldots, a_n)}{x_i-a_i}.$$
+\end{definition}
+
+Hacer una derivada parcial es muy sencillo, si $a=(a_1, \ldots, a_n)$ y consideramos la función de una variable $$g(x_i)= f(a_1, 	\ldots, a_{i-1}, x_i, a_{i+1}, \ldots, a_n),$$ entonces $\dfrac{\partial f}{\partial x_i}(a) = g'(a_i).$
+
+\begin{example} Sea la función de dos variables $$f(x,y) = e^x\sin y + x^2 y.$$ Entonces, hacer la derivada parcial de $f$ con respecto a $x$ en un punto genérico $(x,y)$ es pensar que la $y$ está fija y derivar la función de variable $x$. Así, $$\dfrac{\partial f}{\partial x}(x,y)=e^x\sin y +2xy.$$
+Análogamente, $$\dfrac{\partial f}{\partial y}(x,y) = e^x\cos y + x^2.$$
+\end{example}
+$\hfill \blacksquare$
+
+\begin{example}Sea la función de tres variables $$f(x,y,z)=\cos(xyz) + (xy)^2 + z.$$ Entonces, $$\dfrac{\partial f}{\partial x} = -yz \sin(xyz) +2y(xy) = 2xy^2 -yz \sin(xyz),$$ $$\dfrac{\partial f}{\partial y} = -xz \sin(xyz) +2x(xy) = 2x^2y -xz \sin(xyz),$$ $$\dfrac{\partial f}{\partial z} = -xy \sin(xyz) +1 = 1 -xy \sin(xyz).$$
+\end{example}
+$\hfill \blacksquare$
+
+Las derivadas parciales pueden existir todas, alguna o ninguna y su existencia no asegura ninguna clase de continuidad. Por ejemplo: 
+
+\begin{example}En $n=2$, $$f(x,y) = x+|y|.$$ La derivada parcial de $f$ respecto a $x$ en $(0,0)$ existe, es $1$. En efecto, $$\dfrac{\partial f}{\partial x}(0,0) = \lim_{t\rightarrow 0} \dfrac{f(t,0)-f(0,0)}{t} = 1.$$ Sin embargo, con respecto a $y$ tenemos $$\dfrac{\partial f}{\partial y} (0,0)= \lim_{t\rightarrow 0} \dfrac{f(0,t)-f(0,0)}{t} = \lim _{t \rightarrow 0} \dfrac{|t|}{t},$$ que es un límite que no existe.
+\end{example}
+$\hfill \blacksquare$
+
+\begin{definition}Sea $\Omega$ abierto en $\mathbb{R}^n$, $a \in \Omega$, $f \colon \Omega \longrightarrow \mathbb{R}$. Si existe alguna aplicación lineal $L \colon \mathbb{R}^n \longrightarrow \mathbb{R}$ tal que $$\lim_{x\rightarrow a} \dfrac{f(x)-f(a)-L(x-a)}{\norm{x-a}} = 0,$$ entonces diremos que $f$ es \textbf{diferenciable en $a$}. A $L$ lo denominaremos \textbf{diferencial de $f$ en $a$}.
+\end{definition}
+
+\begin{proposition}Sean $\Omega$ abierto en $\mathbb{R}^n$ y $a \in \Omega$. Si $f \colon \Omega \longrightarrow \mathbb{R}$ es diferenciable en $a$ con diferencial $L$, entonces para toda dirección $v$ en $\mathbb{R}^n$ existe $f_v(a)$ y $f_v(a)= L(v)$.
+\end{proposition}
+\emph{Demostración: }Partimos de la existencia del límite $$\lim_{x\rightarrow a} \dfrac{f(x)-f(a)-L(x-a)}{\norm{x-a}} = 0.$$
+La existencia de un límite es una condición muy fuerte, en particular tiene que existir de cualquier forma que nos acerquemos al punto $a$. Si $v$ es una dirección y nos acercamos a $a$ por los puntos de la recta $x = a+tv$, $t \longrightarrow 0$, tiene que ocurrir \begin{center}$$\lim_{t\rightarrow 0} \dfrac{f(x)-f(a)-L(tv)}{\norm{tv}} = 0 \Leftrightarrow \lim_{t\rightarrow 0} \dfrac{f(x)-f(a)-tL(v)}{|t|} = 0 \Leftrightarrow$$ $$\Leftrightarrow \lim_{t\rightarrow 0} \dfrac{f(x)-f(a)-tL(v)}{t}=0 \Leftrightarrow \lim_{t\rightarrow 0} \dfrac{f(x)-f(a)}{t} = L(v).$$\end{center}
+
+$\hfill \square$
+
+Como las derivadas parciales están unívocamente definidas al ser un límite, la diferencial cuando exista es única y también sabemos que sus componentes son las derivadas parciales. Es decir, $$L = \sum_{i=1}^n \dfrac{\partial f}{\partial x_i}(a)dx_i,$$ y su aplicación a un vector de $\mathbb{R}^n$ será $$L(x) = \sum_{i=1}^n\dfrac{\partial f}{\partial x_i}(a)x_i.$$
+Debido a la unicidad, podemos dar una notación a la diferencial. Pues bien, escribiremos $L = df(a)$ y así tendremos la siguiente igualdad: $$df(a)= \dfrac{\partial f}{\partial x_1}(a)dx_1 + \dfrac{\partial f}{\partial x_2}(a)dx_2 + \ldots + \dfrac{\partial f}{\partial x_n}(a) dx_n.$$
+
+\begin{example}Estudiemos la diferenciabilidad en $(0,0,0)$ de $f(x,y,z)=xy+z$.
+
+La diferencial, si existe, debe tener por componentes las derivadas parciales en $(0,0,0)$. En este caso es inmediato hallarlas: $$\dfrac{\partial f}{\partial x}(x,y,z)=y, \hspace{0.3cm} \dfrac{\partial f}{\partial y}(x,y,z)=x, \hspace{0.3cm} \dfrac{\partial f}{\partial z} (x,y,z)=1,$$ luego $$\dfrac{\partial f}{\partial x}(0,0,0)=0, \hspace{0.3cm} \dfrac{\partial f}{\partial y}(0,0,0)=0, \hspace{0.3cm} \dfrac{\partial f}{\partial z} (0,0,0)=1.$$ Así, si la diferencial existe debe ser la aplicación lineal $L = dz$, es decir, $L(x,y,z)=z$. Comprobemos ahora si $$\lim_{(x,y,z)\rightarrow (0,0,0)} \dfrac{f(x,y,z)-f(0,0,0)-L(x,y,z)}{\norm{(x,y,z)}} = \lim_{(x,y,z)\rightarrow(0,0,0)} \dfrac{xy+z-z}{\norm{(x,y,z)}} = 0.$$
+Lo cual es cierto usando que $|x|,|y| \leq \norm{(x,y,z)}$. Así, $f$ es diferenciable en $(0,0,0)$ y su diferencial es la aplicación lineal $df(0,0,0) = dz$.
+\end{example}
+$\hfill \blacksquare$
+
+Antes de estudiar las propiedades de la diferenciabilidad, pongamos la definición en alguna forma equivalente. Primero, y es sólo cuestión de notación, $f$ es diferenciable en $a$ si y sólo si existe una aplicación lineal $L$ tal que $$f(x)=f(a)+L(x-a)+o(\norm{x-a}), \hspace{0.1cm} x \longrightarrow a.$$
+Si denotamos $$f^{\ast} = \dfrac{f(x)-f(a)-L(x-a)}{\norm{x-a}},$$ en principio, el dominio de esta función es $\Omega \setminus \lbrace a \rbrace$. Pero si $f$ es diferenciable en $a$ y $L$ es la diferencial, existirá $$\lim_{x \rightarrow a} f^{\ast}(x) = 0.$$ 
+Con lo cual $f^{\ast}$ se puede extender de forma continua a $a$, definiendo $f^{\ast}(a)=0$. Resumiendo, se puede afirmar que si $f$ es diferenciable, entonces existe una función $f^{\ast} \colon \Omega \longrightarrow \mathbb{R}$ continua en $a$, con $f^{\ast}(a)=0$ tal que se puede poner $$f(x) = f(a) + df(a)(x-a) + f^{\ast}(x)\norm{x-a}, \hspace{0.1cm} x \in \Omega.$$
+
+Esta igualdad será muy interesante en el siguiente resultado: 
+
+\begin{proposition}
+Sea $\Omega$ abierto en $\mathbb{R}^n$, $a \in \Omega$, $f,g \colon \Omega \longrightarrow \mathbb{R}$ diferenciables en $a$, $\lambda \in \mathbb{R}$. Entonces: 
+\end{proposition}
+
+\section{Variedades diferenciables}
+\section{Cálculo en variedades}
+\section{Campos y formas diferenciales}
+
+
+\end{document}
+
+\end{document}
