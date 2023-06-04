@@ -85,13 +85,13 @@ Entonces:
 \begin{enumerate}
 \item $\emptyset \in \tau_u$ trivialmente y $\mathbb{R} \in \tau_u$ ya que si tenemos un $x \in \mathbb{R}$ y $\epsilon = 1$, entonces $(x-1, x+1) \in \mathbb{R}.$
 \item Dada $\lbrace U_i \rbrace_{i\in J}$ una colección arbitraria de elementos de $\tau_u$ entonces,  si consideramos un $x \in \cup_i U_i$ existirá un $i_0 \in J$ tal que $x \in U_{i_0}$. Como $U_{i_0} \in \tau_u$ existirá un $\epsilon >0$ tal que $(x-\epsilon, x + \epsilon) \subset U_{i_0} \subset \cup_i U_i$ y así $\cup_i U_i \in \tau_u$.
-\item Sean $U, V \in \tau_u$, $x \in U \cap V$. Como $x \in U$ existirá un $\epsilon_1>0$ tal que $(x-\epsilon_1, x+\epsilon_1) \subset U$. Como $x \in V$ existirá un $\epsilon_2 >0$ tal que $(x-\epsilon_2, x+\epsilon_2) \subset V$. Ahora, si escogemos $\epsilon = \min \lbrace \epsilon_1, \epsilon_2 \rbrace$ entonces tendremos: $$(x-\epsilon, x+\epsilon) \subset U \subset U \cap V$$ $$ (x-\epsilon, x+\epsilon) \subset U \subset U \cap V$$ y así $ U \cap V \in \tau_u$.
+\item Sean $U, V \in \tau_u$, $x \in U \cap V$. Como $U \in \tau_u$ existirá un $\epsilon_1>0$ tal que $(x-\epsilon_1, x+\epsilon_1) \subset U$. Como $V \in \tau_u$ existirá un $\epsilon_2 >0$ tal que $(x-\epsilon_2, x+\epsilon_2) \subset V$. Ahora, si escogemos $\epsilon = \min \lbrace \epsilon_1, \epsilon_2 \rbrace$ entonces tendremos: $$(x-\epsilon, x+\epsilon) \subset U \subset U \cap V$$ $$ (x-\epsilon, x+\epsilon) \subset V \subset U \cap V$$ y así $ U \cap V \in \tau_u$.
 \end{enumerate}
 
 Luego $\tau_u$ es una topología, que denominaremos \textbf{topología usual}. Al espacio topológico $(\mathbb{R}, \tau_u)$ lo denominaremos \textbf{recta real}.
 \end{example}
 
-$\hfill \square$
+$\hfill \blacksquare$
 
 \begin{definition}Sea $(X, \tau)$ un espacio topológico, un conjunto $\mathfrak{B} \subset \tau$ de abiertos se dice \textbf{base} de $\tau$ si todo elemento de $\tau$ es unión de elementos de $\mathfrak{B}$. A estos elementos de $\mathfrak{B}$ los denominaremos \textbf{abiertos básicos}.
 \end{definition}
@@ -100,7 +100,7 @@ $\hfill \square$
 \begin{enumerate}
 \item La propia topología $\tau$ es base de sí misma.
 \item Es claro que $\mathfrak{B} = \lbrace \lbrace x \rbrace : x \in X \rbrace$ es base de la topología discreta $\tau_D$ sobre $	X$.
-\item El conjunto de intervalor $\mathfrak{B}_U = \lbrace (a,b):a,b \in \mathbb{R} \rbrace$ es una base para la topología usual sobre $\mathbb{R}$, $\tau_U.$
+\item El conjunto de intervalos $\mathfrak{B}_U = \lbrace (a,b):a,b \in \mathbb{R} \rbrace$ es una base para la topología usual sobre $\mathbb{R}$, $\tau_U.$
 \end{enumerate}
 \end{example}
 
@@ -120,10 +120,10 @@ Luego:
 
 Sin embargo, no toda familia de partes de un conjunto es una base para una topología. Para identificar a estos conjuntos especiales tenemos el siguiente resultado:
 
-\begin{proposition}Sea $\mathfrak{B} \subset \mathcal{P}(X)$ satisfaciendo: 
+\begin{proposition}\label{eq:condBase} Sea $\mathfrak{B} \subset \mathcal{P}(X)$ satisfaciendo: 
 \begin{enumerate}
 \item Para todo $x \in X$ existe un $B \in \mathfrak{B}$ tal que $x \in B$.
-\item Dados $B_1, B_2 \in \mathfrak{B}$ y $x \in B_1 \cap B_2$ existe $B \in \mathfrak{B}$ tal que $x \in B \subset B_1 \cap B_2$
+\item Dados $B_1, B_2 \in \mathfrak{B}$ y $x \in B_1 \cap B_2$, entonces existe un $B \in \mathfrak{B}$ tal que $x \in B \subset B_1 \cap B_2$
 \end{enumerate}
 Entonces, el conjunto $\tau_{\mathfrak{B}} \subset \mathcal{P}(X)$ definido por $U \in \tau_{\mathfrak{B}}$ si y sólo si para todo $x \in U$ existe $B \in \mathfrak{B}$ tal que $x \in B \subset U$ es una topología sobre $X$ que tiene a $\mathfrak{B}$ como base. Llamaremos a $\tau_{\mathfrak{B}}$ topología generada por $\mathfrak{B}$.
 \end{proposition}
@@ -137,6 +137,26 @@ Por inducción finita se sigue para cualquier subfamilia finita $\lbrace U_1, \l
 
 \end{proof}
 
+\begin{example}Consideremos el producto cartesiano $\mathbb{R}^n$ de $n$ copias del conjunto de los números reales. En $\mathbb{R}^n$ consideramos la \textbf{distancia euclídea} $$
+\begin{array}{rccl}
+d \colon &\mathbb{R}^n \times \mathbb{R}^n & \longrightarrow & \mathbb{R}^n\\
+&((x_1, \ldots, x_n),(y_1, \ldots, y_n))& \longmapsto &\sqrt{(x_1-y_1)^2+\ldots+(x_n-y_n)^2}
+\end{array}
+$$
+
+Entonces, dado $x \in \mathbb{R}^n$ y $r \in \mathbb{R}$ con $r>0$, podemos definir la \textbf{bola abierta} de centro $x$ y radio $r$ como el subconjunto $$B(x,r) = \lbrace y \in \mathbb{R}^n: d(x,y) <r \rbrace.$$ La colección de bolas en $\mathbb{R}^n$ $$\mathfrak{B} = \lbrace B(x,r) :x \in \mathbb{R}^n, r>0 \rbrace$$ forman una base para la topología usual en $\mathbb{R}^n$. A $\mathbb{R}^n$ dotado de esta topología se denonima \textbf{espacio euclídeo $n$-dimensional}. Concretamente, la recta real $(\mathbb{R}, \tau_u)$ es el espacio euclídeo $1$-dimensional.
+
+Notar: 
+\begin{enumerate}
+\item $\mathbb{R}^n = \cup_x B(x,1)$.
+\item Sean $B_1, B_2 \in \mathfrak{B}$ tales que $B_1 \cap B_2 \neq \emptyset$. Supongamos que $B_1 = B(x_1,r_1)$ y $B_2 = B(x_2,r_2)$ y sea $x \in B_1 \cap B_2$. Tenemos que ver que existe un $r>0$ tal que $B(x,r) \subset B_1 \cap B_2$. Para ello basta escoger $0 < r< min\lbrace	r_1-d(x,x_1), r_2-d(x,x_2)\rbrace$. Así, si $y \in B(x,r)$ entonces $d(y,x_i) \leq d(y,x) + d(x,x_i) <r + d(x,x_i)<r_i$, con $i=1,2$.
+\end{enumerate}
+
+Realmente, como ya sabemos, no necesitamos definir una distancia para encontrar una base para un espacio topológico ni tampoco para definirlo. Esto se utilizará más adelante para hablar de otro tipo de espacios.
+\end{example}
+
+$\hfill \blacksquare$
+
 \begin{proposition}Sean $\mathfrak{B}_1$ y $\mathfrak{B}_2$ bases de sendas topologías $\tau_1 $y $\tau_2$ sobre un conjunto $X$, entonces $\tau_2$ es más fina que $\tau_1$, es decir, $\tau_1 \subset \tau_2$ si y sólo si para todo $x\in X$ y todo $B_1 \in \mathfrak{B}_1$ tal que $x\in B_1$ existe $B_2 \in \mathfrak{B}_2$ tal que $x \in B_2 \subset B_1.$
 \end{proposition}
 \begin{proof}Supongamos que $\tau_1 \subset \tau_2$, dado $x \in X$ y $B_1\in \mathfrak{B}_1$ tal que $x \in B_1$, en particular $B_1 \in \tau_1$ y por tanto $B_1 \in \tau_2$, entonces existe $B_2 \in \mathfrak{B}_2$ tal que $x \in B_2 \subset B_1$.
@@ -146,15 +166,159 @@ Recíprocamente, si $U \in \tau_1$ existirá $B_1 \in \mathfrak{B}_1$ tal que $x
 \end{proof}
 
 \begin{example}
-La familia $\mathfrak{B}_S$ de los intervalos semiabiertos de la forma $[a,b)$ satisfacen las condiciones de~~, luego forman base de una topología $\tau_S$ sobre $\mathbb{R}$. Al espacio topológico $(\mathbb{R},\tau_S)$ ó simplemente $\mathbb{R}_S$ se le conoce como \textbf{recta de Sorgenfrey}.
+La familia $\mathfrak{B}_S$ de los intervalos semiabiertos de la forma $[a,b)$ satisfacen las condiciones de~\ref{eq:condBase}, luego forman base de una topología $\tau_S$ sobre $\mathbb{R}$. Al espacio topológico $(\mathbb{R},\tau_S)$ ó simplemente $\mathbb{R}_S$ se le conoce como \textbf{recta de Sorgenfrey}.
 
 Notar que para todo $x \in \mathbb{R}$ y todo intervalo $(a,b)$ tal que $x \in (a,b)$ está claro que $x \in [x,b) \subset (a,b)$, por lo que $\tau_U \subset \tau_S$, y como $[a,b) \notin \tau_U$ se sigue que la topología de Sorgenfrey es estrictamente más fina que la usual.
 \end{example}
 
 $\hfill \blacksquare$
 
-\begin{definition}
+\begin{definition}Dado un espacio topológico $(X,\tau)$ y un punto $x \in X$, llamaremos \textbf{entorno} de $x$ a todo subconjunto $N \subset X$ que contiene a $x$ como punto interior, es decir, a todo $N$ para el cual existe $U \in \tau$ tal que $x \in U \subset N$.
 \end{definition}
+
+Aunque, en general, los entornos no son necesariamente abiertos, nosotros solamente consideraremos entornos abiertos. Así, por entorno de un punto entenderemos todo abierto que lo contiene.
+
+\begin{definition}Dado un espacio topológico $(X, \tau)$, denotaremos por $\varepsilon(x) = \lbrace U \in \tau: x \in U \rbrace$ a la familia de todos los entornos abiertos de $x$ y diremos que $\mathfrak{B}_x \subset \varepsilon (x)$ es una \textbf{base de entornos de $x$} ó \textbf{base local respecto de $x$} si para todo $U \in \tau$ tal que $x \in U$ existe un $B \in \mathfrak{B}_x$ tal que $x \in B \subset U$.
+\end{definition}
+
+Además, está claro que $\mathfrak{B} = \cup_x \mathfrak{B}_x$ es una base para $\tau$. Recíprocamente, si $\mathfrak{B}$ es una base para $\tau$, entonces $\mathfrak{B}_x = \mathfrak{B} \cap \varepsilon(x)$ es una base local respecto de $x$.
+
+No toda familia de partes de un conjunto $X$ es una topología, ni forman base para una topología. Sin embargo, todo subconjunto $\mathcal{S} = \lbrace S_{ij} \rbrace \subset \mathcal{P}(X)$ tal que $X = \cup S_{ij}$ determina una topología sobre $X$: si denotamos por $\mathfrak{B}_{\mathcal{S}} = \lbrace B_i \rbrace$ el conjunto de las intersecciones finitas de elementos de $\mathcal{S}$, es decir, $B_i = S_{1i} \cap \ldots \cap S_{ni}$ para algún $n$, entonces el conjunto $\tau_{\mathcal{S}}$ de las uniones arbitrarias de elementos de $\mathfrak{B}_{\mathcal{S}}$ es una topología sobre $X$ que tiene a $\mathfrak{B}_{\mathcal{S}}$ como base. Notaremos que $\tau_{\mathcal{S}}$ es la menor topología sobre $X$ tal que $\mathcal{S} \subset \tau_{\mathcal{S}}$. El conjunto $\mathcal{S}$ se dirá \textbf{\textit{subbase}} de $\tau_{\mathcal{S}}$.
+
+\begin{definition}Sea $(X, \tau)$ un espacio topológico y $A \subset X$ un subconjunto de $X$. Un punto $x \in A$ se dice \textbf{punto interior} de $A$ si existe un abierto $U \in \tau$ tal que $x \in U \subset A$. Denotaremos por $Int A$ el conjunto de todos los puntos interiores de $A$. Claramente $Int A \subset A$ y $A$ es abierto si y sólo si $A = Int A$.
+\end{definition}
+
+\begin{proposition}Sea $(X,\tau)$ un espacio topológico y $A \subset X$. El conjunto $Int A$ de todos los puntos interiores de $A$ es la unión de todos los abiertos contenidos en $A$. En particular, $Int A$ es el mayor abierto contenido en $A$.
+\end{proposition}
+\begin{proof}
+Sea $\mathcal{U} = \lbrace U\in \tau: U \subset A \rbrace$ la familia de todos los abiertos contenidos en $A$, todo punto de $U$ es interior y por tanto $U \subset Int A$ para todo $U \in \mathcal{U}$, por lo que se sigue que $\cup_{U \in \mathcal{U}} U \subset Int A$. Por otro lado, para todo $x \in Int A$ existe un abierto $U_x \in \tau$ tal que $x \in U_x \subset A$, por lo que $Int A = \cup_{x\in Int A} \lbrace x \rbrace \subset \cup_{x\in Int A}U_x \subset \cup_{U \in \mathcal{U}} U$, ya que $U_x \in \mathcal{U}$ y así concluimos que $Int A = \cup_{U \in \mathcal{U}} U$.
+
+\end{proof}
+
+\begin{proposition}Sea $(X, \tau)$ un espacio topológico y $A \subset X$, entonces se satisface:
+\begin{enumerate}
+\item $Int(Int A) = Int A$.
+\item Si $B \subset A$ entonces $Int B \subset Int A$.
+\item $Int (A \cap B) = Int A \cap Int B$ $\forall A,B \in X$.
+\item $Int A \cup Int B \subset Int (A \cup B)$ $\forall A,B \in X$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Son todas inmediatas. Observar que en el último caso el contenido es estricto, por ejemplo: en $\mathbb{R}$ con la topología usual tomamos $A=[0,1]$ y $B = [1,2]$, entonces $A \cup B = [0,2]$ y tenemos $Int(A \cup B) = (0,2)$, sin embargo $Int A \cup Int B = (0,1) \cup (0,2) = (0,2) \setminus \lbrace 1 \rbrace.$
+
+\end{proof}
+
+\begin{definition}Sea $(X, \tau)$ un espacio topológico, un subconjunto $F \subset X$ se dirá \textbf{cerrado} si su complementario, $X \setminus F$, es abierto.
+\end{definition}
+
+Aplicando las leyes de De Morgan obtenemos el siguiente resultado: 
+
+\begin{proposition}Sea $(X, \tau)$ un espacio topológico, la familia de los cerrados satisface:\begin{enumerate}
+\item $X$ y $\emptyset$ son cerrados.
+\item La intersección arbitraria de cerrados es un cerrado.
+\item La unión finita de cerrados es un cerrado.
+\end{enumerate}
+\end{proposition}
+
+Y es que en un espacio topológico, abiertos y cerrados se determinan mutuamente. Dada una familia $\mathcal{F} \subset \mathcal{P}(X)$ de subconjuntos de $X$ satisfaciendo las propiedades anteriores, entonces es claro que $\tau = \lbrace X \setminus F: F \in \mathcal{F} \rbrace$ es una topología sobre $X$ tal que $\mathcal{F}$ es la familia de sus cerrados.
+
+\begin{definition}Sea $(X, \tau)$ un espacio topológico y $A \subset X$, un punto $x \in X$ se dice \textbf{punto de acumulación de $A$} si para todo abierto $U$ tal que $x \in U$ se tiene que $(U \setminus \lbrace x \rbrace ) \cap A \neq 0$. Llamaremos \textbf{derivado de $A$} y lo denotaremos por $A'$ al conjunto de todos los puntos de acumulación de $A$.
+\end{definition}
+
+Además, dados $A,B \subset X$, entonces $(A \cup B)' = A' \cup B'$. En particular, si $A \subset B$ entonces $A' \subset B'$.
+
+Los cerrados son aquellos que contienen a su derivado:
+
+\begin{proposition}Sea $(X, \tau)$ un espacio topológico y $F \subset X$, entonces $F$ es cerrado si y sólo si $F' \subset F$.
+\end{proposition}
+\begin{proof}
+Sea $F$ cerrado y $x \in F'$, si $x\notin F$ entonces $x \in X \setminus F$ abierto y así existirá un abierto $U \in \tau$ tal que $x \in U \subset X \setminus F$, en particular $(U \setminus \lbrace x \rbrace) \cap F = \emptyset$, lo cual contradice que $x \in F'$.
+
+Recíprocamente, si $F' \subset F$ y $x \in X \setminus F$ entonces $x \notin F'$ y existirá un $U$ abierto tal que $(U \setminus \lbrace x \rbrace) \cap F = \emptyset$ ó bien $U \cap F = \emptyset$, ya que $x \notin F$. Así, $x \in U \subset X \setminus F$, es decir, $X\setminus F$ es abierto y $F$ es cerrado.
+
+\end{proof}
+\begin{definition}Sea $(X, \tau)$ un espacio topológico y $A \subset X$, definimos la \textbf{clausura} o cierre de $A$ en $X$, y lo denotamos por $Cl_X A$ o $\overline{A}$ a la unión de $A$ con su derivado, es decir, $\overline{A} = A \cup A'$.
+\end{definition}
+
+Además, está claro que $A \subset \overline{A}$ para todo $A \subset X$ y es claro que $A$ es cerrado si y sólo si $A = \overline{A}$.
+
+Los puntos de la clausura, denominados \textbf{\textit{puntos adherentes}} o de adherencia, se pueden caracterizar así:
+
+\begin{proposition}Sea $(X, \tau)$ un espacio topológico y $A \subset X$, entonces $x \in \overline{A}$ si y sólo si $U \cap A \neq \emptyset$ para todo $U \in \tau$ tal que $x \in U$.
+\end{proposition}
+
+\begin{proposition}Sea $(X, \tau)$ un espacio topológico y $A,B \subset X$, entonces se satisface: \begin{enumerate}
+\item $X \setminus \overline{A} = Int(X\setminus A)$.
+\item $\overline{X\setminus A} = X \setminus Int A$.
+\item $\overline{A \cup B} = \overline{A} \cup \overline{B},$ en particular $A \subset B \Rightarrow \overline{A} \subset \overline{B}.$
+\item $\overline{A \cap B} \subset \overline{A} \cap \overline{B}.$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Notar que $x \notin \overline{A}$ si y sólo si existe $U \in \tau$ tal que $x \in U \subset X \setminus A$, por lo que $X \setminus \overline{A} = Int (X \setminus A)$. Claramente $2$ se sigue de $1$ cambiando $A$ por $X\setminus A$. Por $1$, $\overline{A \cup B} = X \setminus Int[X \setminus (A \cup B)] = X \setminus Int[(X\setminus A)\cap (X\setminus B)] = X \setminus [Int(X \setminus A) \cap Int(X \setminus B)] = [X \setminus Int(X\setminus A) ]\cup [X \setminus Int(X\setminus B)] = \overline{A} \cup \overline{B}$. Si $A \subset B$ entonces $B = A \cup B$ y así $\overline{B} = \overline{A \cup B} = \overline{A} \cup \overline{B}$, y en consecuencia $\overline{A} \subset \overline{B}$. De esto último deducimos fácilmente que $\overline{A \cap B} \subset \overline{A} \cap \overline{B}$.7
+
+\end{proof}
+
+A lo largo de la demostración anterior se utiliza una expresión que se obtiene de reformular el primer punto. Y es que podemos deducir claramente que $\overline{A} = X \setminus Int(X\setminus A).$
+
+Además, el contenido del último punto es, en general, estricto. En efecto, sea $\mathbb{R}$ con la topología usual, $A = \mathbb{Q}$ y $B = \mathbb{R} \setminus \mathbb{Q}$, entonces para todo $x \in \mathbb{R}$ es claro que $(x-r, x+r) \cap \mathbb{Q} \neq \emptyset$ para todo $r >0$, por lo que $x \in \overline{\mathbb{Q}}$, es decir, $\overline{\mathbb{Q}} = \mathbb{R}.$ Análogamente, $\overline{\mathbb{R} \setminus \mathbb{Q}} = \mathbb{R}$, por lo que $\overline{A} \cap \overline{B} = \mathbb{R}$ mientras que $\overline{A \cap B} = \overline{\emptyset} = \emptyset.$
+
+\begin{proposition}La clausura de $A$ es la intersección de todos los cerrados que contienen a $A$. En particular, $\overline{A}$ es el menor cerrado que contiene a $A$.
+\end{proposition}
+\begin{proof}
+Sea $\mathcal{F} = \lbrace F_i : F_i = \overline{F_i}, A \subset F_i \rbrace$ la familia de los cerrados que contienen a $A$, notar que $\overline{A} \in \mathcal{F}$, luego es claro que $\cap F_i  \subset \overline{A}$. Por otra parte, $A \subset F_i$ implica $\overline{A} \subset \overline{F_i} = F_i$ para todo $F_i \in \mathcal{F}$ y así $\overline{A} \subset \cap F_i$.
+
+\end{proof}
+
+\begin{definition}Sea $(X, \tau)$ un espacio topológico. Definimos la \textbf{frontera} de $A \subset X$, como $Fr A = \overline{A} \cap \overline{X\setminus A}$. En particular, $FrA$ es un cerrado para todo $A \subset X$ y es claro que $FrA = Fr(X\setminus A)$.
+\end{definition}
+
+Notar que si $A$ es abierto y cerrado entonces $Fr A = \emptyset$.
+
+Los puntos de la frontera los podemos caracterizar como sigue:
+
+\begin{proposition}Sea $(X, \tau)$ un espacio topológico. Sea $A \subset X$, entonces $x \in Fr A$ si y sólo si $U \cap A \neq \emptyset$ y $U \cap (X \setminus A) \neq \emptyset$ para todo $U\in \tau$ tal que $x \in U$, es decir, todo entorno de $x$ corta a $A$ y a su complementario.
+\end{proposition}
+
+\begin{proposition}Sea $(X, \tau)$ un espacio topológico y $A \subset X$. Entonces: \begin{enumerate}
+\item $Fr A = \overline{A} \setminus Int A$.
+\item $\overline{A} = Int A \sqcup Fr A$.
+\item Si $FrA \cap Fr B = \emptyset$ entonces $Int A \cup Int B = Int(A \cup B)$, $\overline{A \cap B} = \overline{A} \cap \overline{B}$ y $Fr(A \cap B) = (Fr A\cap \overline{B})\cup (\overline{A} \cap Fr B)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Sólo el último punto lleva cierta dificultad. Sea $Fr A \cap Fr B = \emptyset$ y supongamos que existe un $x \in Int (A \cup B)$ tal que $x \notin Int A \cup Int B$, entonces $x \in X \setminus (Int A \cup Int B) = (X \setminus Int A) \cap (X \setminus Int B) = \overline{X\setminus A} \cap \overline{X\setminus B}$. Si $x \notin \overline{A}$ existirá $U \in \tau$ tal que $x \in U$ y $U \cap A = \emptyset$. Por otro lado, $x \in Int (A \cup B)$ implica que existe $V \in \tau$ tal que $x \in V \subset A \cup B$. Entonces $U \cap V \in \tau$ satisface $x \in U \cap V \subset V \subset A \cup B$ y $(U \cap V) \cap A \subset U \cap A = \emptyset$, lo cual implica que $x \in U \cap V \subset B$, es decir, $x \in Int B$ y llegamos a una contradicción ya que $x \notin Int A \cup Int B$. Necesariamente tenemos que $x \in \overline{A}$ y análogamente podríamos ver que $x \in \overline{B}$. Luego $x \in \overline{A} \cap \overline{X \setminus A} \cap \overline{B} \cap \overline{X \setminus B} = Fr A \cap Fr B$, lo que contradice la hipótesis de que las fronteras de $A$ y $B$ son disjuntas. Necesariamente tenemos que $x \in Int A \cup Int B$ y por tanto $Int (A \cup B) \subset Int A \cup Int B$. El otro contenido se satisface sin restricciones y tenemos la igualdad. Por otra parte, notar que $X \setminus \overline{A \cap B} = Int (X \setminus A \cap B) = Int[(X\setminus A) \cup (X \setminus B)] = Int (X\setminus A ) \cup Int (X \setminus B)$, ya que $Fr (X \setminus A) \cap Fr(X\setminus B) = Fr A \cap Fr B = \emptyset$, pero $Int (X\setminus A) \cup Int (X\setminus B) =(X\setminus \overline{A})\cup (X  \setminus \overline{B}) = X \setminus (\overline{A} \cap \overline{B})$ y así $\overline{A \cap B} = \overline{A} \cap \overline{B}$. Finalmente, tenemos que $Fr (A \cap B) = \overline{A \cap B} \cap \overline{X \setminus (A \cap B)} = \overline{A} \cap \overline{B} \cap (\overline{X\setminus A} \cup \overline{X \setminus B}) = (\overline{A}\cap \overline{B} \cap \overline{X\setminus A})\cup (\overline{A} \cap \overline{B} \cap \overline{X \setminus B}) = (Fra A \cap \overline{B})  \cup (\overline{A} \cap FrB).$
+
+\end{proof}
+
+\begin{definition}Sea $(X, \tau)$ un espacio topológico y $A \subset X$. Definimos el \textbf{exterior} de $A$ como el interior de su complementario. Así, $Ext A = Int (X \setminus A)$.  Notar que $X = Int A \sqcup Fr A \sqcup Ext A$ para todo $A \subset X$. Un punto $x \in A$ se dirá aislado si existe un abierto $U$ en $X$ tal que $U \cap A = \lbrace x \rbrace$. Denotaremos por $Ais(A)$ el conjunto de los puntos aislados de $A$. Notar que $\overline{A} = Ais(A) \sqcup A'$, en particular si $A' = \emptyset$ entonces todo punto de $A$ es aislado.
+\end{definition}
+
+\begin{definition}Sea $(X, \tau)$ un espacio topológico. Un subconjunto $D \subset X$ se dice \textbf{denso} en $X$ si $\overline{D} = X$, o equivalentemente si para todo abierto $U$ en $X$ se tiene $U \cap D \neq \emptyset$.
+\end{definition}
+
+Tanto los racionales como los irracionales son densos en $\mathbb{R}$.
+
+Veamos ahora un ejemplo en el que repasemos todos los distintos tipos de puntos en un espacio topológico:
+
+\begin{example}Sea $(\mathbb{R}, \tau_u)$ la recta real y $A = (0,1] \subset (\mathbb{R}, \tau_u)$.
+\begin{enumerate}
+\item El conjunto de los puntos interiores, $Int A = (0,1)$. En efecto, para cualquier $x \in (0,1)$ existe un $\varepsilon >0$ tal que $x \in (x-\varepsilon, x+ \varepsilon) \subset (0,1)$. Y cualquier otro punto de la recta, incluido el $1$, no cumple esta condición.
+\item La clausura de $A$, $\overline{A} = [0,1]$. Dado $x \in [0,1]$ y un abierto $(a,b)$ tal que $x \in (a,b)$, siempre se va a tener que $(a,b) \cap (0,1] \neq \emptyset$. Sin embargo, si $x \notin [0,1]$ siempre podemos encontrar un abierto $(a,b)$ tal que $x \in (a,b)$ y $(a,b) \cap [0,1] = \emptyset$.
+\item El derivado de $A$, $A' = [0,1]$. Dado cualquier $x \in [0,1]$ y un abierto $(a,b)$ que lo contenga, siempre se tiene que $((a,b) \setminus \lbrace x \rbrace ) \cap (0,1] \neq \emptyset$. Por el contrario, si $x \notin [0,1]$ siempre podemos encontrar un abierto $(a,b)$ que lo contenga y $((a,b) \setminus \lbrace x \rbrace ) \cap [0,1] \neq \emptyset$.
+\item El conjunto de los puntos aislados de $A$, $Ais(A) = \emptyset$. Y es que no existe ningún punto $x \in \mathbb{R}$ tal que un abierto $(a,b)$ que lo contenga interseque a $(0, 1]$ únicamente en el punto $x$.
+\item La frontera de $A$, $Fr A = \lbrace 0, 1\rbrace$. Los únicos puntos $x$ tales que cualquier abierto $(a,b)$ con $x \in (a,b)$ que verifican que intersecan tanto a $(0,1]$ como a sus complementarios $\mathbb{R}\setminus (0,1]$ son el $0$ y el $1$.
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}Si consideramos ahora como espacio topológico $\mathbb{Z}$ dotado de la topología usual entonces, dado un entero $z \in \mathbb{Z}$, existe un intervalo, por ejemplo $z \in (z-1, z+1)$, que corta a $\mathbb{Z}$ en únicamente el punto $z$. Así, todos los puntos de $\mathbb{Z}$ son aislados, frontera y los únicos que conforman la clausura, ya que para todo $x \in \mathbb{R}\setminus \mathbb{Z}$ se tiene que $x \in (\lfloor x \rfloor, \lfloor x \rfloor + 1) \subset \mathbb{R} \setminus \mathbb{Z}$ (recordemos que la función suelo $\lfloor x \rfloor = max\lbrace k \in \mathbb{Z}: k\leq x \rbrace$), luego tampoco hay puntos interiores ni de acumulación. Así, tenemos que $\overline{\mathbb{Z}} = Ais (\mathbb{Z}) = Fr\mathbb{Z} = \mathbb{Z}$ y $Int\mathbb{Z} = \mathbb{Z}' = \emptyset$.
+
+Notar que el conjunto de los puntos interiores es vacío porque todo abierto que contenga a un punto $z \in \mathbb{Z}$ será de la forma $(z-\varepsilon, z+\varepsilon)$ y este abierto siempre pertenece a $\mathbb{R}\setminus \mathbb{Z}$.
+\end{example}
+
+$\hfill \blacksquare$
 
 \section{Aplicaciones continuas y homeomorfismos}
 \section{Separación y numerabilidad}
