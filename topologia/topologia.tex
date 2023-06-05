@@ -321,6 +321,38 @@ Notar que el conjunto de los puntos interiores es vacío porque todo abierto que
 $\hfill \blacksquare$
 
 \section{Aplicaciones continuas y homeomorfismos}
+
+\begin{definition}Una aplicación $f \colon (X, \tau_X) \longrightarrow (Y, \tau_Y)$ entre dos espacios topológicos se dice \textbf{continua} respecto de $\tau_X$ y $\tau_Y$, ó \textbf{$(\tau_X, \tau_Y)$-continua, en un punto $x_0 \in X$} si para todo abierto $V$ en $Y$ tal que $f(x_0) \in V$ existe un abierto $U$ en $X$ tal que $x_0 \in U$ y $f(U) \subset V$. Diremos que $f$ es \textbf{$(\tau_X, \tau_Y)$-continua} si lo es en todo punto de $X$.
+\end{definition}
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) rectangle (3,4) node[above] at(1,4.1) {$X$};
+\draw (1.6,2.2) ellipse (1.2 and 1.4);
+\fill (2,2.2) circle (1pt) node [below] {$x_0$};
+\draw (1.6,2.2) ellipse (0.7 and 0.9) node[above] at(1,2.7) {$U$};
+\draw (10,0) rectangle (13,4) node[above] at(11,4.1) {$Y$};
+\draw (11.5,2.2) ellipse (1.3 and 1.5) node[above] at(10.7,3.3) {$V$};
+\draw (11.4,2.0) ellipse (0.7 and 0.9) node[above] at(11.8,2.75) {$f(U)$};
+\fill (11.5,2.2) circle (1pt) node [below] {$f(x_0)$};
+\draw [dashed, ->] (3,2.2)--(10,2.2) node [pos=0.5,above] {$f$};
+\end{tikzpicture}
+\end{center}
+
+En el par $(X, \tau)$ es más relevante la topología $\tau$ que el conjunto $X$, también las topologías son esenciales en el concepto de continuidad, sin embargo, de ahora en adelante denotaremos $X$ por $(X, \tau)$, $Y$ por $(Y, \tau_Y)$ y $f \colon X \longrightarrow Y$ por $f \colon (X, \tau_X) \longrightarrow (Y, \tau_Y)$. Análogamente, diremos que $f$ es continua en lugar de $(\tau_X, \tau_Y)$-continua cuando las topologías $\tau_X, \tau_Y$ estén prefijadas o se sobreentiendan y no haya lugar a la confusión.
+
+Por ejemplo, toda aplicación constante, independientemente de las topologías prefijadas en los espacios, es continua: en efecto, sea $f \colon X \longrightarrow Y$ definida por $f(x) = y_0$ para todo $x \in X$, dado un entorno $V$ de $y_0$ tomamos $U = X$, el cual es abierto para toda la topología sobre $X$, y es claro que $f(X) = \lbrace y_0 \rbrace \subset V$.
+
+La condición de continuidad es suficiente definirla para abiertos básicos: si $\mathfrak{B}_Y$ es una base de $\tau_Y$ y $V \in \tau_Y$, entonces $V = \cup V_i$, con $V_i \in \mathfrak{B}_Y$ y si para cada $V_i$ existe un $U_i \in \tau_X$ tal que $f(U_i) \subset V_i$, es claro que $U = \cup U_i$ es un abierto en $X$ tal que $f(U) \subset V$, ya que $f(\cup U_i) = \cup f(U_i)$.
+
+\begin{proposition}Dada $f \colon X \longrightarrow Y$, son equivalentes:
+\begin{enumerate}
+\item $f$ es continua.
+\item $f^{-1}(U) \in \tau_X$ para todo $U \in \tau_Y$.
+\item $f^{-1}(F)$ cerrado en $X$ para todo $F$ cerrado en $Y$.
+\item $f(\overline{A}) \subset \overline{f(A)}$ para todo $A \subset X$.
+\end{enumerate}
+\end{proposition}
+
 \section{Separación y numerabilidad}
 \section{Espacios métricos}
 \section{Compacidad}
