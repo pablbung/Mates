@@ -47,10 +47,9 @@
 \tableofcontents
 \parindent= 0cm
 
-
-\section{Preliminares}
-\subsection{Continuidad}
-\subsection{Diferenciabilidad}
+\section{Continuidad}
+\section{Diferenciablidad}
+\subsection{Conceptos básicos}
 En esta sección definiremos y estudiaremos el concepto de derivada para funciones de varias variables. Partiremos de la definición de derivada para funciones de una variable:
 \begin{definition} Sea $I$ un intervalo abierto de $\mathbb{R}$, $f \colon I \longrightarrow \mathbb{R}$, con $a \in I$. La \textbf{derivada} de $f$ en $a$ es el límite $$f'(a)= \lim_{x\rightarrow a}\dfrac{f(x)-f(a)}{x-a},$$ cuando dicho límite existe.
 \end{definition}
@@ -137,8 +136,113 @@ Con lo cual $f^{\ast}$ se puede extender de forma continua a $a$, definiendo $f^
 Esta igualdad será muy interesante en el siguiente resultado: 
 
 \begin{proposition}
-Sea $\Omega$ abierto en $\mathbb{R}^n$, $a \in \Omega$, $f,g \colon \Omega \longrightarrow \mathbb{R}$ diferenciables en $a$, $\lambda \in \mathbb{R}$. Entonces: 
+Sea $\Omega$ abierto en $\mathbb{R}^n$, $a \in \Omega$ y $f,g \colon \Omega \longrightarrow \mathbb{R}$ diferenciables en $a$. Entonces $f$ es continua en $a$
 \end{proposition}
+\begin{proof}
+Si aplicamos límites a $f(x) = f(a) + df(a)(x-a) + f^{\ast}(x)\norm{x-a}$, como $$\lim_{x\rightarrow a} df(a)(x-a) = df(a)(0) = 0$$ al ser toda aplicación lineal continua, tenemos que $$\lim_{x\rightarrow a} f(x) = f(a).$$
+
+\end{proof}
+
+Otras propiedades son:
+
+\begin{proposition}Dado $\Omega \subset \mathbb{R}^n$ un abierto, $a \in \Omega$, $f,g \colon \Omega \longrightarrow \mathbb{R}$ diferenciables en $a$ y $\lambda \in \mathbb{R}$. Entonces: 
+\begin{enumerate}
+\item $f+g$ es diferenciable en $a$, con $d(f+g)(a) = df(a) + dg(a)$.
+\item $\lambda f$ es diferenciable en $a$, con $d(\lambda f) (a) = \lambda df(a)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}Sea $\Omega$ abierto en $\mathbb{R}^n$, $a \in \Omega$ y $f,g \colon \Omega \longrightarrow \mathbb{R}$ diferenciables en $a$. Entonces $fg$ es diferenciable en $a$, con $d(fg)(a) = g(a) df(a) + f(a) dg(a)$.
+\end{proposition}
+\begin{proof}
+Por hipótesis, tenemos \begin{equation}
+f(x) = f(a) + df(a)(x-a) + f^{\ast}(x)\norm{x-a}, x\in \Omega
+\end{equation} 
+\begin{equation}
+g(x) = g(a) + dg(a)(x-a) + g^{\ast}(x)\norm{x-a}, x\in \Omega
+\end{equation} con $f^\ast$ y $g^\ast$ funciones continuas en $a$ y $f^\ast(a) = g^\ast(a) = 0$. Tenemos que ver que la función $$F(x) = \dfrac{f(x)g(x)-f(a)g(a)-f(a)dg(a)(x-a)-g(a)df(a)(x-a)}{\norm{x-a}}$$ tiende a $0$ cuando $x$ tiende a $a$. Usando $(1)$ y $(2)$ llegamos a que \begin{center}$F(x) = f(a) g^\ast(x) +g(a)f^\ast(x) + \dfrac{df(a)(x-a)dg(a)(x-a)}{\norm{x-a}} + df(a)(x-a)g^\ast(x)+dg(a)(x-a)f^\ast(x)+f^\ast(x)g^\ast(x)\norm{x-a}$ \end{center}
+
+Cada uno de estos seis sumandos tiende a $0$ cuando $x$ tiende a $a$. El primero, el segundo y el sexto son claros. Para el tercero usamos que como $df(a)$ y $dg(a)$ son aplicaciones lineales, existen constantes $K_1, K_2 >0$ tales que $$|df(a)(x-a)| \leq K_1 \norm{x-a}, \hspace{0.2cm} |dg(a)(x-a)| \leq K_2\norm{x-a}$$ y por tanto $$\left| \dfrac{df(a)(x-a)dg(a)(x-a)}{\norm{x-a}}\right|\leq K_1K_2\norm{x-a},$$ con lo que queda claro que tiende a $0$. Para el cuarto y el quinto hacemos acotaciones similares.
+
+\end{proof}
+
+\begin{example}\begin{enumerate}
+\item Si $f \colon \mathbb{R}^n\longrightarrow \mathbb{R}$ es constante, de manera que existe algún $c \in \mathbb{R}$ tal que $f(x) = c$ para todo $x \in \mathbb{R}^n$, entonces en todo $x \in \mathbb{R}^n$ $f$ es diferenciable y $df(x) = 0$.
+\item Si $f \colon \mathbb{R}^n \longrightarrow \mathbb{R}$ es lineal, entonces en todo $x\in \mathbb{R}^n$ $f$ es diferenciable, con $df(x) = f$.
+\item Toda función polinómica en $n$ variables es diferenciable en todo punto de $\mathbb{R}^n$.
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+Los dos primeros ejemplos anteriores son inmediatos, y el tercero es porque todo polinomio es producto de constantes y aplicaciones lineales $\pi^i$.
+
+\begin{example}Algunos ejemplos: 
+
+\begin{enumerate}
+\item La función $f(x,y) = x + |y|$ no es diferenciable en $(0,0)$ porque no existe la derivada parcial con respecto a $y$ en $(0,0)$.
+\item La función $$f(x,y)= \dfrac{x^2y}{x^4+y^2}, \hspace{0.2cm} \text{si} \hspace{0.2cm} (x,y) \neq (0,0), \hspace{0.2cm} f(0,0) = 0,$$ no es diferenciable en $(0,0)$. A pesar de que existen todas las derivadas parciales en $(0,0)$, no es continua.
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+Este último ejemplo nos asegura que hemos definido por diferenciable una condición más fuerte que el de la existencia de todas las derivadas parciales. Y esto es importante remarcarlo, la existencia de las derivadas parciales no garantiza la condición de diferenciable.
+
+Ahora, veamos el concepto de vector gradiente. Éste va a ser el vector de $\mathbb{R}^n$ que tenga por coordenadas las componentes de la diferencial. 
+
+\begin{definition}Sea $\Omega$ un abierto en $\mathbb{R}^n$, $a \in \Omega$, $f \colon \Omega \longrightarrow \mathbb{R}$ diferenciable en $a$, llamaremos \textbf{gradiente} de $f$ en $a$ al vector $$\nabla f(a) = \left( \dfrac{\partial f}{\partial x_1}(a), \ldots, \dfrac{\partial f}{\partial x_n} (a) \right) \in \mathbb{R}^n.$$
+\end{definition}
+
+Notar que, como hemos mencionado antes, el operador gradiente podría definirse aunque $f$ no fuera diferenciable, con la sola existencia de las derivadas parciales. Sin embargo, sólo lo utilizaremos cuando $f$ sea diferenciable.
+
+También remarcar que no se debe confundir el gradiente con la diferencial. El gradiente es un elemento de $\mathbb{R}^n$, mientras que la diferencial es una aplicación lineal de $\mathbb{R}^n$ en $\mathbb{R}$. Es decir, si $f$ es diferenciable en $a$, $$\nabla f(a) \in \mathbb{R}^n \quad \nabla f(a)  = \sum_{i=1}^n\dfrac{\partial f}{\partial x_i}(a) \cdot e_i$$ $$df(a) \in (\mathbb{R}^n)^\ast \quad df(a) = \sum_{i=1}^n\dfrac{\partial f}{\partial x_i} (a) \cdot e_i^\ast.$$
+
+Notar que si tenemos un $\Omega$ abierto en $\mathbb{R}^n$, $a \in \Omega$, $f \colon \Omega \longrightarrow \mathbb{R}$ diferenciable en $a$, entonces si $v$ es una dirección en $\mathbb{R}^n$ tenemos que $$f_v(a) = df(a) (v) = \sum_{i=1}^n\dfrac{\partial f}{\partial x_i} (a) v_i = \langle\nabla f (a), v \rangle.$$
+
+\begin{definition}Supongamos que $f \colon \Omega \longrightarrow \mathbb{R}$ es diferenciable en $a$. El \textbf{grafo} de $f$ es el subconjunto de $\mathbb{R}^{n+1}$ $$G_f = \lbrace (x, f(x)) : x \in \Omega \rbrace.$$
+\end{definition}
+\subsection{Diferenciabilidad de funciones vectoriales}
+
+Recordemos que dar una función $f \colon \Omega \subset \mathbb{R}^n \longrightarrow \mathbb{R}^m$ equivale a dar $m$ funciones $f^i \colon \Omega \subset \mathbb{R}^n \longrightarrow \mathbb{R}$, con $i = 1, \ldots, m$, donde $f(x) = (f^1(x), \ldots, f^m(x))$ y calcular un límite para la función $f$ equivale a calcular los $m$ límites para las funciones $f^i$. Así que, con esto, daremos definiciones similares a las de la sección anterior.
+
+\begin{definition}[\textbf{\textit{Derivada direccional}}] Sean $\Omega$ abierto en $\mathbb{R}^n$, $f \colon \Omega \longrightarrow \mathbb{R}^m$, $a \in \Omega$, $v$ una dirección en $\mathbb{R}^n$, se dice que $f$ es \textbf{derivable en $a$ en la dirección $v$} si existe el límite $$f_v(a) =\lim_{t=0} \dfrac{f(a+tv)-f(a)}{t} \in \mathbb{R}^m.$$ Y en caso de existir, este límite se llama \textbf{derivada direccional de $f$ en $a$, en la dirección $v$}.
+\end{definition}
+
+\begin{proposition}Sean $\Omega$ abierto en $\mathbb{R}^n$, $f\colon \Omega \longrightarrow \mathbb{R}^m$, $a \in \Omega$, $v$ una dirección en $\mathbb{R}^n$. Entonces existe $f_v(a)$ si y sólo si existe $(f^i)_v(a)$, con $i = 1, 2, \ldots, m$. Y en este caso, $f_v(a) = (f_v^1(a), f_v^2(a), \ldots, f_v^m(a))$.
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Variedades diferenciables}
 \section{Cálculo en variedades}
