@@ -352,6 +352,63 @@ La condición de continuidad es suficiente definirla para abiertos básicos: si 
 \item $f(\overline{A}) \subset \overline{f(A)}$ para todo $A \subset X$.
 \end{enumerate}
 \end{proposition}
+\begin{proof}
+Sea $V \in \tau_Y$, dado $x \in f^{-1}(V)$ es claro que $f(x) \in V$, entonces si $f$ es continua existirá $U \in \tau_X$ tal que $x \in U$ y $f(U) \subset V$, luego $x \in U \subset f^{-1}(V)$ y así $f^{-1}(V) \in \tau_X$.
+
+Sea $F$ cerrado en $Y$, luego $Y\setminus F \in \tau_Y$ y por tanto $X \setminus f^{-1}(F) = f^{-1}(Y \setminus F) \in \tau_X$, por lo que $f^{-1}(F)$ es cerrado en $X$.
+
+Dado $A \subset X$, notar que $\overline{f(A)}$ es la intersección de todos los cerrados que contienen a $f(A)$, si $F$ es un cerrado en $Y$ tal que $f(A) \subset F$, entonces $A \subset f^{-1}(F)$ y $f^{-1}(F)$ cerrado implica que $\overline{A} \subset f^{-1}(F)$ ó bien $f(\overline{A}) \subset F$, por lo que $f(\overline{A}) \subset \overline{f(A)}$. 
+
+Dado $x \in X$ y un entorno $V$ de $f(x)$, tomamos $U = X\setminus \overline{X\setminus f^{-1}(V)}$, y así $U$ es abierto y $x \in U$: en efecto, si $x \in \overline{X \setminus f^{-1}(V)}$ se sigue de $4$ que $f(x) \in f(\overline{X\setminus f^{-1}(V)} ) \subset f(\overline{X\setminus f^{-1}(V)})$, en particular $V \cap f(X \setminus f^{-1}(V)) \neq \emptyset$, sea $y \in V \cap f(X \setminus f^{-1}(V))$, entonces existe $z \in X \setminus f^{-1}(V)$ tal que $f(z) = y \in V$ y por tanto $z \in f^{-1}(V)$, lo cual es absurdo, luego $x \in X \setminus \overline{X\setminus f^{-1}(V)} = U$, además es claro que $U = X\setminus \overline{X\setminus f^{-1}(V)} \subset X \setminus (X\setminus f^{-1}(V)) = f^{-1}(V)$, por lo que $f(U) \subset V$ y concluimos que f es continua. 
+
+\end{proof}
+
+Notar que, como los abiertos y los cerrados se determinan mutuamente, el punto $3$ es equivalente a dar una condición suficiente para decidir la continuidad: \textbf{\textit{si $V$ es un abierto en $Y$ entonces $f^{-1}(V)$ es abierto en $X$.}}
+
+\begin{example}Cualquier aplicación entre un espacio topológico discreto $(X, \tau_D)$ y un espacio topológico arbitrario $(Y, \tau)$ $$
+\begin{array}{rccl}
+f\colon &(X, \tau_D)& \longrightarrow & (Y, \tau)
+\end{array}
+$$ es continua, ya que si $V$ es abierto en $Y$, $f^{-1}(V) \subset X$, por lo que es abierto en $X$.
+
+Por otro lado, cualquier aplicación de un espacio topológico arbitrario $(X, \tau)$ a un espacio topológico trivial con la topología indiscreta $(Y, \tau_I)$ $$
+\begin{array}{rccl}
+f\colon &(X, \tau)& \longrightarrow & (Y, \tau_I)
+\end{array}
+$$ es continua. Esto es así ya que los únicos abiertos de $Y$ son el propio $Y$ y el vacío, cuyas imágenes inversas son respectivamente el conjunto $X$ y el vacío, que son abiertos en $X$.
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{proposition}Sea $X$ un conjunto y $\tau$, $\tau'$ dos topologías en $X$. Entonces, la aplicación identidad $$
+\begin{array}{rccl}
+id\colon &(X, \tau)& \longrightarrow & (X, \tau')\\
+&x& \longmapsto &x
+\end{array}
+$$ es continua si y sólo si $\tau$ es más fina que $\tau'$.
+\end{proposition}
+\begin{proof}
+La aplicación $id$ es continua si y sólo si dado $V \in \tau'$, $id^{-1}(V) = V \in \tau$, ó equivalentemente si $\tau' \subset \tau$.
+
+\end{proof}
+
+\begin{definition}Sea $X$ un conjunto, dada una aplicación $f \colon (X, \tau_X) \longrightarrow (Y, \tau_Y)$, es claro que $\tau_f = \lbrace f^{-1}(V): V \in \tau_Y\rbrace$ es una topología sobre $X$ y es la menor de todas las que hacen continua a $f$. La denominaremos \textbf{topología débil} inducida por $f$.
+\end{definition}
+
+\begin{definition}Dado un espacio topológico $(X, \tau)$ y $A \subset X$ definimos la \textbf{topología relativa} $\tau_A$ sobre $A$ como la topología débil inducida por la inclusión $i\colon A \longrightarrow X$, es decir, $\tau_A = \lbrace V \cap A :V \in \tau \rbrace$, ya que $i ^{-1}(V) = V \cap A$. Así, es claro que $U \subset A$ es abierto en $A$ si y sólo si $U = V \cap A$ para algún $V$ abierto en $X$. El par $(A, \tau_A)$ se dirá \textbf{subespacio} de $(X, \tau)$.
+\end{definition}
+
+Notar que $\tau_A$ es la menor topología sobre $A$ que hace continua la inclusión. En concreto, si $A$ es abierto en $X$ y $B \subset A$ también es abierto en $A$ entonces $B$ es abierto en $X$.
+
+\begin{proposition}Sea $(X, \tau)$ un espacio topológico y $(A, \tau_A)$ un subespacio, entonces $B \subset A$ es cerrado en $A$ si y sólo si $B = F \cap A$, con $F$ cerrado en $X$.
+\end{proposition}
+\begin{proof}
+Si $B$ es cerrado en $A$ entonces $A \setminus B \in \tau_A$, es decir, $A \setminus B = U \cap A$, con $U \in \tau$, pero $B = A \setminus (U \cap A) = (X \setminus U ) \cap A$ y tomamos $F = X \setminus U.$
+
+Recíprocamente, si $B = F \cap A$, con $F$ cerrado en $X$, entonces $U = X \setminus F$ es abierto en $X$ y $A \setminus B = A \setminus (F \cap A) = A \setminus [(X \setminus U) \cap A] = U \cap A$ abierto en $A$, por lo que $B$ es cerrado en $A$.
+
+\end{proof}
+
 
 \section{Separación y numerabilidad}
 \section{Espacios métricos}
