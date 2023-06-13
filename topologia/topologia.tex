@@ -409,6 +409,71 @@ Recíprocamente, si $B = F \cap A$, con $F$ cerrado en $X$, entonces $U = X \set
 
 \end{proof}
 
+Como consecuencia inmediata se sigue que si $B \subset A$ es cerrado en $A$ y $A$ es cerrado en $X$ entonces también $B$ es cerrado en $X$.
+
+\begin{example}
+Sea $A = [0,1) \cup \lbrace 2 \rbrace \subset \mathbb{R}$ con la topología relativa inducida por la usual de $\mathbb{R}$, entonces $[0,1) = (-1, 1) \cap A = [0,1] \cap A$ y $\lbrace 2 \rbrace = (1,3) \cap A = [2,3] \cap A$ son abiertos y cerrados en $A$ pero $A$ no es abierto ni cerrado en $\mathbb{R}$.
+\end{example}
+$\hfill \blacksquare$
+
+\begin{proposition}Sea $B \subset A \subset X$, si $Cl_A B$ denota la clausura de $B$ en $A$, entonces $Cl_A B = A \cap \overline{B}$.
+\end{proposition}
+\begin{proof}
+Ya que $A \cap \overline{B}$ es el menor cerrado en $A$ que contiene a $B$. 
+
+\end{proof}
+
+\begin{proposition}La restricción en el dominio o en la imagen de aplicaciones continuas también son continuas.
+\end{proposition}
+\begin{proof}
+Sea $f \colon X \longrightarrow Y$ continua, $A \subset X$ y $i \colon A \longrightarrow X$ la inclusión, entonces $\left.f \right|_A \colon A \longrightarrow Y$ es continua ya que $\left.f \right|_A = fi$ y la composición de aplicaciones continuas es continua. 
+
+Sea $g \colon X \longrightarrow f(X)$ la restricción de $f$ en la imagen, entonces $f = ig$, donde $i$ es la inclusión de $f(X)$ en $Y$, si $U$ es abierto en $f(X)$ notar que $U = V \cap f(X) = i^{-1}(V)$, con $V$ abierto en $Y$, entonces $g^{-1}(U) = g^{-1}i^{-1}(V) = (ig)^{-1}(V) = f^{-1}(V)$, abierto por ser $f$ continua, y se sigue por tanto que $g$ es continua.
+
+\end{proof}
+
+\begin{definition}Un \textbf{recubrimiento abierto} de un espacio topológico $X$ es una colección de abiertos $\mathcal{U} = \lbrace U_i \rbrace_{i \in J}$ tales que $X = \cup_{i \in J}U_i$.  
+\end{definition}
+
+Sea $i_k \colon U_k \longrightarrow X$. Denotaremos por $f_k = fi_k$ a la restricción de $f$ a $U_k$.
+
+\begin{proposition}Sea $\mathcal{U} = \lbrace U_i \rbrace_{i\in J}$ un recubrimiento abierto de $X$, entonces $f\colon X \longrightarrow Y$ es continua si y sólo si lo es $f_k \colon U_k \longrightarrow Y$ para todo $k \in J$.
+\end{proposition}
+\begin{proof}
+Si $f$ es continua también lo son las restricciones $f_k = fi_k$ para todo $k \in J$.
+
+Recíprocamente, sea $f_k$ continua para todo $k \in J$ y $V$ un abierto en $Y$, entonces $f^{-1}(V) = f^{-1}(V) \cap (\cup U_k) = \cup [f^{-1}(V) \cap U_k] = \cup i_k^{-1}[f^{-1}(V)] = \cup (fi_k)^{-1}(V) = \cup f_k^{-1}(V)$, pero $f_k^{-1}(V)$ es abierto para todo $k \in J$.
+\end{proof}
+
+\begin{proposition}Sean $A$ y $B$ dos cerrados en $X$ tales que $X = A \cup B$, dadas dos aplicaciones continuas $f_A \colon A \longrightarrow Y$ y $f_B \colon B \longrightarrow Y$ tales que $f_A(x) = f_B(x)$ para todo $x \in A \cap B$, entonces la aplicación $f \colon X \longrightarrow Y$ dada por $f(x) = f_A(x)$ si $x \in A$ y $f(x) = f_B(x)$ si $x \in B$ también es continua.
+\end{proposition}
+\begin{proof}
+Sea $F$ cerrado en $Y$, entonces $f_A^{-1}(F) = f^{-1}(F) \cap A$ cerrado en $A$ y, por ser $A$ cerrado, también cerrado en $X$. Análogamente $f_B ^{-1} (F) = f^{-1}(F) \cap B$ cerrado en $B$ y en $X$, pero $f^{-1}(F) = f^{-1}(F) \cap X = f^{-1}(F) \cap (A\cup B) = (f^{-1}(F) \cap A)\cup (f^{-1}(F) \cap B) = f_A^{-1}(F) \cup f^{-1}_B(F)$ cerrado y por tanto $f$ continua.
+
+\end{proof}
+
+\begin{definition}Una aplicación $f \colon X \longrightarrow Y$ se dice \textbf{abierta} si $f(A)$ es abierto en $Y$ para todo $A$ abierto en $X$. Análogamente para las \textbf{cerradas}.
+\end{definition}
+
+\begin{example}Veamos algunos ejemplos:
+\begin{enumerate}
+\item Una aplicación abierta o cerrada no tiene por qué ser continua: si $\tau_1 \subset \tau_2$, entonces $id_X \colon (X, \tau_1) \longrightarrow (X, \tau_2)$ es abierta y cerrada pero no es continua si el contenido es estricto.
+\item Sea $i \colon A \longrightarrow X$ la inclusión, entonces $i$ es continua, pero es abierta (o cerrada) si y sólo si $A$ es abierto (cerrado) en $X$.
+\item Si $f \colon \mathbb{R} \longrightarrow \mathbb{R}$ es una aplicación constante, entonces es continua y cerrada pero no abierta.
+\item La aplicación $f\colon \mathbb{R} \longrightarrow \mathbb{R}$ dada por $f(x) = x^2$ no es abierta: en efecto, $f((-1,1)) = [0,1)$.
+\item Si $f$ es una biyección entonces $f(X \setminus A) = Y \setminus f(A)$ para todo $A \subset X$, luego $f$ es abierta si y sólo si es cerrada.
+\item La aplicación $f \colon \mathbb{R} \longrightarrow \mathbb{R}$ dada por $f(x) = \dfrac{1}{1+x^2}$ es continua pero no es abierta ni cerrada. Esto es así ya que $f((-1,1))=(1/2,1]$ no es abierto y $f(\mathbb{R}) = (0,1]$ no es cerrado.
+\end{enumerate}
+\end{example}
+
+\begin{proposition}Una aplicación $f \colon X \longrightarrow Y$, no necesariamente continua, es cerrada si y sólo si $\overline{f(A)} \subset f(\overline{A})$, para todo $A \subset X$.
+\end{proposition}
+\begin{proof}
+Sea $f$ cerrada y $A \subset \overline{A}$, entonces $f(A) \subset f(\overline{A})$, el cual es cerrado, luego $\overline{f(A)} \subset f(\overline{A})$ ya que $\overline{f(A)}$ es el menor cerrado que contiene a $f(A)$.
+
+Recíprocamente, si se verifica la relación de contenido y $F$ es cerrado en $X$, entonces $\overline{f(F)} \subset f(\overline{F}) = f(F)$ ya que $\overline{F} = F$, por lo que $\overline{f(F)} = f(F)$, es decir, $f(F)$ cerrado y así $f$ es cerrada.
+
+\end{proof}
 
 \section{Separación y numerabilidad}
 \section{Espacios métricos}
