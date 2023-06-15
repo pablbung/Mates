@@ -321,6 +321,7 @@ Notar que el conjunto de los puntos interiores es vacío porque todo abierto que
 $\hfill \blacksquare$
 
 \section{Aplicaciones continuas y homeomorfismos}
+Una vez hemos estudiado lo que es una topología y las principales propiedades de los espacios topológicos veremos las aplicaciones que preservan su estructura: las \textit{aplicaciones continuas}. Cuando hablamos de preservar la estructura en topología nos referiremos a conservar la idea de \textit{proximidad} entre puntos. Es decir, que estas aplicaciones llevarán puntos cercanos en puntos cercanos. 
 
 \begin{definition}Una aplicación $f \colon (X, \tau_X) \longrightarrow (Y, \tau_Y)$ entre dos espacios topológicos se dice \textbf{continua} respecto de $\tau_X$ y $\tau_Y$, ó \textbf{$(\tau_X, \tau_Y)$-continua, en un punto $x_0 \in X$} si para todo abierto $V$ en $Y$ tal que $f(x_0) \in V$ existe un abierto $U$ en $X$ tal que $x_0 \in U$ y $f(U) \subset V$. Diremos que $f$ es \textbf{$(\tau_X, \tau_Y)$-continua} si lo es en todo punto de $X$.
 \end{definition}
@@ -472,6 +473,46 @@ Sea $F$ cerrado en $Y$, entonces $f_A^{-1}(F) = f^{-1}(F) \cap A$ cerrado en $A$
 Sea $f$ cerrada y $A \subset \overline{A}$, entonces $f(A) \subset f(\overline{A})$, el cual es cerrado, luego $\overline{f(A)} \subset f(\overline{A})$ ya que $\overline{f(A)}$ es el menor cerrado que contiene a $f(A)$.
 
 Recíprocamente, si se verifica la relación de contenido y $F$ es cerrado en $X$, entonces $\overline{f(F)} \subset f(\overline{F}) = f(F)$ ya que $\overline{F} = F$, por lo que $\overline{f(F)} = f(F)$, es decir, $f(F)$ cerrado y así $f$ es cerrada.
+
+\end{proof}
+
+Una útil caracterización de las aplicaciones cerradas es la siguiente: 
+
+\begin{theorem}
+Sea $f \colon X \longrightarrow Y$ una aplicación no necesariamente continua, entonces $f$ es cerrada si y sólo si para todo $B \subset Y$ y todo $U \in \tau_X$ tal que $f^{-1}(B) \subset U$ existe $V \in \tau_Y$ tal que $B \subset V$ y $f^{-1}(V) \subset U$.
+\end{theorem}
+\begin{proof}
+Sea $f$ cerrada, $B \subset Y$ y $U$ un abierto en $X$ tal que $f^{-1}(B) \subset U$, entonces es claro que $V = Y \setminus f(X\setminus U)$ es abierto, veamos que es el abierto buscado: $f^{-1}(V) = f^{-1}(Y \setminus f(X\setminus U)) = X \setminus f^{-1}f(X\setminus U) \subset X \setminus (X \setminus U) = U$; por otra parte sea $y \in B$, si $f^{-1}(y) \neq \emptyset$ es claro que $y \in V$, suponemos entonces que $f(y) \neq \emptyset$, como $f^{-1}(y) \subset f^{-1}(B) \subset U$ se sigue que $f^{-1}(y) \cap (X \setminus U) = \emptyset$ luego $y= ff^{-1}(y) \in Y \setminus f(X \setminus U) = V$, en todo caso puesto que $y \in V$.
+
+Recíprocamente, sea $F$ cerrado en $X$ y $B = Y \setminus f(F)$, entonces $f^{-1}(B) = f^{-1}[Y \setminus f(F)] = X \setminus f^{-1}f(F) \subset X \setminus F$ abierto, luego si tomamos $U = X \setminus F$, aplicando la hipótesis existirá $V$ abierto en $Y$ tal que $Y \setminus f(F) \subset V$ y $f^{-1}(V) \subset X \setminus F$, notar que $y \in V$ implica que $f^{-1}(y) \subset f^{-1}(V) \subset X \setminus F$, o bien $f^{-1}(y)\cap F = \emptyset$, luego $y \notin f(F)$, es decir,  $y \in Y \setminus f(F)$, y así $V \subset Y \setminus f(F)$ y como teníamos el otro contenido se sigue la igualdad $V = Y \setminus f(F)$, pero $V$ abierto implica que $f(F)$ es cerrado y así $f$ es cerrada.
+
+\end{proof}
+
+Ya hemos hablado acerca de las aplicaciones continuas, que preservan la estructura de espacio topológico. Ahora daremos una definición de lo que se considera como \textit{equivalencia topológica}, que formaliza la idea intuitiva de deformación de nuestro espacio, es decir, las alteraciones que no cortan ni pegan nuestro espacio preservan la topología.
+
+\begin{definition}Una biyección continua $f \colon X \longrightarrow Y$ entre dos espacios topológicos se dirá \textbf{homeomorfismo} o \textbf{equivalencia topológica} si también su inversa $f^{-1}$ es continua. Si existe tal homeomorfismo diremos que $X$ e $Y$ son homeomorfos, y lo denotaremos $X \cong Y$.
+\end{definition}
+
+Una aplicación continua, como ya sabemos, lleva puntos cercanos en puntos cercanos, pero un homeomorfismo es una aplicación que también lleva los puntos lejanos a puntos lejanos.
+
+Veamos una caracterización de los homeomorfismos:
+
+\begin{theorem}
+Sea $f \colon X \longrightarrow Y$ biyectiva, son equivalentes: 
+\begin{enumerate}
+\item $f^{-1}$ es continua.
+\item $f$ es abierta.
+\item $f$ es cerrada.
+\end{enumerate}
+
+Es decir, diremos que $f$ es un homeomorfismo si y sólo si se cumple cualquiera de las condiciones equivalentes anteriores.
+\end{theorem}
+\begin{proof}
+Veamos que $1.$ implica $2.$. Supongamos que $f^{-1}$ es continua y sea $U \subset X$ un abierto. Entonces $(f^{-1})^{-1}(U)$ es abierto y, como $(f^{-1})^{-1}(U) = f(U)$ se sigue que $f(U)$ es abierto en $Y$.
+
+Veamos ahora que $2.$ implica $3.$. Supongamos que $f$ es abierta y sea $C \subset X$ un cerrado. Entonces $X \setminus C$ es abierto, y como $f$ es abierta entonces $f(X \setminus C)$ es abierto en $Y$. Como $f$ es biyectiva tenemos que $f(X \setminus C) = Y \setminus f(C)$, así que $f(C)$ es cerrado y $f$ es cerrada.
+
+Finalmente, veamos que $3.$ implica $1.$. Supongamos que $f$ es cerrada. Para ver que $f^{-1}$ es continua nos bastará comprobar que, dado un cerrado $C$ en $X$, $(f^{-1})^{-1}(C)$ es cerrado en $Y$. Como $f$ es cerrada y $f=(f^{-1})^{-1}(C)$ se tiene que $(f^{-1})^{-1}(C) = f(C)$, que es cerrado en $Y$.
 
 \end{proof}
 
