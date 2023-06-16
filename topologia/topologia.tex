@@ -321,7 +321,12 @@ Notar que el conjunto de los puntos interiores es vacío porque todo abierto que
 $\hfill \blacksquare$
 
 \section{Aplicaciones continuas y homeomorfismos}
+
+\subsection{Introducción y homeomorfismos}
+
 Una vez hemos estudiado lo que es una topología y las principales propiedades de los espacios topológicos veremos las aplicaciones que preservan su estructura: las \textit{aplicaciones continuas}. Cuando hablamos de preservar la estructura en topología nos referiremos a conservar la idea de \textit{proximidad} entre puntos. Es decir, que estas aplicaciones llevarán puntos cercanos en puntos cercanos. 
+
+Antes de pasar a hablar de continuidad en espacios topológicos recordemos brevemente cómo se definía la continuidad de una función real de variable real. Dada una función $f \colon \mathbb{R} \longrightarrow \mathbb{R}$ y un punto $x \in \mathbb{R}$, se dice que $f$ es \textit{continua} en $x$ si para cada $\varepsilon >0$ existe $\delta >0$ tal que si $y \in (x- \delta, x + \delta)$ entonces $f(y) \in (f(x)-\varepsilon, f(x) + \varepsilon)$. De aquí deducimos que lo importante de esta noción no son los valores exactos que puedan tomar $\delta$ y $\varepsilon$ sino la existencia de esas cantidades positivas. La idea que subyace a la noción de continuidad es que $f$ lleva el entorno de un punto $x$ ($B(x, \delta)$) en un entorno de $f(x)$ ($B(f(x), \varepsilon)$), es decir, lleva puntos cercanos de $x$ en puntos cercanos de su imagen $f(x)$. Esta abstracción nos va a permitir dar una definición de continuidad en espacios topológicos sin necesidad de utilizar distancias.
 
 \begin{definition}Una aplicación $f \colon (X, \tau_X) \longrightarrow (Y, \tau_Y)$ entre dos espacios topológicos se dice \textbf{continua} respecto de $\tau_X$ y $\tau_Y$, ó \textbf{$(\tau_X, \tau_Y)$-continua, en un punto $x_0 \in X$} si para todo abierto $V$ en $Y$ tal que $f(x_0) \in V$ existe un abierto $U$ en $X$ tal que $x_0 \in U$ y $f(U) \subset V$. Diremos que $f$ es \textbf{$(\tau_X, \tau_Y)$-continua} si lo es en todo punto de $X$.
 \end{definition}
@@ -467,6 +472,8 @@ Sea $F$ cerrado en $Y$, entonces $f_A^{-1}(F) = f^{-1}(F) \cap A$ cerrado en $A$
 \end{enumerate}
 \end{example}
 
+$\hfill \blacksquare$
+
 \begin{proposition}Una aplicación $f \colon X \longrightarrow Y$, no necesariamente continua, es cerrada si y sólo si $\overline{f(A)} \subset f(\overline{A})$, para todo $A \subset X$.
 \end{proposition}
 \begin{proof}
@@ -515,6 +522,80 @@ Veamos ahora que $2.$ implica $3.$. Supongamos que $f$ es abierta y sea $C \subs
 Finalmente, veamos que $3.$ implica $1.$. Supongamos que $f$ es cerrada. Para ver que $f^{-1}$ es continua nos bastará comprobar que, dado un cerrado $C$ en $X$, $(f^{-1})^{-1}(C)$ es cerrado en $Y$. Como $f$ es cerrada y $f=(f^{-1})^{-1}(C)$ se tiene que $(f^{-1})^{-1}(C) = f(C)$, que es cerrado en $Y$.
 
 \end{proof}
+
+\begin{example}Un ejemplo clásico es el de los números reales $\mathbb{R}$. Y es que el conjunto de los números reales $\mathbb{R}$ con la topología usual $\tau_u$, es decir, la recta real, es homeomorfo a cualquier intervalo abierto con la topología relativa sobre ese intervalo. 
+
+Veamos tres tipos de homeomorfismos que al componerlos dan el resultado: 
+\begin{enumerate}
+\item Sea $(a,b)$ con $a,b \in \mathbb{R}$, con $a <b$, un intervalo de $\mathbb{R}$ dotado de la topología relativa. La aplicación  $$
+\begin{array}{rccl}
+h_1\colon &(0, 1)& \longrightarrow & (a, b)\\
+&x& \longmapsto &(b-a)x+a
+\end{array}
+$$ es continua y su inversa $$h_1^{-1}(y) = \dfrac{y-a}{b-a}$$ es también continua. Luego, $h_1$ es un homeomorfismo entre $(0,1)$ y $(a,b)$.
+\item La aplicación $$
+\begin{array}{rccl}
+h_2\colon &\mathbb{R}& \longrightarrow & (0, + \infty)\\
+&x& \longmapsto &e^x
+\end{array}
+$$ es continua y su inversa $$h_2^{-1}(y) = ln y$$ es también continua. Así, $h_2$ es un homeomorfismo entre $\mathbb{R}$ y el intervalo $(0, + \infty)$.
+\item La aplicación $$
+\begin{array}{rccl}
+h_3\colon &\mathbb{R}& \longrightarrow & (-\pi/2, \pi/2)\\
+&x& \longmapsto &\arctan x
+\end{array}
+$$ y su inversa $$h_3^{-1}(y) = \tan y$$ son continuas, por lo que $h_3$ establece un homeomorfismo entre $\mathbb{R}$ y el intervalo $(-\pi/2,\pi/2)$.
+\end{enumerate}
+Y ahora, componiendo estos homeomorfismos se sigue que cualquier intervalo $(a,b) \subset \mathbb{R}$ es homeomorfo a $\mathbb{R}$.
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}$\mathbb{R}^n$ con la topología usual es homeomorfo a la bola unidad  centrada en el origen $B(0,1)$. La aplicación  $$
+\begin{array}{rccl}
+h\colon &\mathbb{R}^n& \longrightarrow & B(0, 1)\\
+&x& \longmapsto &\dfrac{x}{1+\norm{x}}
+\end{array}
+$$ es una aplicación continua cuya inversa  $$
+\begin{array}{rccl}
+h{-1}\colon &B(0, 1)& \longrightarrow & \mathbb{R}^n\\
+&y& \longmapsto &\dfrac{y}{1-\norm{y}}
+\end{array}
+$$ es también continua.
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}En $\mathbb{R}^{n+1}$ consideramos el subespacio $$S^n = \lbrace (x_1, \ldots, x_{n+1} \in \mathbb{R}^{n+1}:x_1^2+\ldots +x_{n+1}=1\rbrace.$$ Este subespacio $S^n$ se denonima \textbf{esfera unidad $n$-dimensional}. Definimos el \textbf{polo norte} de la esfera como el punto $P_N = (0, \ldots, 0, 1)$. Entonces la aplicación $$
+\begin{array}{rccl}
+f\colon &S^n\setminus \lbrace P_N \rbrace& \longrightarrow & \mathbb{R}^n\\
+&(x_1, \ldots, x_{n+1})& \longmapsto &\dfrac{1}{1-x_{n+1}}(x_1,  \ldots, x_n), 
+\end{array}
+$$donde $h(x)$, $x \in \mathbb{R}^n$, es el punto de intersección de la recta que une el polo norte con $x$ y el plano $x_{n+1}=0$, es un homeomorfismo que denominaremos \textbf{proyección estereográfica}.
+\end{example}
+
+$\hfill \blacksquare$
+
+\subsection{Topología producto y topología cociente}
+Recordemos que, dados dos conjuntos $A,B$, podemos definir su producto cartesiano como el conjunto de los pares de elementos, donde el primero pertenece a $A$ y el segundo a $B$. Es decir, $A \times B = \lbrace (a,b): a \in A, b \in B \rbrace$. También recordemos que podemos definir las proyecciones $p_A$ y $p_B$ como las aplicaciones $$
+\begin{array}{rccl}
+p_A\colon &A\times B& \longrightarrow & A\\
+&(a,b)& \longmapsto &a
+\end{array}
+$$ $$
+\begin{array}{rccl}
+p_B\colon &A\times B& \longrightarrow & B\\
+&(a,b)& \longmapsto &b
+\end{array}
+$$ 
+Dados dos espacios topológicos $(X, \tau_X), (Y, \tau_Y)$ queremos definir sobre el produco cartesiano $X \times Y$ una topología tal que las proyecciones canónicas $p_X, p_Y$ sean continuas, es decir, $p_X^{-1}(U) = U \times Y$ y $p_Y^{-1}(V) = X \times V$ deben ser abiertos en $X \times Y$ para todo $U \in \tau_X$, $V \in \tau_Y$.
+
+\begin{definition}Dados dos espacios topológicos $(X, \tau_X), (Y, \tau_Y)$, su producto cartesiano $X \times Y$ y las proyecciones $p_X \colon X \times Y \longrightarrow X$, $p_Y \colon X\times Y \longrightarrow Y$, entonces la menor topología sobre $X \times Y$ que hace continuas las proyecciones es la que tiene como base a $\mathfrak{B}_p = \lbrace U \times V: U \in \tau_X, V \in \tau_Y \rbrace$. Esta topología, $\tau_p$, la denominaremos \textbf{topología producto}. 
+\end{definition}
+
+Notar que una subbase para $\tau_p$ es $\mathcal{S}_p = \lbrace U \times Y: U \in \tau_X \rbrace \cup \lbrace X \times V: V \in \tau_Y \rbrace$.
+
+
 
 \section{Separación y numerabilidad}
 \section{Espacios métricos}
