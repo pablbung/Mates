@@ -595,8 +595,35 @@ Dados dos espacios topológicos $(X, \tau_X), (Y, \tau_Y)$ queremos definir sobr
 
 Notar que una subbase para $\tau_p$ es $\mathcal{S}_p = \lbrace U \times Y: U \in \tau_X \rbrace \cup \lbrace X \times V: V \in \tau_Y \rbrace$.
 
+Dadas $f \colon Z \longrightarrow X$ y $g \colon Z \longrightarrow Y$, existe una única aplicación $h \colon Z \longrightarrow X \times Y$ satisfaciendo $p_Xh = f$ y $p_Yh=g$, es lo que se conoce como propiedad universal del producto directo. Notar que $h(z) = (f(z),g(z))$ y es usual denotar $h=(f,g)$.
 
+\begin{proposition}La aplicación $h = (f,g)$ es continua si y sólo si $f$ y $g$ lo son. En particular, la diagonal $\Delta = (id_X, id_X) \colon X  \longrightarrow X \times X$ es continua.
+\end{proposition}
+\begin{proof}
+Si $h$ es continua, $f = p_Xh$ y $g = p_Yh$ también lo son, por serlo $p_X$ y $p_Y$. 
 
+Recíprocamente, si $f$ y $g$ son continuas y $U \times V$ es un abierto básico, $h^{-1}(U \times V) = h^{-1}(U \times Y \cap X \times V) = h^{-1}(p_X^{-1}(U) \cap p_Y^{-1}(V)) = h^{-1}p_X^{-1}(U) \cap h^{-1}p_Y^{-1}(V) = (p_Xh)^{-1}(U) \cap (p_Yh)^{-1}(V) = f^{-1}(U) \cap g^{-1}(V)$ abierto en $Z$, luego $h$ es continua.
+
+\end{proof}
+
+\begin{definition}Sea $X$ un conjunto, dada una familia de espacios topológicos $\lbrace (X_i, \tau_i) \rbrace_{i\in J}$ y una familia de aplicaciones $\lbrace f_i \colon X \longrightarrow X_i \rbrace_{i\in J}$ definimos la \textbf{topología débil} sobre $X$ inducida por la familia $\lbrace f_i \rbrace_{i \in J}$ como la menor topología que hace continuas las $f_i$, es decir, $\mathcal{S} = \cup_{i \in J} S_i$, con $S_i = \lbrace f_i^{-1}(U_{ij}) : U_{ij} \in \tau_i \rbrace$ es una subbase para dicha topología y una base para la misma estará formada por las intersecciones finitas de elementos de $\mathcal{S}$.
+\end{definition}
+
+\begin{theorem}
+Sea $X$ con la topología débil inducida por la familia $\lbrace f_i \rbrace_{i \in J}$, entonces $h \colon Y \longrightarrow X$ es continua si y sólo si $f_ih$ es continua para todo $i \in J$.
+\end{theorem}
+\begin{proof}
+Si $h$ es continua, entonces $f_ih$ es continua para todo $i \in J$, ya que las $f_i$ son continuas. 
+
+Recíprocamente, sea $U$ abierto en $X$, entonces $U$ es unión arbitraria de intersecciones finitas de elementos de la forma $f^{-1}_i(U_{ij})$, por tanto $h^{-1}(U)$ será unión arbitraria de intersecciones finitas de elementos de la forma $h^{-1}f_i^{-1}(U_{ij}) = (f_ih)^{-1}(U_{ij})$, abiertos en $Y$ si las $f_ih$ son continuas para todo $i \in J$, luego $h^{-1}(U)$ abierto y por tanto $h$ continua.
+
+\end{proof}
+
+Una forma alternativa de ver la topología producto es la que sigue. Sea $X = \prod_{i\in J} X_i$, un punto del producto será una $|J|$-tupla, $(x_i)$. Además, denotamos por $p_k \colon \prod X_i \longrightarrow X_k$ dada por $p_k ((x_i)) = x_k$ la proyección canónica sobre $X_k$, entonces definimos la \textbf{topología producto}, $\tau_p$, sbre $\prod X_i$ como la topología débil inducida por las proyecciones $\lbrace p_i \rbrace_{i \in J}$.
+
+Si $U \in \tau_k$ notar que $p_k^{-1}(U) = \prod U_i$, donde $U_k = U$ y $U_i = X_i$ para todo $i \neq k$. Una subbase de $\tau_p$ viene dada por $\mathcal{S}_p = \lbrace p_i^{-1}(U) : U \in \tau_i, i \in J \rbrace$ y notar que si $\mathfrak{B}_p$ es la base de $\tau_p$ definida por $\mathcal{S}_p$, entonces $\prod U_j \in \mathfrak{B}_p$ si y sólo si $U_j = X_j$ para todo $j \in J \setminus F$, donde $F \subset J$ es un subconjunto finito de índices.
+
+Dada una familia $\lbrace f_i \colon X \longrightarrow X_i \rbrace_{i \in J}$, la aplicación $f \colon X \longrightarrow \prod X_i$ dada por $f(x) = (f_i(x))$ es única satisfaciendo $p_if = f_i$ para todo $i \in J$.
 \section{Separación y numerabilidad}
 \section{Espacios métricos}
 \section{Compacidad}
