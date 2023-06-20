@@ -624,6 +624,18 @@ Una forma alternativa de ver la topología producto es la que sigue. Sea $X = \p
 Si $U \in \tau_k$ notar que $p_k^{-1}(U) = \prod U_i$, donde $U_k = U$ y $U_i = X_i$ para todo $i \neq k$. Una subbase de $\tau_p$ viene dada por $\mathcal{S}_p = \lbrace p_i^{-1}(U) : U \in \tau_i, i \in J \rbrace$ y notar que si $\mathfrak{B}_p$ es la base de $\tau_p$ definida por $\mathcal{S}_p$, entonces $\prod U_j \in \mathfrak{B}_p$ si y sólo si $U_j = X_j$ para todo $j \in J \setminus F$, donde $F \subset J$ es un subconjunto finito de índices.
 
 Dada una familia $\lbrace f_i \colon X \longrightarrow X_i \rbrace_{i \in J}$, la aplicación $f \colon X \longrightarrow \prod X_i$ dada por $f(x) = (f_i(x))$ es única satisfaciendo $p_if = f_i$ para todo $i \in J$.
+
+\begin{corolario}$f$ es continua si y sólo si lo es $f_i = p_if$ para todo $i \in J$.
+\end{corolario}
+
+\begin{proposition}Sea $\lbrace f_i \colon X_i \longrightarrow Y_i \rbrace _{i\in J}$ una familia de aplicaciones y definimos $f \colon \prod X_i \longrightarrow \prod Y_i$ dado por $f((x_i)) = (f_i(x_i))$, es decir, $f = \prod f_i$, entonces $f$ es continua si y sólo si $f_i$ es continua para todo $i \in J$.
+\end{proposition}
+\begin{proof}
+Es claro que $p_kf = f_kp_k$ para todo $k \in J$, entonces si las $f_k$ son continuas también lo es $f$. 
+
+Recíprocamente, si $f$ es continua y $k \in J$ elegimos un punto $x_i^0 \in X_i$ para todo $i \neq k$ y podemos mirar a $X_k$ como subespacio del producto $\prod X_i$, es decir, $X_k \cong \prod Y_i$, con $Y_k = X_k$ y $Y_i = \lbrace x_i^0 \rbrace$ para todo $i \neq k$, entonces las inclusiones $i_k \colon X_k \longrightarrow \prod X_i$ dadas por $i_k(x) = (x_i)$ tales que $x_k = x$ y $x_i = x_i^0$ para todo $i \neq k$ son continuas, y es claro que $f_k = p_kfi_k$ para todo $k \in J$, por lo que $f_k$ es continua si lo es $f$.
+
+\end{proof}
 \section{Separación y numerabilidad}
 \section{Espacios métricos}
 \section{Compacidad}
