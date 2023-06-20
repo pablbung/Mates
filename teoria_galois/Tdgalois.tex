@@ -274,27 +274,192 @@ Notar que en un grupo abeliano $G$, todo subgrupo $H$ va a cumplir que $xH = Hx$
 
 $\hfill \square$
 
-\begin{proposition}\label{eq:ej218} Sea $N \unlhd G$, sean $H, K \leq G$ tales que $H \unlhd K$. Entonces $HN$ es subgrupo normal de $KN$.
+Los homomorfismos son las aplicaciones que conservan la estructura de grupo.
+
+\begin{definition}Dados $G$ y $H$ grupos, una aplicación $f \colon G \longrightarrow H$ es un \textbf{homomorfismo de grupos} si cumple $$f(xy) = f(x)f(y) \quad \forall x,y \in G.$$
+\end{definition}
+
+\begin{definition}Diremos que un homomorfismo de grupos $f \colon G \longrightarrow H$ es un \textbf{isomorfismo} si la aplicación $f$ es biyectiva. En tal caso diremos que $G$ es \textbf{isomorfo} a $H$ y lo denotaremos por $G \cong H$. Si $f$ es un isomorfismo y además es de la forma $f\colon G \longrightarrow G$ entonces diremos que $f$ es un \textbf{automorfismo}.
+\end{definition}
+
+\begin{example}\label{eq:ejsHoms} Algunos ejemplos importantes de homomorfismos:
+\begin{enumerate}
+\item La aplicación determinante $$\begin{array}{rccl}
+&GL_n(K)&\longrightarrow &K^* \\
+&A& \longmapsto &det(A)
+\end{array}
+$$
+\item Dado un grupo $G$ y $N \unlhd G$, la aplicación $$\begin{array}{rccl}
+&G&\longrightarrow &G/N \\
+&g& \longmapsto &gN
+\end{array}
+$$ que se conoce como \textbf{proyección canónica}.
+\item Dado $G = \langle x \rangle$ un grupo cíclico, la aplicación $$\begin{array}{rccl}
+&\mathbb{Z}&\longrightarrow &G \\
+&m& \longmapsto &x^m
+\end{array}
+$$
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+Más adelante veremos más desarrollados estos homomorfismos. Ahora veamos algunas de las propiedades fundamentales de los homomorfismos:
+
+\begin{properties}\label{eq:propHoms} Consideremos un homomorfismo $f \colon G \longrightarrow H$. Entonces algunas propiedades sobre los homomorfismos de grupos que serán importantes tenerlas en cuenta son las siguientes:
+\begin{enumerate}
+\item $f(1_{G}) = 1_{H}$ ya que $1_{H}f(1_{G}) = f(1_{G}) = f(1_{G}1_{G}) = f(1_{G})f(1_{G}) \Longrightarrow 1_{H} = f(1_{G}).$
+\item $f(a^{-1}) = (f(a))^{-1}$ para cada $a \in G$, puesto que $$f(a)f(a^{-1}) = f(aa^{-1}) = f(1_{G}) = 1_{H},$$ $$f(a^{-1})f(a) = f(a^{-1}a) = f(1_{G}) = 1_{H}.$$
+\item $f(x^n) = f(x)^n$. Esto es así ya que $f(x^n) = f(x\overbrace{\cdots}^n x) = f(x) \overbrace{\cdots}^n f(x) = f(x)^n.$
+\item $o(f(x))$ divide al orden de $x$. En efecto, si $o(x) = m$ como $x^{m} = 1_{G}$ se tiene que $1_{H} = f(1_{G}) = f(x^{m}) = f(x)^{m}$ y así $o(f(x))$ divide a $m$. 
+\item Si $Y$ es un subgrupo de $H$, $$f^{-1}(Y) = \lbrace x \in G : f(x) \in Y\rbrace$$ es un subgrupo de $G$. Además si $Y$ es subgrupo normal de $H$, $f^{-1}(Y)$ lo es de $G$.
+
+En efecto, si $x,y \in f^{-1}(Y)$, entonces $f(x),f(y) \in Y$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in Y$, luego $xy^{-1} \in f^{-1}(Y)$ y $f^{-1}(Y)$ es subgrupo. Para probar la normalidad de $f^{-1}(Y)$ tenemos que ver que $[f^{-1}(Y)]^a \subseteq f^{-1}(Y)$, con $a \in G$. Sea $x \in [f^{-1}(Y)]^a$, luego $a^{-1}xa \in f^{-1}(Y)$ y así $f(a^{-1}xa)=f(a)^{-1}f(x)f(a) \in Y$, por lo que $f(x) \in Y^{f(a)}$ y como $f(a)$ es un elemento de $H$ e $Y$ es normal entonces $f(x) \in Y$ y así $x \in f^{-1}(Y)$.
+ 
+\item Si ahora además consideramos otro homomorfismo $g\colon H \longrightarrow  Z$, con $Z$ otro grupo, entonces,
+$g \circ f\colon G \longrightarrow  Z$ también es homomorfismo, pues $$ (g \circ f)(xy) = g(f(xy)) = g(f(x)f(y)) = g(f(x))g(f(y)) = (g \circ f)(x) (g \circ f)(y).$$
+\end{enumerate}
+\end{properties}
+$\hfill \blacksquare$
+
+Notar que de lo último se puede ver que la composición de homomorfismos la hemos definido tal que $$(g \circ f)(x) = g(f(x)),$$ con $g,f$ sendos homomorfismos. Es importante aclararlo porque en otros textos es frecuente encontrar que actúan al revés, primero $g$ y luego $f$.
+
+\begin{definition}Si $f \colon G \longrightarrow H$ es un homomorfismo de grupos, llamaremos \textbf{núcleo de $f$} a $$Ker f= \lbrace g \in G: f(g) = 1_H \rbrace.$$
+
+De igual manera, llamaremos \textbf{imagen de $f$} al conjunto $$Im f = \lbrace f(x) : x \in G\rbrace.$$
+\end{definition}
+
+De hecho, en el ejemplo~\ref{eq:ejsHoms}($1.$) tenemos que $Ker(det) = SL_n(K)$ es el grupo especial lineal. Y en el ejemplo~\ref{eq:ejsHoms}($2.$) es el propio $N$.
+
+\begin{proposition}Si consideramos $f \colon G \longrightarrow H$ un homomorfismo de grupos cualquiera, entonces $Ker f \unlhd G$. Además, $f$ es inyectiva si y sólo si $Ker f= \lbrace 1 \rbrace.$
 \end{proposition}
-\emph{Demostración: }Primeramente veamos que $NH=HN$ y así $NH$ es subgrupo de $G$:
+\emph{Demostración: }Como $Ker f=f^{-1} (1_H)$, por~\ref{eq:propHoms}($4.$) tenemos que $Ker f$ es subgrupo de $G$. Probaremos ahora que, dados $x \in G$ y $z \in Ker f$, $xzx^{-1} \in Ker f$. Esto es claro, ya que $$f(xzx^{-1})=f(x)f(z)f(x)^{-1} = f(x)f(x)^{-1} = 1.$$
 
-En particular $NH$ es subgrupo de $NK$, pues $NH \subseteq NK$. Pero si $x \in NH$ se escribirá $x = nh, \hspace{0.1cm} n \in N, \hspace{0.1cm} h \in H$. Así $x \in Nh = hN \subseteq HN$, la igualdad $Nh = hN$ se tiene por ser $N$ subgrupo normal de $G$. Esto prueba el contenido $NH \subseteq HN$. El otro es análogo. De igual forma se prueba que $NK = KN$, luego $NK$ es subgrupo de $G$, y así es grupo. Ahora veamos la normalidad:
-
-Veamos ahora que si $a \in NK$, entonces $a(NH) = (NH)a$. Como $a \in NK$ se escribirá $a = nk, \hspace{0.1cm} n \in N, \hspace{0.1cm} k \in K$. Si $x \in a(NH) = a(HN)$ se tendrá $x = ahn_{1}, \hspace{0.1cm} h \in H, \hspace{0.1cm} n_{1} \in N.$ Como $x \in (ah)N = N(ah)$ por ser $N$ subgrupo normal de $G$, tendremos entonces $x = n_{2}ah = n_{2}nkh, \hspace{0.1cm} n_{2} \in N.$ Como $kh \in kH = Hk$ por ser $H$ subgrupo normal de $K$, $x = n_{2}nh_{1}k, \hspace{0.1cm} h_{1} \in H,$ o también, $x = n_{2}nh_{1}n^{-1}nk = n_{2}nh_{1}n^{-1}a$. Ahora $h_{1}n^{-1} \in HN = NH$, con lo que se tiene $h_{1}n^{-1} = n_{3}h_{2}$, $n_{3} \in N$, $h_{2} \in H$. Finalmente, $x = n_{2}nn_{3}h_{2}a \in (NH)a$. Y así $a(NH) \subseteq (NH)a$. Para el otro contenido se procede de igual forma.
+Ahora, si $f$ es inyectiva y $x \in Ker f$ entonces $f(x) = 1 = f(1)$, por lo que $x = 1$ y así $Ker f = \lbrace 1 \rbrace$. Recíprocamente, si $Ker f = \lbrace 1 \rbrace$ y $x,y \in G$ son tales que $f(x) = f(y)$, entonces $f(xy^{-1}) = f(x)f(y)^{-1} = 1$, luego $xy^{-1} \in Ker f = \lbrace 1 \rbrace$ y así $x=y$.
 
 $\hfill \square$
 
-Veamos ahora una clase especial de grupos, los conocidos como grupos cíclicos. 
-
-Dado un $n$ entero positivo y $x\in G$, tenemos que $$x^n = x\underbrace{\ldots}_{n} x, \quad x^{-n} = x^{-1} \underbrace{\ldots}_n x^{-1}.$$ También convenimos que $x^0 = 1$. Si $G$ es un grupo abeliano escribiremos $$nx = x\underbrace{+\ldots +}_n x, \quad (-n)x=(-x)\underbrace{+\ldots +}_n(-x), \quad 0x = 0.$$ También es claro que $$x^{n+m} = x^nx^m, \quad (x^n)^m=x^{nm}.$$
-
-\begin{definition}Si consideramos un grupo $G$ y un $x\in G$, entonces $$\langle x \rangle = \lbrace x^n:n \in \mathbb{Z} \rbrace,$$ es un subgrupo de $G$ que lo denominaremos \textbf{subgrupo generado por $x$}. Es claro que si $H$ es un subgrupo de $G$ que contiene a $x$, entonces $\langle x \rangle \subseteq H$.
+\begin{definition}Sea $
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$ un homomorfismo entre dos grupos $G_{1}$ y $G_{2}$, diremos que $f$ es un \textbf{monomorfismo} si $f$ es inyectiva y \textbf{epimorfismo} si $f$ es sobreyectiva.
 \end{definition}
 
-\begin{definition}Decimos que un grupo $G$ es \textbf{cíclico} si existe un $x \in G$ tal que $$\langle x \rangle = G.$$ A este elemento $x$ lo llamamos \textbf{generador} de $G$. En general, un grupo cíclico puede tener varios elementos generadores.
+\begin{theorem}[\textbf{\textit{Primer Teorema de Isomorfía}}]
+Sea $f \colon G \longrightarrow H$ un homomorfismo de grupos. Entonces, la aplicación $$\begin{array}{rccl}
+\bar{f} &G/Ker f&\longrightarrow &f(G) \\
+&xKer f& \longmapsto &f(x)
+\end{array}
+$$
+es un isomorfismo de grupos.
+\end{theorem}
+\emph{Demostración: }Sea $N = Ker f$. Sabemos por~\ref{eq:partiGrupo} que $xN = yN$ si y sólo si $x^{-1}y \in N$ si y sólo si $f(x^{-1}y)=1$ si y sólo si $f(x)^{-1}f(y) = 1$ si y sólo si $f(x)=f(y)$. Si leemos esto de izquierda a derecha estamos probando que la aplicación $\bar{f}$ está bien definida, es decir, que la imagen por $\bar{f}$ de un elemento $xN \in G/N$ no depende del representante que escojamos. Si lo leemos de derecha a izquierda estaremos probando que $\bar{f}$ es inyectiva. Si $y \in f(G)$ (imagen de $G$ por $f$) entonces $y=f(x)=\bar{f}(xKer f)$ con $x\in G$ y esto prueba la sobreyectividad. Además, es homomorfismo: $$\bar{f}(xNyN)= \bar{f}(xyN)=f(xy)=f(x)f(y) =\bar{f}(xN) \bar{f}(yN).$$ 
+
+$\hfill \square$
+
+Luego, dados dos grupos $G,H$, podemos expresar el \textit{Primer Teorema de Isomorfía} tal que así: $$G/Ker f \cong f(G).$$
+Y notar que si $f$ es suprayectiva, entonces: $$G/Ker f \cong H.$$
+
+\begin{proposition}\label{eq:lemIsom} Sea $N \unlhd G$ y sea $f \colon G \longrightarrow G/N$ el homomorfismo $f(g) = gN$. Si $H \leq G$, entonces $f(H) = f(NH)=NH/N \leq G/N$.
+\end{proposition}
+\emph{Demostración: }Si $H \leq G$ sabemos que $NH$ es subgrupo de $G$. Como $N \unlhd G$ y $N \subseteq NH$, tenemos que $N \unlhd NH$. Ahora, $$f(H) = \lbrace hN : h \in H \rbrace = \lbrace nhN :n, \in N, h \in H \rbrace = NH/N.$$ Por~\ref{eq:propHoms}, $NH/N$ es un subgrupo de $G/N$.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Segundo Teorema de Isomorfía}}]
+Sea $N \unlhd G$ y sea $H \leq G$. Entonces $H \cap N \unlhd H$ y $$H/H\cap N \cong NH/N.$$
+
+\end{theorem}
+\emph{Demostración: }Consideremos el siguiente homomorfismo de grupos: $$\begin{array}{rccl}
+f\colon &G&\longrightarrow &G/N \\
+&x& \longmapsto &xN
+\end{array}
+$$
+y sea $g = \left.f \right|_H \colon H \longrightarrow G/N$ la restricción a $H$. Por el resultado anterior tenemos que $g(H) = f(H) = NH/N$. Notar que, como $N \unlhd G$ y $H \leq G$, $NH$ es grupo. El núcleo de $g$ es:
+$$Ker g = \lbrace x \in H :xN = N \rbrace = N \cap H.$$ El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Tercer Teorema de Isomorfía}}]
+Sea $G$ un grupo. Sean $N,M \unlhd G$ y $N \subseteq M$. Entonces $$G/M \cong (G/N)/(M/N).$$
+\end{theorem}
+\emph{Demostración: }Consideremos la aplicación suprayectiva $$\begin{array}{rccl}
+f \colon &G/N&\longrightarrow &G/M\\
+&gN& \longmapsto &gM
+\end{array}
+$$
+Entonces $f$ está bien definida ya que si $gN = hN$ entonces $g^{-1}h \in N \subseteq M$ y así $gM =hM$. Es claro que es homomorfismo y el núcleo es $$Ker f = \lbrace gN \in G/N : gM = M \rbrace = \lbrace gN \in G/N : g \in M \rbrace = M/N.$$
+El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}.
+
+$\hfill \square$
+
+También podemos estudiar los subgrupos de un grupo cociente $G/N$:
+
+\begin{theorem}[\textbf{\textit{Teorema de la correspondencia}}]
+Sea $N \unlhd G$. La aplicación $K \longrightarrow G/N$ es una biyección entre el conjunto $\lbrace K: N \subseteq K \leq G \rbrace$ y los subgrupos de $G/N$.
+\end{theorem}
+\emph{Demostración: }Sea $f \colon G \longrightarrow G/N$ el homomorfismo dado por $f(g) = gN$. Supongamos que $K$ es un subgrupo de $G$ que contiene a $N$. Por~\ref{eq:lemIsom}, $K/N = f(K)$ es un subgrupo de $G/N$. Supongamos que $J$ es otro subgrupo de $G$ que contiene a $N$ con $K/N = J/N$. Si $k \in K$, entonces $kN \in K/N = J/N$, por lo que existirá $j \in J$ tal que $kN = jN$. Así, $k \in jN \subseteq J$. Esto prueba que $K \subseteq J$. Análogamente, $J \subseteq K$ y tenemos que $K=J$. Esto prueba que la aplicación $K \longrightarrow K/N$ es inyectiva. Si $X \leq G/N$, entonces $f(f^{-1}(X)) = X$ pues $f$ es suprayectiva. Sea $K = f^{-1}(X)$. Sabemos que $K \leq G$ por~\ref{eq:propHoms}. Está claro que $N \subseteq K$ pues $f(n) = N \subseteq X$ para cada $n \in N$. Ahora, $X=f(K) = K/N$ y ya está.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:ej32} K es subgrupo normal de $G$ si y sólo si $K/H$ es subgrupo normal de $G/H$.\end{proposition}
+
+\emph{Demostración: }Sea $K \unlhd G$. Dados $aH, bH$ con $(aH)(bH) \in K/H$, entonces $(ab)H \in K/H$, es decir, $ab \in K$. Como $K$ es normal, y $ab \in K$, deducimos que $ba \in K$, luego $(bH)(aH) = (ba)H \in K/H,$ y así $K/H$ es normal. Para el recíproco es análogo.
+
+$\hfill \square$
+
+\begin{definition}Un \textbf{automorfismo} $\alpha$ de $G$ es un isomorfismo $\alpha \colon G \longrightarrow G$. Denotaremos por $Aut(G)$ el conjunto de los automorfismos de $G$. Es claro que $Aut(G)$ es grupo con la operación composición de aplicaciones: $$\alpha \circ \beta = \alpha \beta.$$
 \end{definition}
 
-Notar que por ejemplo $$\mathbb{Z} = \lbrace 1n \wedge 1(-n) :n \in \mathbb{N} \rbrace= \langle 1 \rangle,$$ es un grupo cíclico infinito. O también el grupo visto antes $$C_n = \langle \xi \rangle, \quad \xi = \cos\left(\dfrac{2\pi}{n}\right)+i\sin\left(\dfrac{2\pi}{n}\right),$$ es un grupo cíclico finito de orden $n$. Notar también que los grupos cíclicos son abelianos, ya que dados dos elementos $y,z \in G$ entonces $yz = x^nx^m=x^{n+m}=x^{m+n} = x^mx^n=zy.$
+Aunque en general no es sencillo calcular el grupo de automorfismos de un grupo $G$, nosotros estudiaremos un caso más simple, para ello tenemos que:
+
+\begin{definition} Dado $G$ un grupo y $x,g \in G$ tenemos que $$x^g=gxg^{-1}.$$ A este $x^g$ lo denominaremos \textbf{conjugado} de $x$ por $g$. Igualmente para conjuntos, que ya lo habíamos definido al principio para presentar el normalizador, si $X \subseteq G$ y $g \in G$ escribiremos $$X^g = \lbrace x^g:x \in X \rbrace.$$ También definimos la \textbf{aplicación conjugación por $g$} como $$\begin{array}{rccl}
+\alpha_g \colon &G&\longrightarrow &G \\
+&x& \longmapsto &x^g = gxg^{-1}
+\end{array}
+$$
+\end{definition}
+
+\begin{proposition}Sea $G$ un grupo y $g \in G$. Entonces:
+\begin{enumerate}
+\item La aplicación $\alpha_g$ es un automorfismo de $G$. En particular, si $x,y \in G$ entonces $(xy)^g = x^gy^g.$
+\item Si $h \in G$, entonces $\alpha_h \alpha_g = \alpha_{hg}$. En particular, si $x \in G$ entonces $(x^g)^h = x^{hg}$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }Veamos:
+\begin{enumerate}
+\item Tenemos que $\alpha_g \alpha_{g^{-1}} = \alpha_{g^{-1}} \alpha_g = 1$, luego $(\alpha_g)^{-1}=\alpha_{g^{-1}}$ y así $\alpha_g$ es biyectiva. Sean ahora $x,y \in G$, entonces: $$(xy)^g = g(xy)g^{-1} = gxg^{-1}gyg^{-1} = x^gy^g.$$ Luego $\alpha_g$ es un homomorfismo, y notar que $\alpha_1$ es la identidad.
+\item Sea $h \in G$, entonces: $$(x^g)^h=h(gxg^{-1})h^{-1} = (hg)x(g^{-1}h^{-1}) = (hg)x(hg)^{-1} = x^{hg}.$$ Luego, $\alpha_h\alpha_g(x) =\alpha_h(\alpha_g(x)) = (x^g)^h = x^{hg} = \alpha_{hg}(x).$ Así, $\alpha_h\alpha_g = \alpha_{hg}$. 
+\end{enumerate}
+
+$\hfill \square$
+
+Notar que cuando hacemos $(x^g)^h$ primero actúa $g$ y luego $h$, por eso $(x^g)^h = x^{hg}.$
+
+Resulta que estos automorfismos especiales, las conjugaciones, forman un grupo y tienen características interesantes.
+
+\begin{definition}Definimos $$Int (G) = \lbrace \alpha_g :g \in G \rbrace$$ como el conjunto de los \textbf{automorfismos internos} de $G$.
+\end{definition}
+
+\begin{proposition}Si $G$ es un grupo, entonces $Int(G) \unlhd Aut(G)$. Además, $$Int(G) \cong G/Z(G).$$
+\end{proposition}
+\emph{Demostración: }Sabemos que $\alpha_g\alpha_h = \alpha_{gh}$ y que $(\alpha_g)^{-1} = \alpha_{g^{-1}}$ por el resultado anterior. Así, tenemos que $Int(G) \leq Aut(G)$. Si $f \in Aut(G)$, veamos que $(\alpha_g)^f=\alpha_{f(g)}$: (recordar que $f$ es un automorfismo y $g \in G$) \begin{center}$((\alpha_g)^f)(x) = (f\alpha_g f^{-1})(x) = f(\alpha_g(f^{-1}(x))) = f(g(f^{-1}(x))g^{-1}) = f(g)xf(g^{-1}) =f(g)x(f(g))^{-1} =\alpha_{f(g)}(x) = x^{f(g)}.$\end{center}
+Esto demuestra que $Int(G) \unlhd Aut(G)$. 
+
+Ahora, si consideramos la aplicación $G \longrightarrow Int(G)$ dada por $g \longmapsto \alpha_g$, es evidentemente suprayectiva y homomorfismo. El núcleo de esta aplicación será el conjunto $\lbrace g \in G : \alpha_g = id \rbrace = \lbrace g \in G: gxg^{-1}=x\hspace{0.1cm} \forall x \in G \rbrace = \lbrace g \in G : gx = xg\hspace{0.1cm} \forall x \in G \rbrace$, y este conjunto es el centro $Z(G)$. El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}. 
+
+$\hfill \square$
+
+\begin{definition}Si consideramos un grupo $G$ y un $x\in G$, entonces $$\langle x \rangle = \lbrace x^k:k \in \mathbb{Z} \rbrace,$$ es un subgrupo de $G$ que lo denominaremos \textbf{subgrupo generado por $x$}. Es claro que si $H$ es un subgrupo de $G$ que contiene a $x$, entonces $\langle x \rangle \subseteq H$.
+\end{definition}
+
+Notar que, dado un grupo $G$ y un $x \in G$, si estamos utilizando la notación aditiva entonces: $$\langle x \rangle = \lbrace kx : k \in \mathbb{Z} \rbrace.$$
+
+\begin{definition}Diremos que un grupo $G$ es \textbf{cíclico} si existe un $x \in G$ tal que $$\langle x \rangle = G.$$ A este elemento $x$ lo llamamos \textbf{generador} de $G$. En general, un grupo cíclico puede tener varios elementos generadores. Además, a un grupo cíclico de orden $n$ se le suele denotar $C_n$.
+\end{definition}
+
+Notar que, por ejemplo $$\mathbb{Z} = \lbrace 1n \wedge 1(-n) :n \in \mathbb{N} \rbrace= \langle 1 \rangle,$$ es un grupo cíclico infinito. O también el grupo visto al principio $$C_n = \langle \xi \rangle, \quad \xi = \cos\left(\dfrac{2\pi}{n}\right)+i\sin\left(\dfrac{2\pi}{n}\right),$$ es un grupo cíclico finito de orden $n$. Notar también que \textit{los grupos cíclicos son abelianos}, ya que dados dos elementos $y,z \in G$ cíclico entonces $yz = x^nx^m=x^{n+m}=x^{m+n} = x^mx^n=zy.$
 
 \begin{proposition}\label{eq:subciclico} Dado un grupo $G$ cíclico y $H \leq G$. Entonces $H$ es cíclico.
 \end{proposition}
@@ -302,7 +467,7 @@ Notar que por ejemplo $$\mathbb{Z} = \lbrace 1n \wedge 1(-n) :n \in \mathbb{N} \
 
 Es claro, por ser el producto una operación interna en $H$, que $\langle x^{k} \rangle \in H$.
 
-Ahora, dado $x ^{p} \in H$, comprobemos que $x^{p} \in \langle x^{k} \rangle$, es decir, que $p$ es múltiplo de $k$. Podemos suponer que $p \geq 0$ pues $p$ será múltiplo de $k$ si y sólo si lo es $-p$. Por el algoritmo de la división, al dividir $p$ entre $k$ existirán enteros no negativos $q,r$ , $0 \leq r < k$, tales que $p = kq + r$. Entonces, 
+Ahora, dado $x ^{p} \in H$, comprobemos que $x^{p} \in \langle x^{k} \rangle$, es decir, que $p$ es múltiplo de $k$. Podemos suponer que $p \geq 0$ pues $p$ será múltiplo de $k$ si y sólo si lo es $-p$. Por el algoritmo de la división, al dividir $p$ entre $k$ existirán enteros no negativos $q,r$, $0 \leq r < k$, tales que $p = kq + r$. Entonces, 
 \begin{center}
 $x^{p} = x^{kq+r} = (x^{k})^{q}x^{r}$, por tanto $x^{r} = x^{p}(x^{k})^{-q} \in H$
 \end{center}
@@ -310,27 +475,30 @@ pero por la elección de $k$ (el menor entero positivo tal que $x^{k} \in H$) ne
 
 $\hfill \square$
 
-Por ejemplo, los subgrupos de $\mathbb{Z}$ son de la forma $$m\mathbb{Z} = \lbrace mz : z \in \mathbb{Z} \rbrace = \langle m \rangle.$$
+Por ejemplo, los subgrupos de $\mathbb{Z}$ son cíclicos y son de la forma $$m\mathbb{Z} = \lbrace mz : z \in \mathbb{Z} \rbrace = \langle m \rangle.$$
 
-\begin{corolario}Sea $H$ un subconjunto no vacío de $\mathbb{Z}$. Entonces $H \leq Z$ si y sólo si existe un único entero no negativo $d$ tal que $H = d\mathbb{Z}$. Además, si $e \in \mathbb{Z}$, entonces $d\mathbb{Z} \subseteq e\mathbb{Z}$ si y sólo si $e$ divide a $d$.
-\end{corolario}
-\emph{Demostración: }Si $H = d\mathbb{Z}$, ya sabemos que $H$ es subgrupo de $\mathbb{Z}$. Recíprocamente, si $H \leq \mathbb{Z}$, por el resultado anterior existirá un $d \in \mathbb{Z}$ tal que $H = d\mathbb{Z}$. Como $d\mathbb{Z} = (-d)\mathbb{Z}$ podemos elegir $d \geq 0$. Finalmente, $d\mathbb{Z} \subseteq e\mathbb{Z}$ si y sólo si $d \in e\mathbb{Z}$ si y sólo si $e$ divide a $d$.
-
-$\hfill \square$
-
-\begin{corolario}Sean $0\neq a,b \in \mathbb{Z}$. Entonces:
+\begin{theorem}
+Sea $G$ un grupo cíclico. Se verifica:
 \begin{enumerate}
-\item Existe un único entero positivo $d \in \mathbb{Z}$ tal que $$a\mathbb{Z}+b\mathbb{Z} = d\mathbb{Z}.$$ Además, $d = mcd(a,b)$.
-\item Si $d = mcd(a,b)$, entonces $mcd \left(\dfrac{a}{d}, \dfrac{b}{d} \right) = 1.$
+\item Si $G$ es infinito, entonces es isomorfo a $(\mathbb{Z},+)$.
+\item Si $G$ es finito de orden $n$, entonces es isomorfo a $(\mathbb{Z}_{n},+)$.
 \end{enumerate}
-\end{corolario}
-\emph{Demostración: }Ya sabemos que $a\mathbb{Z}+b\mathbb{Z}$ es subgrupo de $\mathbb{Z}$. Por el corolario anterior sabemos que existe un único entero no negativo $d$ tal que $a\mathbb{Z}+b\mathbb{Z} = d\mathbb{Z}$. Como $0\neq a,b \in a\mathbb{Z}+b\mathbb{Z}$ deducimos que $d\neq 0$. Como $a\mathbb{Z}, b\mathbb{Z} \subseteq d\mathbb{Z}$, tenemos que $d$ divide a $a$ y a $b$. Como $a\mathbb{Z}+b\mathbb{Z}$ existen enteros $u,v$ tales que $au+bv = d$. Supongamos ahora que tenemos un $e\in \mathbb{Z}$ que divide a $a$ y a $b$. Entonces $e$ divide a $au+bv = d$, y esto prueba $1.$
+\end{theorem}
+\emph{Demostración: }(Notar que hemos especificado que la operación en ambos grupos, $\mathbb{Z}$ y $\mathbb{Z}_{n}$, sea la adición, puesto que su elemento neutro será el $0$ y no el $1$)
+Sea $G = \langle x \rangle$ y consideremos el homomorfismo $$\begin{array}{rccl}
+f\colon &\mathbb{Z}& \longrightarrow &G\\
+&k& \longmapsto &x^{k},
+\end{array}
+$$ que es claramente sobreyectivo ($Im f = G$). Veamos los dos casos: 
 
-Si un entero positivo $n$ divide a $a/d$ y a $b/d$, entonces $nd$ divide a $a$ y a $b$. Entonces es claro que $nd$ divide a $d$ (por ser éste el mcd) y de aquí $n=1$. Esto prueba $2.$
+\begin{enumerate}
+\item Basta comprobar que $f$ es inyectiva. Para ello supongamos por reducción al absurdo que $Ker f \neq \lbrace 0\rbrace$. Entonces, por ser $Ker f$ un subgrupo de $\mathbb{Z}$ no trivial, será de la forma $n\mathbb{Z}$ para algún $n \in \mathbb{N}$ no nulo. Ahora, el \textit{Primer Teorema de Isomorfía} nos asegura que $\mathbb{Z}_{n} = \mathbb{Z}/n\mathbb{Z} \cong G$, así $G$ tendría $n$ elementos, lo cual contradice la hipótesis de que sea infinito.
+\item Si $G$ es finito de orden $n$, no puede ser $Ker f = \lbrace 0 \rbrace$, puesto que en ese caso $f$ sería  inyectiva y entonces $G$ infinito. Así pues $Ker f = m\mathbb{Z}$ para algún $m \in \mathbb{N}$ no nulo, usando de nuevo el \textit{Primer Teorema de Isomorfía} $\mathbb{Z}_{m} = \mathbb{Z}/m\mathbb{Z} \cong G$. Como $\mathbb{Z}_{m}$ y $G$ han de tener el mismo orden, $m=n$.
+\end{enumerate}
 
 $\hfill \square$
 
-\begin{definition}Sea $G$ un grupo y $x \in G$. Si no existe ningún entero positivo $m$ tal que $x^m=1$ decimos entonces que el \textbf{orden} de $x$ es \textbf{infinito}. En caso contrario, diremos que el \textbf{orden} de $x$ es \textbf{finito} y llamaremos \textbf{orden} de $x$ al menor entero positivo $m$ tal que $x^m =1$. Lo escribiremos como $o(x) = m$ ó también $|x| = m$.
+\begin{definition}Sea $G$ un grupo y $x \in G$. Si no existe ningún entero positivo $n$ tal que $x^n=1$ decimos entonces que el \textbf{orden} de $x$ es \textbf{infinito}. En caso contrario, diremos que el \textbf{orden} de $x$ es \textbf{finito} y denominaremos \textbf{orden} de $x$ al menor entero positivo $n$ tal que $x^n =1$. Lo escribiremos como $o(x) = n$ ó también $|x| = n$.
 \end{definition}
 
 Estudiemos ahora los subgrupos de un grupo cíclico finito $\langle x \rangle$ de orden $n$.
@@ -348,12 +516,12 @@ Sea $G$ un grupo y $x \in G$ de orden $n$. Entonces:
 \begin{enumerate}
 \item Si $m = np$ es múltiplo de $n$, $x^{m} = x^{np} = (x^{n})^{p} = 1.$ Recíprocamente, si $m$ no es múltiplo de $n$, $m = np + r, \hspace{0.1cm} 1\leq r\leq n-1$ por el algoritmo de la división, luego $x^{m} = x^{np + r} = (x^{n})^{p}x^{r} = 1^{p}x^{r} = x^{r} \neq 1$.
 \item Sea $n$ el menor natural que cumple $x^{n} = 1$. Si probamos que $$\langle x \rangle = \lbrace 1, x,x^2, \ldots, x^{n-1} \rbrace$$ y que todos los miembros de la derecha son distintos, entonces tendremos que $| \langle x\rangle | = n$.
-Evidentemente el elemento de la izquierda de la igualdad contiene al de la derecha. Recíprocamente, si $y = x^{k}$, $k \in \mathbb{Z}$, dividimos por $n$ y por el algoritmo de la división sabemos que: $$k = qn + r, \hspace{0.1cm} 0\leq r \leq n-1,$$ luego $y = x^{qn+r}= (x^{n})^{q}x^{r} = 1^{q}x^{r} = x^{r}, \hspace{0.1cm}  0\leq r \leq n-1.$ Por último, si existieran $0\leq r < s \leq n-1$ tales que $x^{r} = x^{s},$ sería $x^{s-r} = x^{s}x^{-r} = x^{r}x^{-r} = x^{0} = 1, \hspace{0.1cm} s-r \leq n-1 < n,$ pero esto es absurdo porque $n$ es el menor positivo tal que $x^{n} = 1$.
+Evidentemente el elemento de la izquierda de la igualdad contiene al de la derecha. Recíprocamente, si $y = x^{k}$, $k \in \mathbb{Z}$, dividimos por $n$ y por el algoritmo de la división sabemos que: $$k = qn + r, \hspace{0.1cm} 0\leq r \leq n-1,$$ luego $y = x^{qn+r}= (x^{n})^{q}x^{r} = 1^{q}x^{r} = x^{r}, \hspace{0.1cm}  0\leq r \leq n-1.$ Por último, si existieran $0\leq r < s \leq n-1$ tales que $x^{r} = x^{s},$ sería $x^{s-r} = x^{s}x^{-r} = x^{r}x^{-r} = x^{0} = 1, \hspace{0.1cm} s-r \leq n-1 < n,$ pero esto es absurdo porque $n$ es el menor entero positivo tal que $x^{n} = 1$.
 \item Llamaremos $d = mcd(n,m)$ y veamos que $n/d$ es el menor entero positivo tal que $(x^{m})^{n/d} = 1$.
 
 Para comenzar, $$(x^{m})^{n/d} = (x^{n})^{m/d} = 1^{m/d} = 1$$ ya que $d$ divide a $m$ por ser $d = mcd(n,m)$ y que el orden de $x$ es $n$.
 
-Por otra parte, si $t$ es un entero positivo tal que $(x^{m})^{t} = 1$, entonces $mt$ es múltiplo de $n$, es decir que existe un $t'$ entero positivo tal que $kt = nt'$. De aquí, puesto que $d$ divide a $m$  y a $n$, $$\left( \dfrac{m}{d}\right)t =\left( \dfrac{n}{d}\right) t',$$ luego $\left( \dfrac{n}{d}\right) $ divide a $\left( \dfrac{m}{d}\right) t$. Pero como $n/d$ y $m/d$ son primos entre sí, necesariamente $(n/d)$ divide a $t$, como queríamos demostrar. ($n/d$ es el menor entero positivo tal que $(x^{m})^{n/d} = 1$).
+Por otra parte, si $t$ es un entero positivo tal que $(x^{m})^{t} = 1$, entonces $mt$ es múltiplo de $n$, es decir que existe un $t'$ entero positivo tal que $mt = nt'$. De aquí, puesto que $d$ divide a $m$  y a $n$, $$\left( \dfrac{m}{d}\right)t =\left( \dfrac{n}{d}\right) t',$$ luego $\left( \dfrac{n}{d}\right) $ divide a $\left( \dfrac{m}{d}\right) t$. Pero como $n/d$ y $m/d$ son primos entre sí, necesariamente $(n/d)$ divide a $t$, como queríamos demostrar. ($n/d$ es el menor entero positivo tal que $(x^{m})^{n/d} = 1$).
 \item Si $d$ divide a $n$, tenemos que $\langle x^{n/d} \rangle$ es un subgrupo de orden $d$ por los apartados anteriores. Supongamos ahora que $H \leq \langle x \rangle $ tiene orden $d$. Entonces $H$ es cíclico por~\ref{eq:subciclico} y deducimos que existe un entero $s$ tal que $H = \langle x^s \rangle$. Ahora, por el apartado $2.$ tenemos que $$1 = (x^s)^{o(x^s)} = (x^s)^{|H|} = (x^s)^d = x^{sd},$$ y por tanto $n$ divide a $sd$ por el apartado $1.$ Se sigue que $n/d$ divide a $s$. Por tanto, $x^s \in \langle x^{n/d} \rangle$ y así, $H = \langle x^s \rangle \subseteq \langle x^{n/d} \rangle$. Como ambos conjuntos tienen el mismo número de elementos, deben coincidir.
 \end{enumerate}
 
@@ -378,178 +546,22 @@ $\hfill \square$
 
 Notar que por~\ref{eq:prelgrupcic}, $\varphi(n)$ es el número de generadores en un grupo cíclico de orden $n$.
 
-\subsection{Homomorfismos}
 
-Estudiaremos ahora aquellas aplicaciones \textit{buenas} entre grupos, es decir, aquellas que preservan la estructura de grupo.
 
-\begin{definition}Dados $G$ y $H$ grupos, una aplicación $f \colon G \longrightarrow H$ es un \textbf{homomorfismo de grupos} si cumple $$f(xy) = f(x)f(y) \quad \forall x,y \in G.$$
-\end{definition}
 
-Los homomorfismos son una potente herramienta para analizar los grupos que relaciona. Si estudiamos los de los grupos más importantes: $S_{\Omega}$ y $GL_n(K)$ llegaremos a dos subramas de la teoría de grupos: la teoría de permutaciones para el primero y la de representaciones de grupos para el segundo.
 
-\begin{example}\label{eq:ejsHoms} Algunos ejemplos importantes de homomorfismos:
-\begin{enumerate}
-\item La aplicación determinante $$\begin{array}{rccl}
-&GL_n(K)&\longrightarrow &K^* \\
-&A& \longmapsto &det(A)
-\end{array}
-$$
-\item Dado un grupo $G$ y $N \unlhd G$, la aplicación $$\begin{array}{rccl}
-&G&\longrightarrow &G/N \\
-&g& \longmapsto &gN
-\end{array}
-$$
-\item Dado $G = \langle x \rangle$ un grupo cíclico, la aplicación $$\begin{array}{rccl}
-&\mathbb{Z}&\longrightarrow &G \\
-&m& \longmapsto &x^m
-\end{array}
-$$
-\end{enumerate}
-\end{example}
 
-\begin{properties}\label{eq:propHoms} Consideremos un homomorfismo $f \colon G \longrightarrow H$. Entonces algunas propiedades sobre los homomorfismos de grupos que serán importantes tenerlas en cuenta:
-\begin{enumerate}
-\item $f(1_{G}) = 1_{H}$ ya que $1_{H}f(1_{G}) = f(1_{G}) = f(1_{G}1_{G}) = f(1_{G})f(1_{G}) \Longrightarrow 1_{H} = f(1_{G}).$
-\item $f(a^{-1}) = (f(a))^{-1}$ para cada $a \in G$, puesto que $$f(a)f(a^{-1}) = f(aa^{-1}) = f(1_{G}) = 1_{H},$$ $$f(a^{-1})f(a) = f(a^{-1}a) = f(1_{G}) = 1_{H}.$$
-\item $o(f(x))$ divide al orden de $x$. En efecto, si $o(x) = m$ como $x^{m} = 1_{G}$ se tiene que $1_{H} = f(1_{G}) = f(x^{m}) = f(x)^{m}$ y así $o(f(x))$ divide a $m$. 
-\item Si $Y$ es un subgrupo de $H$, $$f^{-1}(Y) = \lbrace x \in G : f(x) \in Y\rbrace$$ es un subgrupo de $G$. Además si $Y$ es subgrupo normal de $H$, $f^{-1}(Y)$ lo es de $G$.
 
-En efecto, si $x,y \in f^{-1}(Y)$, entonces $f(x),f(y) \in Y$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in Y$, luego $xy^{-1} \in f^{-1}(Y)$. Para probar la normalidad de $f^{-1}(Y)$ usamos la última de las condiciones: Si $ab \in f^{-1}(Y)$ se sigue que $f(a)f(b) = f(ab) \in Y$ y como $Y$ es normal, $f(ab) = f(b)f(a) \in Y.$ Por lo tanto $ba \in f^{-1}(Y).$
- 
-\item Si además consideramos otro homomorfismo $
-\begin{array}{rccl}
-g\colon H \longrightarrow  Z
-\end{array}
-$entonces,
 
-$\begin{array}{rccl}
-g \circ f\colon G \longrightarrow  Z
-\end{array}
-$ también es homomorfismo, pues $$ (g \circ f)(xy) = g(f(xy)) = g(f(x)f(y)) = g(f(x))g(f(y)) = (g \circ f)(x) (g \circ f)(y).$$
-\end{enumerate}
-\end{properties}
-$\hfill \blacksquare$
 
-\begin{definition}Si $f \colon G \longrightarrow H$ es un homomorfismo de grupos, llamaremos \textbf{núcleo de $f$} a $$Ker f= \lbrace g \in G: f(g) = 1_H \rbrace.$$
 
-De igual manera, llamaremos \textbf{imagen de $f$} al conjunto $$Im f = \lbrace f(x) : x \in G\rbrace.$$
-\end{definition}
 
-De hecho, en el ejemplo~\ref{eq:ejsHoms}($1.$) tenemos que $Ker(det) = SL_n(K)$ es el grupo especial lineal. Y en el ejemplo~\ref{eq:ejsHoms}($2.$) es el propio $N$.
 
-\begin{proposition}Si $f \colon G \longrightarrow H$ es un homomorfismo de grupos, entonces $Ker f \unlhd G$. Además, $f$ es inyectiva si y sólo si $Ker f= \lbrace 1 \rbrace.$
-\end{proposition}
-\emph{Demostración: }Como $Ker f=f^{-1} (1)$, por~\ref{eq:propHoms}($4.$) tenemos que $Ker f$ es subgrupo de $G$. Probaremos ahora que, dados $x \in G$ y $z \in Ker f$, $xzx^{-1} \in Ker f$. Esto es claro, ya que $$f(xzx^{-1})=f(x)f(z)f(x)^{-1} = f(x)f(x)^{-1} = 1.$$
 
-Ahora, si $f$ es inyectiva y $x \in Ker f$ entonces $f(x) = 1 = f(1)$, por lo que $x = 1$ y así $Ker f = \lbrace 1 \rbrace$. Recíprocamente, si $Ker f = \lbrace 1 \rbrace$ y $x,y \in G$ son tales que $f(x) = f(y)$, entonces $f(xy^{-1}) = f(x)f(y)^{-1} = 1$, luego $xy^{-1} \in Ker f = \lbrace 1 \rbrace$ y así $x=y$.
 
-$\hfill \square$
 
-\begin{definition}Diremos que un homomorfismo de grupos $f \colon G \longrightarrow H$ es un \textbf{isomorfismo} si la aplicación $f$ es biyectiva. En tal caso diremos que $G$ es \textbf{isomorfo} a $H$ y lo denotaremos por $G \cong H$.
-\end{definition}
 
-\begin{theorem}[\textbf{\textit{Primer Teorema de Isomorfía}}]
-Sea $f \colon G \longrightarrow H$ un homomorfismo de grupos. Entonces, la aplicación $$\begin{array}{rccl}
-\bar{f} &G/Ker f&\longrightarrow &f(G) \\
-&xKer f& \longmapsto &f(x)
-\end{array}
-$$
-es un isomorfismo de grupos.
-\end{theorem}
-\emph{Demostración: }Sea $N = Ker f$. Sabemos por~\ref{eq:partiGrupo} que $xN = yN$ si y sólo si $x^{-1}y \in N$ si y sólo si $f(x^{-1}y)=1$ si y sólo si $f(x)^{-1}f(y) = 1$ si y sólo si $f(x)=f(y)$. Si leemos esto de izquierda a derecha estamos probando que la aplicación $\bar{f}$ está bien definida, es decir, que la imagen por $\bar{f}$ de un elemento $xN \in G/N$ no depende del representante que escojamos. Si lo leemos de derecha a izquierda estaremos probando que $\bar{f}$ es inyectiva. Si $y \in f(G)$ (imagen de $G$ por $f$) entonces $y=f(x)=\bar{f}(xKer f)$ con $x\in G$ y esto prueba la sobreyectividad. Además, es homomorfismo: $$\bar{f}(xNyN)= \bar{f}(xyN)=f(xy)=f(x)f(y) =\bar{f}(xN) \bar{f}(yN).$$ 
 
-$\hfill \square$
-
-\begin{proposition}\label{eq:lemIsom} Sea $N \unlhd G$ y sea $f \colon G \longrightarrow G/N$ el homomorfismo $f(g) = gN$. Si $H \leq G$, entonces $f(H) = f(NH)=NH/N \leq G/N$.
-\end{proposition}
-\emph{Demostración: }Si $H \leq G$ sabemos que $NH$ es subgrupo de $G$. Como $N \unlhd G$ y $N \subseteq NH$, tenemos que $N \unlhd NH$. Ahora, $$f(H) = \lbrace hN : h \in H \rbrace = \lbrace nhN :n, \in N, h \in H \rbrace = NH/N.$$ Por~\ref{eq:propHoms}, $NH/N$ es un subgrupo de $G/N$.
-
-$\hfill \square$
-
-\begin{theorem}[\textbf{\textit{Segundo Teorema de Isomorfía}}]
-Sea $N \unlhd G$ y sea $H \leq G$. Entonces $H \cap N \unlhd H$ y $$H/H\cap N \cong NH/N.$$
-
-\end{theorem}
-\emph{Demostración: }Consideremos el siguiente homomorfismo de grupos: $$\begin{array}{rccl}
-f\colon &G&\longrightarrow &G/N \\
-&x& \longmapsto &xN
-\end{array}
-$$
-y sea $g = \left.f \right|_H \colon H \longrightarrow G/N$ la restricción a $H$. Por el resultado anterior tenemos que $g(H) = f(H) = NH/N$. El núcleo de $g$ es:
-$$Ker g = \lbrace x \in H :xN = N \rbrace = N \cap H.$$ El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}.
-
-$\hfill \square$
-
-\begin{theorem}[\textbf{\textit{Tercer Teorema de Isomorfía}}]
-Sea $G$ un grupo. Sean $N,M \unlhd G$ y $N \subseteq M$. Entonces $$G/M \cong (G/N)/(M/N).$$
-\end{theorem}
-\emph{Demostración: }Consideremos la aplicación suprayectiva $$\begin{array}{rccl}
-f \colon &G/N&\longrightarrow &G/M\\
-&gN& \longmapsto &gM
-\end{array}
-$$
-Entonces $f$ está bien definida ya que si $gN = hN$ entonces $g^{-1}h \in N \subseteq M$ y así $gM =hM$. Es claro que es homomorfismo y el núcleo es $$Ker f = \lbrace gN \in G/N : gM = M \rbrace = \lbrace gN \in G/N : g \in M \rbrace = M/N.$$
-El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}.
-
-$\hfill \square$
-
-También podemos estudiar los subgrupos de un grupo cociente $G/N$:
-
-\begin{theorem}[\textbf{\textit{Teorema de la correspondencia}}]
-Sea $N \unlhd G$. La aplicación $K \longrightarrow G/N$ es una biyección entre el conjunto $\lbrace K: N \subseteq K \leq G \rbrace$ y los subgrupos de $G/N$.
-\end{theorem}
-\emph{Demostración: }Sea $f \colon G \longrightarrow G/N$ el homomorfismo dado por $f(g) = gN$. Supongamos que $K$ es un subgrupo de $G$ que contiene a $N$. Por~\ref{eq:lemIsom}, $K/N = f(K)$ es un subgrupo de $G/N$. Supongamos que $J$ es otro subgrupo de $G$ que contiene a $N$ con $K/N = J/N$. Si $k \in K$, entonces $kN \in K/N = J/N$, por lo que existirá $j \in J$ tal que $kN = jN$. Así, $k \in jN \subseteq J$. Esto prueba que $K \subseteq J$. Análogamente, $J \subseteq K$ y tenemos que $K=J$. Esto prueba que la aplicación $K \longrightarrow K/N$ es inyectiva. Si $X \leq G/N$, entonces $f(f^{-1}(X)) = X$ pues $f$ es suprayectiva. Sea $K = f^{-1}(X)$. Sabemos que $K \leq G$ por~\ref{eq:propHoms}. Está claro que $N \subseteq K$ pues $f(n) = N \in X$ para $n \in N$. Ahora, $X=f(K) = K/N$ y ya está.
-
-$\hfill \square$
-
-\begin{proposition}\label{eq:ej32} K es subgrupo normal de $G$ si y sólo si $K/H$ es subgrupo normal de $G/H$.\end{proposition}
-
-\emph{Demostración: }Sea $K \unlhd G$. Dados $aH, bH$ con $(aH)(bH) \in K/H$, entonces $(ab)H \in K/H$, es decir, $ab \in K$. Como $K$ es normal, y $ab \in K$, deducimos que $ba \in K$, luego $(bH)(aH) = (ba)H \in K/H,$ y así $K/H$ es normal. Para el recíproco es análogo.
-
-$\hfill \square$
-
-\begin{definition}Un \textbf{automorfismo} $\alpha$ de $G$ es un isomorfismo $\alpha \colon G \longrightarrow G$. Denotaremos por $Aut(G)$ el conjunto de los automorfismos de $G$. Es claro que $Aut(G)$ forma unn grupo con la operación composición de aplicaciones: $$\alpha \circ \beta = \alpha \beta.$$
-\end{definition}
-
-Aunque en general no es sencillo calcular el grupo de automorfismos de un grupo $G$, nosotros estudiaremos un caso más simple, para ello tenemos que:
-
-\begin{definition} Dado $G$ un grupo y $x,g \in G$ tenemos que $$x^g=gxg^{-1}.$$ A este $x^g$ lo denominaremos \textbf{conjugado} de $x$ por $g$. Igualmente, si $X \subseteq G$, $g \in G$ escribiremos $$X^g = \lbrace x^g:x \in X \rbrace.$$ También definimos la \textbf{aplicación conjugación por $g$} como $$\begin{array}{rccl}
-\alpha_g \colon &G&\longrightarrow &G \\
-&x& \longmapsto &x^g = gxg^{-1}
-\end{array}
-$$
-\end{definition}
-
-Notar que la conjugación la hemos definido para subconjuntos en general.
-
-\begin{proposition}Sea $G$ un grupo y $g \in G$. Entonces:
-\begin{enumerate}
-\item La aplicación $\alpha_g$ es un automorfismo de $G$. En particular, si $x,y \in G$ entonces $(xy)^g = x^gy^g.$
-\item Si $h \in G$, entonces $\alpha_h \alpha_g = \alpha_{hg}$. En particular, si $x \in G$ entonces $(x^g)^h = x^{hg}$.
-\end{enumerate}
-\end{proposition}
-\emph{Demostración: }Veamos:
-\begin{enumerate}
-\item Tenemos que $\alpha_g \alpha_{g^{-1}} = \alpha_{g^{-1}} \alpha_g = 1$, luego $(\alpha_g)^{-1}=\alpha_{g^{-1}}$ y así $\alpha_g$ es biyectiva. Sean ahora $x,y \in G$, entonces: $$(xy)^g = g(xy)g^{-1} = gxg^{-1}gyg^{-1} = x^gy^g.$$ Luego $\alpha_g$ es un homomorfismo, y notar que $\alpha_1$ es la identidad.
-\item Sea $h \in G$, entonces: $$(x^g)^h=h(gxg^{-1})h^{-1} = (hg)x(g^{-1}h^{-1}) = (hg)x(hg)^{-1} = x^{hg}.$$ Luego, $\alpha_h\alpha_g(x) =\alpha_h(\alpha_g(x)) = (x^g)^h = x^hg = \alpha_{hg}(x).$ Así, $\alpha_h\alpha_g = \alpha_{hg}$. 
-\end{enumerate}
-
-$\hfill \square$
-
-Resulta que estos automorfismos especiales, las conjugaciones, forman un grupo y tienen características interesantes.
-
-\begin{definition}Definimos $$Int (G) = \lbrace \alpha_g :g \in G \rbrace$$ como el conjunto de los \textbf{automorfismos internos} de $G$.
-\end{definition}
-
-\begin{definition}Llamamos \textbf{centro de $G$}, y lo denotamos $Z(G)$, a $$Z(G) = \lbrace g \in G: gx = xg \hspace{0.1cm} \forall x \in G \rbrace.$$
-\end{definition}
-
-\begin{proposition}Si $G$ es un grupo, entonces $Int(G) \unlhd Aut(G)$. Además, $$Int(G) \cong G/Z(G).$$
-\end{proposition}
-\emph{Demostración: }Sabemos que $\alpha_g\alpha_h = \alpha_{gh}$ y que $(\alpha_g)^{-1}$ por el resultado anterior. Así, tenemos que $Int(G) \leq Aut(G)$. Si $f \in Aut(G)$, veamos que $(\alpha_g)^f=\alpha_{f(g)}$: \begin{center}$((\alpha_g)^f)(x) = (f\alpha_g f^{-1})(x) = f(\alpha_g(f^{-1}(x))) = f(g(f^{-1}(x))g^{-1}) = f(g)xf(g^{-1}) =f(g)x(f(g))^{-1} =\alpha_{f(g)}(x) = x^{f(g)}.$\end{center}
-Esto demuestra que $Int(G) \unlhd Aut(G)$. Ahora, si consideramos la aplicación $G \longrightarrow Int(G)$ dada por $g \longmapsto \alpha_g$, es evidentemente suprayectiva y homomorfismo. El núcleo de esta aplicación será el conjunto $\lbrace g \in G : \alpha_g = id \rbrace = \lbrace g \in G: gxg^{-1}=x\hspace{0.1cm} \forall x \in G \rbrace = \lbrace g \in G : gx = xg\hspace{0.1cm} \forall x \in G \rbrace$, y este conjunto es el centro $Z(G)$. El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}. 
-
-$\hfill \square$
 
 Finalmente, calculemos el grupo de automorfismos de un grupo cíclico. Será muy útil saber más adelante que este grupo es abeliano, veámoslo: si $G = \langle x \rangle $ y $\alpha, \beta \in Aut(G)$, entonces $\alpha (x) = x^d$ y $\beta(x) = x^e$ para algunos enteros $d,e$. Ahora, $\alpha\beta(x)=x^{de} = x^{ed}=\beta \alpha (x)$ y así $\alpha \beta = \because \alpha$ (esto es así porque todos los elementos de $G$ son potencias de $x$). Ahora examinaremos exactamente cómo es este grupo de automorfismos: 
 
@@ -584,7 +596,7 @@ Gracias a estos dos últimos resultados concluimos que $|Aut(C_p)| = p-1$. De he
 
 Finalmente, veamos el producto directo y semidirecto:
 
-\begin{proposition}Sean $G_{1}$ y $G_{2}$ grupos. Dado el producto cartesiano $G_{1} \times G_{2}$ podemos convertirlo en un grupo con la siguiente operación: $$\cdot \colon (g_{1},g_{2})(g'_{1},g'_{2})=(g_{1}g'_{1},g_{2},g'_{2}).$$
+\begin{proposition}Sean $G_{1}$ y $G_{2}$ grupos. Dado el producto cartesiano $G_{1} \times G_{2}$, entonces podemos convertirlo en un grupo con la siguiente operación: $$\cdot \colon (g_{1},g_{2})(g'_{1},g'_{2})=(g_{1}g'_{1},g_{2},g'_{2}).$$
 Además, dado un grupo $G$ y $N_{1},N_{2} \unlhd G$ subgrupos normales tales que $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}=\lbrace 1_{G} \rbrace$. Entonces $$N_{1} \times N_{2} \cong G.$$
 \end{proposition}
 \emph{Demostración: }Para ver que es grupo con $\cdot$ basta con una simple comprobación. Para la segunda parte definimos la siguiente aplicación: 
@@ -598,14 +610,14 @@ Para ver que $f$ es homomorfismo: $$f((n_{1},n_{2})(n'_{1},n'_{2}))=f((n_{1}n'_{
 $$f((n_{1},n_{2}))f((n'_{1},n'_{2}))=n_{1}n_{2}n'_{1}n'_{2}.$$
 Para comprobar que son iguales bastará probar que $xy=yx$ para todo $x\in N_{1}$, $y\in N_{2}$. Sea $x^{-1}y^{-1}xy=x^{-1}(y^{-1}xy)\in N_{1}$, como también $x^{-1}y^{-1}xy=(x^{-1}y^{-1}x)y \in N_{2}$ y por hipótesis tenemos que $N_{1}\cap N_{2} = \lbrace 1_{G}\rbrace$, entonces será que $x^{-1}y^{-1}xy=1$, luego $xy=yx$. 
 
-Ahora, como $G=N_{1}N_{2}$, $f$ es suprayectiva. $Ker f = \lbrace (n_{1},n_{2}) \in N_{1}\times N_{2}:n_{1}n_{2}=1 \rbrace$. Si $n_{1}n_{2}=1$, entonces $n_{2}=n_{1}^{-1}\in N_{1}\cap N_{2}=\lbrace 1_{G}\rbrace$. Así, $n_{1}=n_{2}=1_{G}$ y $Ker f=\lbrace 1_{G} \rbrace$ y $f$ es inyectiva.
+Ahora, como $G=N_{1}N_{2}$, $f$ es suprayectiva. $Ker f = \lbrace (n_{1},n_{2}) \in N_{1}\times N_{2}:n_{1}n_{2}=1 \rbrace$. Si $n_{1}n_{2}=1$, entonces $n_{2}=n_{1}^{-1}\in N_{1}\cap N_{2}=\lbrace 1_{G}\rbrace$. Así, $n_{1}=n_{2}=1_{G}$ y $Ker f=\lbrace 1_{G} \rbrace$ y $f$ es inyectiva. El resultado se sigue del \textit{Primer Teorema de Isomorfía}.
 
 $\hfill \square$
 
-\begin{definition}Decimos que el producto cartesiano en el que hemos descompuesto $G$ antes, $N_{1}\times N_{2}$ con $N_{1}, N_{2}\unlhd G$ tales que con $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}= \lbrace 1_{G} \rbrace$, es un \textbf{producto directo}. 
+\begin{definition}El producto cartesiano en el que hemos descompuesto $G$ antes, $N_{1}\times N_{2}$ con $N_{1}, N_{2}\unlhd G$ tales que con $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}= \lbrace 1_{G} \rbrace$, es un \textbf{producto directo}. 
 \end{definition}
 
-\begin{proposition}Sean $N$ y $H$ grupos. Sea $\varphi \colon H \longrightarrow Aut(N)$ un homomorfismo entre $H$ y el grupo de los automorfismos de $N$. En el producto cartesiano $N \times H$ podemos definir una estructura de grupo conocida como \textbf{producto semidirecto de $H$ por $N$ vía $\varphi$} y denotada por $N\times_{\varphi} H$ de la siguiente manera:$$(n_{1},h_{1})(n_{2},h_{2}) = (n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2}),$$ donde $\varphi(h_{1})(n_{2}) = n_{2}^{h_{1}}$ normalmente, es decir, que el automorfismo en cuestión será la composición por un $h \in H$.
+\begin{proposition}Sean $N$ y $H$ grupos. Sea $\varphi \colon H \longrightarrow Aut(N)$ un homomorfismo entre $H$ y el grupo de los automorfismos de $N$. En el producto cartesiano $N \times H$ podemos definir una estructura de grupo, conocida como \textbf{producto semidirecto de $H$ por $N$ vía $\varphi$} y denotada por $N\times_{\varphi} H$, de la siguiente manera:$$(n_{1},h_{1})(n_{2},h_{2}) = (n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2}),$$ donde $\varphi(h_{1})(n_{2}) = n_{2}^{h_{1}}$ normalmente, es decir, que el automorfismo en cuestión será la conjugación por un elemento de $H$.
 
 Ahora, sea $G$ un grupo, $N \unlhd G$ y $H \leq G$. Supongamos que $G = NH$ y $N \cap H = \lbrace 1_{G}\rbrace$. Dado un $$\begin{array}{rccl}
 \varphi\colon &H & \longrightarrow & Aut(N)\\
@@ -613,19 +625,20 @@ Ahora, sea $G$ un grupo, $N \unlhd G$ y $H \leq G$. Supongamos que $G = NH$ y $N
 \end{array}
 $$  Entonces $$N \times_{\varphi} H \cong G.$$
 \end{proposition}
-\emph{Demostración: }
-Comprobemos primero que es grupo. Cumple con la propiedad asociativa: \begin{center}$(n_{1},h_{1})((n_{2},h_{2})(n_{3},h_{3}))=(n_{1},h_{1})(n_{2}\varphi(h_{2})(n_{3}),h_{2}h_{3})=(n_{1}\varphi(h_{1})(n_{2}\varphi(h_{2})(n_{3})),h_{1}h_{2}h_{3})=(n_{1}\varphi(h_{1})(n_{2})\varphi(h_{1}h_{2})(n_{3}),h_{1}h_{2}h_{3}).$
+\emph{Demostración: }Lo primero de todo, veamos que $\varphi$ está bien definida: como $N \unlhd G$, si $n \in N$ y $h \in H$, $hnh^{-1} \in N$. Ya sabemos que la conjugación es un automorfismo. Además $\varphi$ es homorfismo: $$\varphi(h_{1}h_{2})(n)=h_{1}h_{2}nh_{2}^{-1}h_{1}^{-1}=(\varphi(h_{1}) \circ \varphi(h_{2}))(n).$$
+
+Ahora veamos que es grupo. Cumple con la propiedad asociativa: \begin{center}$(n_{1},h_{1})((n_{2},h_{2})(n_{3},h_{3}))=(n_{1},h_{1})(n_{2}\varphi(h_{2})(n_{3}),h_{2}h_{3})=(n_{1}\varphi(h_{1})(n_{2}\varphi(h_{2})(n_{3})),h_{1}h_{2}h_{3})=(n_{1}\varphi(h_{1})(n_{2})\varphi(h_{1}h_{2})(n_{3}),h_{1}h_{2}h_{3}).$
 
 $((n_{1},h_{1})(n_{2},h_{2}))(n_{3},h_{3})=(n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2})(n_{3},h_{3})=(n_{1}\varphi(h_{1})(n_{2})\varphi(h_{1}h_{2})(n_{3}),h_{1}h_{2}h_{3}).$
 \end{center}
 Tiene elemento neutro: 
-$$(n,h)(1,1)=(n\varphi(h)(1),h)=(1\varphi(h)(n),h)=(1,1)(n,h).$$
+$$(n,h)(1,1)=(n\varphi(h)(1),h)=(n,h) = (1\varphi(1)(n),h)=(1,1)(n,h).$$
 
 Cada elemento $(n,h)$ tiene un inverso $(n,h)^{-1}=(\varphi(h^{-1})(n^{-1}),h^{-1})$.
 
 \begin{center}$(n,h)(\varphi(h^{-1})(n^{-1}),h^{-1})=(n\varphi(h)(\varphi(h^{-1})(n^{-1})),1)=(n\varphi(hh^{-1})(n^{-1}),1)=(nn^{-1},1)=(1,1).$
 
-$(\varphi(h^{-1})(n^{-1}),h^{-1})(n,h)=(\varphi(h^{-1})(n^{-1})\varphi(h^{-1})(n),1)=(\varphi(h^{-1})(n^{-1}n),1)=(\varphi(h^{-1})(1),1)=(1,1).$\end{center}
+$(\varphi(h^{-1})(n^{-1}),h^{-1})(n,h)=(\varphi(h^{-1})(n^{-1})\varphi(h^{-1})(n),1)=(h^{-1}n^{-1}hh^{-1}nh,1)=(h^{-1}h,1)=(1,1).$\end{center}
 
 Ahora, veamos la segunda parte. Sea $G=NH$, con $N \unlhd G$, $H\leq G$ y $N \cap H = \lbrace 1_{G} \rbrace$, y sea 
 $$\begin{array}{rccl}
@@ -633,209 +646,31 @@ $$\begin{array}{rccl}
 &h& \longmapsto &n \longmapsto n^{h} = hnh^{-1}.
 \end{array}
 $$
-Veamos que $\varphi$ está bien definida: como $N \unlhd G$, si $n \in N$ y $h \in H$, $hnh^{-1} \in N$. Ya sabemos que la conjugación es un automorfismo. Además $\varphi$ es homorfismo: $$\varphi(h_{1},h_{2})(n)=h_{1}h_{2}nh_{2}^{-1}h_{1}^{-1}=(\varphi(h_{1}) \circ \varphi(h_{2}))(n).$$
+
+Ya sabemos que $\varphi$ está bien definida y que es un homomorfismo.
+
 Definimos ahora $$\begin{array}{rccl}
 f\colon &N \times _{\varphi} H & \longrightarrow & G\\
 &(n,h)& \longmapsto &nh.
 \end{array}
 $$
-y veamos que $f$ es homomorfismo: \begin{center}$f((n_{1},h_{1})(n_{2},h_{2}))=f((n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2})=n_{1}\varphi(h_{1})(n_{2})h_{1}h_{2}=n_{1}(h_{1}n2h_{1}^{-1})h_{1}h_{2}=n_{1}h_{1}n_{2}h_{2}=f((n_{1},h_{1}))f((n_{2},h_{2})).$\end{center}
+y veamos que $f$ es homomorfismo: \begin{center}$f((n_{1},h_{1})(n_{2},h_{2}))=f((n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2})=n_{1}\varphi(h_{1})(n_{2})h_{1}h_{2}=n_{1}(h_{1}n_2h_{1}^{-1})h_{1}h_{2}=n_{1}h_{1}n_{2}h_{2}=f((n_{1},h_{1}))f((n_{2},h_{2})).$\end{center}
 
 Como $G=NH$ entonces $f$ es claramente suprayectiva. Ahora, $Ker f= \lbrace (n,h) \in N\times_{\varphi} H :nh=1 \rbrace$. Y si $nh=1$ entonces $n=h^{-1}\in N \cap H$, pero como $N \cap H = \lbrace 1_{G} \rbrace$ tenemos que $n=h=1_{G}$ y así $f$ es inyectiva y por tanto isomorfismo.
 
 $\hfill \square$
 
-\subsection{Acciones de grupos}
-
-Los grupos se manifiestan a través de sus acciones sobre espacios vectoriales, sobre otros grupos o, en general, sobre conjuntos. En esta sección veremos las acciones sobre conjuntos, o equivalentemente, los homomorfismos de $G$ sobre grupos simétricos.
-
-\begin{definition}Sea $\Omega$ un conjunto no vacío y sea $G$ un grupo. Diremos que $G$ \textbf{actúa} sobre $\Omega$ si para todo $\alpha \in \Omega$ y $g \in G$ tenemos definido un único elemento $g \cdot \alpha$ de tal forma que:
-\begin{enumerate}
-\item $h \cdot (g \cdot \alpha)=(hg) \cdot \alpha$ $\forall \alpha \in \Omega$, $g,h \in G$.
-\item $1 \cdot \alpha =\alpha$ $\forall \alpha \in \Omega$.
-\end{enumerate}
-
-En este caso, diremos que $\cdot$ define una \textbf{acción} de $G$ sobre $\Omega$.
-\end{definition}
-
-\begin{example}Los siguientes ejemplos son acciones de grupos sobre conjuntos:
-\begin{enumerate}
-\item Sea $G$ un grupo y $H \leq G$. Sea $\Omega = \lbrace xH : x \in G \rbrace$. Si $g \in G$ y $\alpha \in \Omega$, definimos $g \cdot \alpha = g\alpha$, es decir: $$g \cdot(xH) = gxH, \quad \forall x,g \in G.$$ Esta es la acción de $G$ sobre el conjunto de las coclases a izquierda de $H$ en $G$.
-\item Sea $G$ un grupo y $\Omega = G$. Dado un $\alpha \in \Omega, g \in G$ definimos $$g \cdot \alpha= \alpha^g.$$ Esta es la \textbf{acción de $G$ sobre $G$ por conjugación}.
-\item Sea $\Omega = \lbrace H : H \leq G \rbrace$ el conjunto de subgrupos de $G$. Si $H \in \Omega$, $g \in G$ definimos $$ g \cdot H = H ^g.$$ Esta es la acción de $G$ sobre los subgrupos de $G$ por conjugación.
-\item Sea $\Omega$ un conjunto no vacío y sea $G \leq S_{\Omega}$. Si $g \in G$, $\alpha \in \Omega$ definimos $$g \cdot \alpha = g(\alpha).$$ Esta es la \textbf{acción natural de $G$ sobre $\Omega$}.
-\end{enumerate}
-\end{example}
-$\hfill \blacksquare$
-
-Como se verá ahora, una acción de un grupo $G$ sobre un conjunto $\Omega$ no es más que un homomorfismo de grupos $G \longrightarrow S_{\Omega}$.
-
-\begin{theorem} \label{eq:princAcci}
-Sea $G$ un grupo y $\Omega$ un conjunto no vacío. Entonces: 
-\begin{enumerate}
-\item Supongamos que $G$ actúa sobre $\Omega$. Para cada $g \in G$ consideremos la aplicación $$\begin{array}{rccl}
-\rho_g \colon &\Omega&\longrightarrow &\Omega \\
-&\alpha& \longmapsto &g \cdot \alpha
+\begin{proposition}Sea $N = C_n$ un grupo cíclico de orden $n$ y sea $H = \langle x \rangle = C_2$. Entonces definimos $$\begin{array}{rccl}
+\varphi\colon &H & \longrightarrow & Aut(N)\\
+&x& \longmapsto &(n \longmapsto n^{-1}),
 \end{array}
-$$
-Tenemos que $\rho_g$ es biyectiva y además la aplicación 
-$$\begin{array}{rccl}
-\rho \colon &G&\longrightarrow &S_{\Omega} \\
-&g& \longmapsto &\rho_g
-\end{array}
-$$ es un homomorfismo de grupos.
-\item Sea $\rho \colon G \longrightarrow S_{\Omega}$ homomorfismo de grupos. Para cada $g \in G$ y $\alpha \in \Omega$ definimos $g \cdot \alpha = \rho(g)(\alpha)$. Entonces $\cdot$ define una acción de $G$ sobre $\Omega$.
-\end{enumerate}
-\end{theorem}
-\emph{Demostración: }Veamos primero $1.$, sea $g \in G$, veamos que $\rho_g$ es inyectiva. Si $\rho_g(\alpha)=\rho_g(\beta)$, con $\alpha, \beta \in \Omega$ entonces $g \cdot \alpha = g \cdot \beta$, por lo que $g^{-1} \cdot (g\cdot \alpha) = g^{-1}  \cdot (g \cdot \beta$) y aplicando las condiciones de las acciones tenemos que $ (g^{-1}g) \cdot \alpha = (g^{-1}g) \cdot \beta \Rightarrow 1 \cdot \alpha = 1 \cdot \beta \Rightarrow \alpha = \beta$. Para la sobreyectividad consideremos $\beta \in \Omega$, entonces $ g^{-1} \cdot \beta \in \Omega$ y $\rho_g(g^{-1}\cdot \beta)= g \cdot (g^{-1} \cdot \beta )= \beta.$. Luego $\rho_g$ es biyectiva.
-
-Veamos ahora $2.$, como $\rho (1)$ es la identidad tenemos que $1 \cdot \alpha = \alpha$, $\forall \alpha \in \Omega$. Ahora, si $g,h \in G$ y $\alpha \in \Omega$ tenemos que $$(\rho(g)\rho(h))(\alpha) = \rho(g)(\rho(h)(\alpha)) = g \cdot(h \cdot \alpha ) = (gh) \cdot \alpha = \rho_{gh}(\alpha) = \rho(gh)(\alpha).$$
-
-
-$\hfill \square$
-
-\begin{definition}Si un grupo $G$ actúa sobre un conjunto $\Omega$, entonces podemos definir el siguiente conjunto. $$K = \lbrace g \in G : g\cdot \alpha = \alpha \hspace{0.1cm} \forall \alpha \in \Omega \rbrace,$$ como el \textbf{núcleo} de la acción. Notar que $K = Ker(\rho) \unlhd G$. Diremos que la acción de $G$ sobre $\Omega$ es \textbf{fiel} si $K = \lbrace 1 \rbrace.$
-\end{definition}
-
-De hecho, el núcleo de la acción (que veremos más adelante en profundidad) de $G$ sobre $G$ por conjugación es $$K = \lbrace g \in G : x^g =x \hspace{0.1cm} \forall x \in G \rbrace = \lbrace g \in G:gx=xg \hspace{0.1cm} \forall x \in G \rbrace = Z(G).$$
-
-Veamos ahora cuál es el núcleo de la acción del primer ejemplo:
-
-\begin{proposition}Sea $H \leq G$ y sea $K = \cap_{x \in G} H^x$. Entonces $K$ es el núcleo de la acción de $G$ sobre $\Omega = \lbrace xH :x \in G \rbrace$ por multiplicación a izquierda.
+$$ con $\varphi(1) = id$.
+Entonces $N\times_{\varphi} H$ es un grupo de $2n$ elementos denominado \textbf{grupo diédrico} de $2n$ elementos, y lo escribiremos como $D_{2n}$.
 \end{proposition}
-\emph{Demostración: }Sea $g \in G$, entonces $g \in Ker (\rho)$ si y sólo si $gxH = xH$ $\forall x \in G$ si y sólo si $x^{-1}gx H = H$  $\forall x \in G$ si y sólo si $x^{-1}gx \in H$ $\forall x \in G$ si y sólo si $g \in H^x$ $\forall x \in G$ si y sólo si $g \in K$.
+\begin{proof}
+La aplicación $n \longrightarrow n^{-1}$ es un automorfismo de $N$ de orden $2$. Entonces $\varphi(x) \circ \varphi(x) = id$, y $\varphi(x^2) = \varphi(1) = id$. Así, $\varphi$ es homomorfismo.
 
-$\hfill \square$
-
-Todo grupo finito es subgrupo de un grupo simétrico.
-
-\begin{theorem}[\textbf{\textit{Teorema de Cayley}}]
-Sea $H \leq G$, con $[G:H] = n$. Entonces, existe $K \unlhd G$ contenido en $H$ tal que $G/K$ es isomorfo a un subgrupo de $S_n$. En particular, si $G$ tiene orden $n$, entonces $G$ es isomorfo a un subgrupo de $S_n$.
-\end{theorem}
-\emph{Demostración: }Sea $\Omega$ el conjunto de las clases a izquierda de $H$ en $G$. Luego, $|\Omega | = n$. Sea $K \unlhd G$ el núcleo de la acción de $G$ sobre $\Omega$ Por el resultado anterior tenemos que $K \subseteq H$. Por la primera parte de~\ref{eq:princAcci} existe un homomorfismo de grupos $G \longrightarrow S_{\Omega}$ de núcleo $K$. Por el \textit{Primer Teorema de Isomorfía}, tenemos que $G/K$ es isomorfo a un subgrupo de $S_{\Omega} = S_n$. Para lo segundo tomar simplemente $H = \lbrace 1 \rbrace$.
-
-$\hfill \square$
-
-De este resultado podemos sacar algo de información para los grupos finitos simples:
-
-\begin{corolario}Sea $G$ un grupo finito simple y supongamos que $H \leq G$ es un subgrupo de índice $n > 1$. Entonces $G$ es isomorfo a un subgrupo de $S_n$. En particular, $|G|$ divide a $n!$.
-\end{corolario}
-\emph{Demostración: }Teniendo en cuenta lo que hemos visto en el resultado anterior tenemos que $K$ es un subgrupo normal de $G$ contenido en $H\leq G$, por lo que $K = 1$. Así, $G$ es isomorfo a un subgrupo de $S_n$ por el resultado anterior. Para lo segundo basta aplicar el \textit{Teorema de Lagrange}.
-
-$\hfill \square$
-
-Ahora veremos que una acción de $G$ puede definir una relación de equivalencia en $\Omega$. En efecto, si $\alpha, \beta \in \Omega$ escribiremos $\alpha \sim \beta $ si existe $g \in G$ tal que $g \cdot \alpha = \beta$. Es decir, $\alpha$ y $\beta$ van a estar relacionados si existe un elemento de $G$ que actuando sobre $\alpha$ dé $\beta$. Esta relación va a dar mucho de que hablar, veamos que es de equivalencia:
-
-$$g^{-1} \cdot \beta = g^{-1} \cdot (g \cdot \alpha ) = (g^{-1}g) \cdot \alpha = \alpha, $$ luego si $\alpha \sim \beta$ entonces $\beta \sim \alpha$ y tenemos que esta relación es simétrica. Además es claro que $1 \cdot \alpha = \alpha$, luego $\alpha \sim \alpha$ y esta relación es reflexiva. Finalmente, si $g \cdot \alpha = \beta$ ($\alpha \sim \beta$) y $h \cdot \beta = \gamma$ ($\beta \sim \gamma$), con $g, h \in G$, entonces $$\gamma = h \cdot (g \cdot \alpha) = (gh) \cdot \alpha,$$ y como $gh \in G$ por ser $G$ grupo entonces $\alpha \sim \gamma$ y esta relación es transitiva.
-
-\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, $\alpha \in \Omega$ y considerando la relación de equivalencia $\sim$ que acabamos de ver, entonces la clase de equivalencia de $\alpha$ es $$O_a = \lbrace g\cdot \alpha : g \in G \rbrace.$$ A este conjunto lo llamamos \textbf{órbita} de $\alpha$ por $G$ ó \textbf{$G$-órbita} de $\alpha$. Notar que su \textbf{longitud} es $|O_a|$.
-\end{definition}
-
-Notar que al tratarse las órbitas de clases de equivalencia para la relación de equivalencia $\sim$ entre elementos de $\Omega$ antes vista, entonces van a formar una partición de $\Omega.$ Es decir, que su unión disjunta forman la totalidad de $\Omega$. Así, si $R$ es un conjunto de representantes de estas clases de equivalencia (órbitas de la acción), tenemos que $$\Omega = \bigsqcup_{x\in R} O_x.$$ Como la unión es disjunta y $\Omega$ finito tenemos que $$|\Omega | = \sum_{x\in R} |O_x|.$$ A estas dos fórmulas equivalentes se las conoce como \textbf{\textit{fórmula de las órbitas}}. (Se ha empleado $||$ para hablar de cardinal de un conjunto, lo cuál podría considerarse abuso de notación).
-
-\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, si $\alpha \in \Omega$ entonces definimos el \textbf{estabilizador} de $\alpha$ en $G$ como $$G_\alpha = \lbrace g \in G : g\cdot \alpha = \alpha \rbrace.$$
-\end{definition}
-
-\begin{theorem}[\textbf{\textit{Teorema de la órbita-estabilizadora}}] \label{eq:torest}
-Sea $G$ un grupo que actúa sobre un conjunto $\Omega$ y sea $\alpha \in \Omega$. Entonces $G_\alpha \leq G$ y $$|O_\alpha| = [G:G_\alpha].$$
-\end{theorem}
-\emph{Demostración: }Sea $g,h \in G_\alpha$. Entonces $(gh) \cdot \alpha = g \cdot (h\cdot \alpha) = g \cdot \alpha = \alpha.$ Por lo que $gh \in G_\alpha$, además si $g\cdot \alpha = \alpha$ entonces $g^{-1} \cdot \alpha = g^{-1} \cdot (g\cdot \alpha)= (g^{-1}g) \cdot \alpha = \alpha,$ luego $g^{-1} \in G_\alpha$ y así $G_\alpha \leq G$.
-
-Ahora, busquemos una aplicación biyectiva $f \colon \lbrace xG_\alpha : x \in G \rbrace \longrightarrow O_\alpha$. Definimos $f(xG_\alpha) = x\cdot \alpha$. Ahora, $xG_\alpha = y G_\alpha$ si y sólo si $x^{-1}y \in G_\alpha$ si y sólo si $(x^{-1}y) \cdot \alpha = \alpha$ si y sólo si $x \cdot ((x^{-1}y) \cdot \alpha) = x \cdot \alpha$ si y sólo si $y \cdot \alpha = x \cdot \alpha$, luego $f$ está bien definida y es inyectiva. Al ser $f$ claramente suprayectiva, ya está.
-
-$\hfill \square$
-
-Cuando un grupo $G$ actúa sobre un conjunto $\Omega$, de entre todos los elementos de $\Omega$ destacamos aquellos que son fijados por todos los elementos de $G$:
-
-\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, y dado un $\alpha \in \Omega$ decimos que $\alpha$ es un \textbf{punto fijo} de $\Omega$ si $g \cdot \alpha = \alpha$ $\forall g \in G$, es decir aquellos $\alpha \in \Omega$ tales que $O_\alpha = \lbrace \alpha \rbrace$. Igualmente escribimos $$\Omega_0 = \lbrace \alpha \in \Omega : |O_\alpha | = 1. \rbrace$$ para referirnos al conjunto de los puntos fijos de $\Omega$.
-\end{definition}
-
-\begin{definition}Sea $p$ un número primo. Un grupo $G$ es un \textbf{$p$-grupo finito} si $G$ es finito y $|G|$ es una potencia de $p$.
-\end{definition}
-
-\begin{theorem}\label{eq:ecClasesp}
-Sea $G$ un grupo actuando sobre un conjunto finito $\Omega$. Escogemos $\alpha_1, \ldots, \alpha_s$ representantes de las órbitas de longitud mayor que 1. Entonces $$|\Omega| = |\Omega_0| + \sum_{j=1}^s |O_{\alpha_j}|.$$ En particular, si $G$ es un $p$-grupo finito, entonces $$|\Omega| \equiv |\Omega_0|\hspace{0.1cm} \text{mod}\hspace{0.1cm} p.$$
-\end{theorem}
-\emph{Demostración: }La primera parte se deduce de la fórmula de las órbitas y del teorema de la órbita estabilizadora. Sea ahora $G$ un grupo tal que $|G| = p^n$. Por~\ref{eq:torest}, tendremos que $|O_{\alpha_j}| = [G:G_{\alpha_j}] > 1$, con $j = 1, \ldots , s$. Como $[G:G_{\alpha_j}]$ divide a $|G| = p^n$, ya está.
-
-$\hfill \square$
-
-La descomposición del conjunto $\Omega$ en unión de las diferentes órbitas tiene especial interés cuando la acción es la conjugación de un grupo $G$ sobre sí mismo. En este caso consideraremos: 
-
-\begin{definition}\label{eq:accConj} Consideremos la acción $$\begin{array}{rccl}
-\rho\colon &G& \longrightarrow &S_G\\
-&g& \longmapsto &\alpha_{g}
-\end{array}
-$$
-donde ya sabemos que $\alpha_{g}(x) = x^{g}=gxg^{-1}$ con $x \in G$. Notar que en este caso el conjunto sobre el que consideramos la acción es $G$, y que también la hemos presentado antes, al comienzo del capítulo concretamente, como la \textbf{acción conjugación}.
-
-Como $\alpha_{g} \in Aut(G)$ tenemos que en particular es biyectiva. Además es claro que $\alpha_{gh}=\alpha_{g}\alpha_{h}$, luego $\varphi$ es homomorfismo.
-
-El núcleo de este homomorfismo, $Ker \hspace{0.1cm} \varphi = \lbrace g \in G: \alpha_{g} = id \rbrace = \lbrace g \in G: gxg^{-1} = x \hspace{0.1cm} \forall x \in G \rbrace =  \lbrace g \in G: gx = xg \hspace{0.1cm} \forall x \in G \rbrace$ es el \textbf{centro de $G$} y se escribe \textbf{$Z(G)$}.
-
-El estabilizador, dado un $x \in G$, $G_{x}= \lbrace g \in G: gxg^{-1} = x \rbrace = \lbrace g \in G: gx=xg \rbrace$ también se presentó en el primer capítulo y lo denominamos \textbf{centralizador de $x$ en $G$} y se escribe como \textbf{$C_{G}(x)$}. Además, ya que $G_{x} \leq G$ entonces también $C_{G}(x) \leq G$.
-
-Por último, si $x \in G$, su órbita $O_{x}$ será entonces $O_{x} = \lbrace gxg^{-1}:g \in G \rbrace$. La denominaremos \textbf{clase de conjugación de $x$ en $G$}. Y, siguiendo el teorema de la órbita estabilizadora vemos que tiene $[G:C_{G}(x)] = \dfrac{|G|}{|C_{G}(x)|}$ elementos. En particular, la denotaremos por $Cl_{G}(x)$, es decir, tendremos: $$Cl_{G}(x) = \lbrace gxg^{-1} : g \in G \rbrace$$ $$|Cl_{G}(x)| = [G :C_G(x)] = \dfrac{|G|}{|C_G(x)|}.$$
-\end{definition}
-
-Notar que $|Cl_G(x) | = 1$ si y sólo si $gx = xg$ $\forall g \in G$, es decir, si y sólo si $x \in Z(G)$. Luego, en este caso $\Omega_0 = Z(G).$
-
-\begin{theorem}[\textit{\textbf{Ecuación de las clases de conjugación de un grupo}}] \label{eq:ecClases}
-Sean $G$ un grupo finito. Sean $K_{1}, \ldots, K_{s}$ las clases de conjugación de $G$ de longitud mayor que $1$. Entonces $$|G| = |Z(G)| + \sum_{j=1}^{s} |K_{j}|.$$ Esta fórmula recibe el nombre de \textbf{ecuación de clases de conjugación de un grupo finito}.
-\end{theorem} 
-\emph{Demostración: } Se sigue inmediatamente a partir de lo discutido anteriormente y del teorema~\ref{eq:ecClasesp}. Notar que, por el teorema de la órbita estabilizadora, $|K_{j}| = |O_{\alpha_{j}}| = [G:G_{\alpha_{j}}] = [G:C_{G}(\alpha_{j})]$ para $j=1, \ldots, s$, con los $\alpha_{j}$ representantes de las clases de conjugación (órbitas) de longitud mayor que $1$.   ($G = C_{G}(x) \Longleftrightarrow x \in Z(G)$, entonces $\left[ G:C_{G}(x) \right] > 1$ si $x \notin Z(G)$.)
-
-$\hfill \square$
-
-\begin{proposition}Sea $G \neq \lbrace 1 \rbrace$ un $p$-grupo finito. Entonces tenemos que $Z(G) \neq \lbrace 1 \rbrace$.
-\end{proposition}
-\emph{Demostración: }Por~\ref{eq:ecClasesp} y~\ref{eq:ecClases} tenemos que $|G| \equiv |Z(G)|\hspace{0.1cm}\text{mod}\hspace{0.1cm} p$. Como $|G| = p^a$ y $p^a \not\equiv 1 \hspace{0.1cm}\text{mod}\hspace{0.1cm}p$ ya está.
-
-$\hfill \square$
-
-\begin{corolario}Sea $G$ un $p$-grupo finito simple. Entonces $|G| = p$.
-\end{corolario}
-\emph{Demostración: }Si $G$ es simple entonces $Z(G) = G$, ya que sabemos por el resultado anterior que $Z(G) \neq \lbrace 1 \rbrace$, y como el centro es un subgrupo normal y $G$ es simple entonces necesariamente $Z(G) = G$. Luego $G$ es abeliano y el resultado se sigue de~\ref{eq:abSimple}.
-
-$\hfill \square$
-
-\begin{definition}Si $H \leq G$ definimos el \textbf{normalizador} de $H$ en $G$ como $$N_G(H) = \lbrace g \in G : H^g = H \rbrace.$$
-\end{definition}
-
-Notar que $N_G(H)$ es el estabilizador de $H$ en la acción de $G$ sobre sus subgrupos por conjugación. Es claro que $H \unlhd N_G(H)$ y que $H \unlhd G$ si y sólo si $N_G(H) =G$. Por el \textit{Teorema de la órbita estabilizadora} tenemos que el número de subgrupos distintos de la forma $H^g$, con $g \in G$, es $[G:N_G(H)]$.
-
-\begin{proposition}Sea $G$ un grupo finito y $H \leq G$ con $|H| = p^a$ para cierto primo $p$. Entonces $$[G:H] \equiv [N_G(H):H] \hspace{0.1cm}\text{mod} \hspace{0.1cm} p.$$
-\end{proposition}
-\emph{Demostración: }Consideremos el conjunto $\Omega = \lbrace xH : x \in G \rbrace$. Tenemos que $H$ actúa sobre $\Omega$ por multiplicación a izquierda. Calculamos el número de puntos fijos, es decir $\Omega_0$. Se tiene que $hxH = xH$ $\forall h \in H$ si y sólo si $x^{-1}hx \in H$ $\forall h \in H$ si y sólo si $H^{x^{-1}} \subseteq H$ si y sólo si $H \subseteq H ^x$ si y sólo si $H = H^x$ (ya que $|H| = |H^x|$) si y sólo si $x\in N_G(H)$. El resultado se sigue de la segunda parte de~\ref{eq:ecClasesp}.
-
-$\hfill \square$
-
-\begin{corolario}\label{eq:cor411} Sea $G$ un $p$-grupo finito. Si $H \leq G$ entonces $H \leq N_G(H)$.
-\end{corolario}
-\emph{Demostración: }Como $p^a \not\equiv 1 \hspace{0.1cm}\text{mod} \hspace{0.1cm} p$ si $a \geq 1$, aplicando el resultado anterior ya está.
-
-$\hfill \square$
-
-Es decir, en los $p$-grupos los normalizadores crecen.
-
-\begin{corolario}\label{eq:cor412} Sea $G$ un $p$-grupo finito. Si $p^a$ divide a $|G|$, entonces $G$ tiene un subgrupo de orden $p^a$.
-\end{corolario}
-\emph{Demostración: }Lo haremos por inducción sobre el orden de $G$. Podemos suponer que $G \neq \lbrace 1 \rbrace$ y que $p^a < |G|$. Entre los subgrupos propios de $G$ elegimos el de mayor orden posible, $H$. Por el corolario anterior sabemos que $H \unlhd G$. Por el \textit{Teorema de correspondencia} tenemos que $G/H$ no tiene subgrupos propios. Por~\ref{eq:abSimple}, se tiene que $[G:H] = p$. Ahora, $p^a$ divide a $|H|$ y el resultado se sigue por inducción.
-
-$\hfill \square$
-
-Finalmente, hablaremos de las acciones transitivas.
-
-\begin{definition}Diremos que una acción de un grupo $G$ sobre un conjunto $\Omega$ es \textbf{transitiva} si sólo hay una órbita, es decir, si $\Omega$ es una $G$-órbita. Dicho de otra manera: la acción de $G$ sobre $\Omega$ es transitiva si dados $\alpha, \beta \in \Omega$ existe un $g \in G$ tal que $g \cdot \alpha = \beta$.
-\end{definition}
-
-\begin{proposition}Sea $G$ un grupo actuando sobre un conjunto $\Omega$. Dados $\alpha \in \Omega$ y $g \in G$, entonces $$(G_\alpha)^g = G_{g\cdot \alpha}.$$ En particular, si la acción de $G$ sobre $\Omega$ es transitiva, entonces todos los estabilizadores son conjugados.
-\end{proposition}
-\emph{Demostración: }Se tiene que $x \in G_{g\cdot \alpha}$ si y sólo si $x \cdot(g\cdot \alpha) = g \cdot \alpha$ si y sólo si $g^{-1} \cdot(xg \cdot \alpha) = \alpha$ si y sólo si $(g^{-1}xg) \cdot \alpha = \alpha$ si y sólo si $g^{-1}xg \in G_\alpha$ si y sólo si $x \in (G_\alpha)^g$, luego se tiene la igualdad.
-
-Supongamos ahora que la acción de $G$ sobre $\Omega$ es transitiva y sean $\alpha, \beta \in \Omega$. Entonces existe $g \in G$ tal que $g \cdot \alpha = \beta$ y $$(G_\alpha)^g = G_\beta.$$
-
-$\hfill \square$
+\end{proof}
 
 \subsection{Grupos de permutaciones}
 
@@ -1081,6 +916,198 @@ En el segundo caso, $K \cap N = 1$. Por lo tanto, $K^{\tau} \cap N = (K \cap N)^
 
 Supongamos que $N > 1$ y sea $1 \neq \sigma \in N$. Supongamos primero que en la descomposición de $\sigma$ como producto de ciclos disjuntos solo aparecen transposiciones. Tenemos que $\sigma = (a,b)(c,d) \cdots$. Sea $e$ una cifra distinta de $a,b,c,d$. Entonces $$\gamma = \sigma^{(a,b)(d,e)}=(b,a)(c,e) \cdots \in N.$$
 Ahora $\sigma \gamma \in N$, $\sigma \gamma$ fija $a$ y $1 \neq \sigma \gamma$ (ya que manda $d$ a $e$). Esto es una contradicción. Finalmente, supongamos que en la descomposición de $\sigma$ como producto de ciclos disjuntos tenemos un $m$-ciclo con $m \geq 3$. Podemos escribir $\sigma (a,b,c, \ldots) \cdots$. Elegimos ahora dos cifras $d,e$ distintas de $a,b,c$ y escribimos $$\gamma = \sigma^{(c,d,e)} = (a,b,d, \ldots) \cdots \in N.$$ Tenemos que $\gamma \neq \sigma$ y $1 \neq \sigma \gamma^{-1} \in N$ fija $a$. Esta contradicción final prueba el teorema.
+
+$\hfill \square$
+
+\subsection{Acciones de grupos. Teoremas de Sylow. Resolubilidad}
+
+Los grupos se manifiestan a través de sus acciones sobre espacios vectoriales, sobre otros grupos o, en general, sobre conjuntos. En esta sección veremos las acciones sobre conjuntos, o equivalentemente, los homomorfismos de $G$ sobre grupos simétricos.
+
+\begin{definition}Sea $\Omega$ un conjunto no vacío y sea $G$ un grupo. Diremos que $G$ \textbf{actúa} sobre $\Omega$ si para todo $\alpha \in \Omega$ y $g \in G$ tenemos definido un único elemento $g \cdot \alpha$ de tal forma que:
+\begin{enumerate}
+\item $h \cdot (g \cdot \alpha)=(hg) \cdot \alpha$ $\forall \alpha \in \Omega$, $g,h \in G$.
+\item $1 \cdot \alpha =\alpha$ $\forall \alpha \in \Omega$.
+\end{enumerate}
+
+En este caso, diremos que $\cdot$ define una \textbf{acción} de $G$ sobre $\Omega$.
+\end{definition}
+
+\begin{example}Los siguientes ejemplos son acciones de grupos sobre conjuntos:
+\begin{enumerate}
+\item Sea $G$ un grupo y $H \leq G$. Sea $\Omega = \lbrace xH : x \in G \rbrace$. Si $g \in G$ y $\alpha \in \Omega$, definimos $g \cdot \alpha = g\alpha$, es decir: $$g \cdot(xH) = gxH, \quad \forall x,g \in G.$$ Esta es la acción de $G$ sobre el conjunto de las coclases a izquierda de $H$ en $G$.
+\item Sea $G$ un grupo y $\Omega = G$. Dado un $\alpha \in \Omega, g \in G$ definimos $$g \cdot \alpha= \alpha^g.$$ Esta es la \textbf{acción de $G$ sobre $G$ por conjugación}.
+\item Sea $\Omega = \lbrace H : H \leq G \rbrace$ el conjunto de subgrupos de $G$. Si $H \in \Omega$, $g \in G$ definimos $$ g \cdot H = H ^g.$$ Esta es la acción de $G$ sobre los subgrupos de $G$ por conjugación.
+\item Sea $\Omega$ un conjunto no vacío y sea $G \leq S_{\Omega}$. Si $g \in G$, $\alpha \in \Omega$ definimos $$g \cdot \alpha = g(\alpha).$$ Esta es la \textbf{acción natural de $G$ sobre $\Omega$}.
+\end{enumerate}
+\end{example}
+$\hfill \blacksquare$
+
+Como se verá ahora, una acción de un grupo $G$ sobre un conjunto $\Omega$ no es más que un homomorfismo de grupos $G \longrightarrow S_{\Omega}$.
+
+\begin{theorem} \label{eq:princAcci}
+Sea $G$ un grupo y $\Omega$ un conjunto no vacío. Entonces: 
+\begin{enumerate}
+\item Supongamos que $G$ actúa sobre $\Omega$. Para cada $g \in G$ consideremos la aplicación $$\begin{array}{rccl}
+\rho_g \colon &\Omega&\longrightarrow &\Omega \\
+&\alpha& \longmapsto &g \cdot \alpha
+\end{array}
+$$
+Tenemos que $\rho_g$ es biyectiva y además la aplicación 
+$$\begin{array}{rccl}
+\rho \colon &G&\longrightarrow &S_{\Omega} \\
+&g& \longmapsto &\rho_g
+\end{array}
+$$ es un homomorfismo de grupos.
+\item Sea $\rho \colon G \longrightarrow S_{\Omega}$ homomorfismo de grupos. Para cada $g \in G$ y $\alpha \in \Omega$ definimos $g \cdot \alpha = \rho(g)(\alpha)$. Entonces $\cdot$ define una acción de $G$ sobre $\Omega$.
+\end{enumerate}
+\end{theorem}
+\emph{Demostración: }Veamos primero $1.$, sea $g \in G$, veamos que $\rho_g$ es inyectiva. Si $\rho_g(\alpha)=\rho_g(\beta)$, con $\alpha, \beta \in \Omega$ entonces $g \cdot \alpha = g \cdot \beta$, por lo que $g^{-1} \cdot (g\cdot \alpha) = g^{-1}  \cdot (g \cdot \beta$) y aplicando las condiciones de las acciones tenemos que $ (g^{-1}g) \cdot \alpha = (g^{-1}g) \cdot \beta \Rightarrow 1 \cdot \alpha = 1 \cdot \beta \Rightarrow \alpha = \beta$. Para la sobreyectividad consideremos $\beta \in \Omega$, entonces $ g^{-1} \cdot \beta \in \Omega$ y $\rho_g(g^{-1}\cdot \beta)= g \cdot (g^{-1} \cdot \beta )= \beta.$. Luego $\rho_g$ es biyectiva.
+
+Veamos ahora $2.$, como $\rho (1)$ es la identidad tenemos que $1 \cdot \alpha = \alpha$, $\forall \alpha \in \Omega$. Ahora, si $g,h \in G$ y $\alpha \in \Omega$ tenemos que $$(\rho(g)\rho(h))(\alpha) = \rho(g)(\rho(h)(\alpha)) = g \cdot(h \cdot \alpha ) = (gh) \cdot \alpha = \rho_{gh}(\alpha) = \rho(gh)(\alpha).$$
+
+
+$\hfill \square$
+
+\begin{definition}Si un grupo $G$ actúa sobre un conjunto $\Omega$, entonces podemos definir el siguiente conjunto. $$K = \lbrace g \in G : g\cdot \alpha = \alpha \hspace{0.1cm} \forall \alpha \in \Omega \rbrace,$$ como el \textbf{núcleo} de la acción. Notar que $K = Ker(\rho) \unlhd G$. Diremos que la acción de $G$ sobre $\Omega$ es \textbf{fiel} si $K = \lbrace 1 \rbrace.$
+\end{definition}
+
+De hecho, el núcleo de la acción (que veremos más adelante en profundidad) de $G$ sobre $G$ por conjugación es $$K = \lbrace g \in G : x^g =x \hspace{0.1cm} \forall x \in G \rbrace = \lbrace g \in G:gx=xg \hspace{0.1cm} \forall x \in G \rbrace = Z(G).$$
+
+Veamos ahora cuál es el núcleo de la acción del primer ejemplo:
+
+\begin{proposition}Sea $H \leq G$ y sea $K = \cap_{x \in G} H^x$. Entonces $K$ es el núcleo de la acción de $G$ sobre $\Omega = \lbrace xH :x \in G \rbrace$ por multiplicación a izquierda.
+\end{proposition}
+\emph{Demostración: }Sea $g \in G$, entonces $g \in Ker (\rho)$ si y sólo si $gxH = xH$ $\forall x \in G$ si y sólo si $x^{-1}gx H = H$  $\forall x \in G$ si y sólo si $x^{-1}gx \in H$ $\forall x \in G$ si y sólo si $g \in H^x$ $\forall x \in G$ si y sólo si $g \in K$.
+
+$\hfill \square$
+
+Todo grupo finito es subgrupo de un grupo simétrico.
+
+\begin{theorem}[\textbf{\textit{Teorema de Cayley}}]
+Sea $H \leq G$, con $[G:H] = n$. Entonces, existe $K \unlhd G$ contenido en $H$ tal que $G/K$ es isomorfo a un subgrupo de $S_n$. En particular, si $G$ tiene orden $n$, entonces $G$ es isomorfo a un subgrupo de $S_n$.
+\end{theorem}
+\emph{Demostración: }Sea $\Omega$ el conjunto de las clases a izquierda de $H$ en $G$. Luego, $|\Omega | = n$. Sea $K \unlhd G$ el núcleo de la acción de $G$ sobre $\Omega$ Por el resultado anterior tenemos que $K \subseteq H$. Por la primera parte de~\ref{eq:princAcci} existe un homomorfismo de grupos $G \longrightarrow S_{\Omega}$ de núcleo $K$. Por el \textit{Primer Teorema de Isomorfía}, tenemos que $G/K$ es isomorfo a un subgrupo de $S_{\Omega} = S_n$. Para lo segundo tomar simplemente $H = \lbrace 1 \rbrace$.
+
+$\hfill \square$
+
+De este resultado podemos sacar algo de información para los grupos finitos simples:
+
+\begin{corolario}Sea $G$ un grupo finito simple y supongamos que $H \leq G$ es un subgrupo de índice $n > 1$. Entonces $G$ es isomorfo a un subgrupo de $S_n$. En particular, $|G|$ divide a $n!$.
+\end{corolario}
+\emph{Demostración: }Teniendo en cuenta lo que hemos visto en el resultado anterior tenemos que $K$ es un subgrupo normal de $G$ contenido en $H\leq G$, por lo que $K = 1$. Así, $G$ es isomorfo a un subgrupo de $S_n$ por el resultado anterior. Para lo segundo basta aplicar el \textit{Teorema de Lagrange}.
+
+$\hfill \square$
+
+Ahora veremos que una acción de $G$ puede definir una relación de equivalencia en $\Omega$. En efecto, si $\alpha, \beta \in \Omega$ escribiremos $\alpha \sim \beta $ si existe $g \in G$ tal que $g \cdot \alpha = \beta$. Es decir, $\alpha$ y $\beta$ van a estar relacionados si existe un elemento de $G$ que actuando sobre $\alpha$ dé $\beta$. Esta relación va a dar mucho de que hablar, veamos que es de equivalencia:
+
+$$g^{-1} \cdot \beta = g^{-1} \cdot (g \cdot \alpha ) = (g^{-1}g) \cdot \alpha = \alpha, $$ luego si $\alpha \sim \beta$ entonces $\beta \sim \alpha$ y tenemos que esta relación es simétrica. Además es claro que $1 \cdot \alpha = \alpha$, luego $\alpha \sim \alpha$ y esta relación es reflexiva. Finalmente, si $g \cdot \alpha = \beta$ ($\alpha \sim \beta$) y $h \cdot \beta = \gamma$ ($\beta \sim \gamma$), con $g, h \in G$, entonces $$\gamma = h \cdot (g \cdot \alpha) = (gh) \cdot \alpha,$$ y como $gh \in G$ por ser $G$ grupo entonces $\alpha \sim \gamma$ y esta relación es transitiva.
+
+\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, $\alpha \in \Omega$ y considerando la relación de equivalencia $\sim$ que acabamos de ver, entonces la clase de equivalencia de $\alpha$ es $$O_a = \lbrace g\cdot \alpha : g \in G \rbrace.$$ A este conjunto lo llamamos \textbf{órbita} de $\alpha$ por $G$ ó \textbf{$G$-órbita} de $\alpha$. Notar que su \textbf{longitud} es $|O_a|$.
+\end{definition}
+
+Notar que al tratarse las órbitas de clases de equivalencia para la relación de equivalencia $\sim$ entre elementos de $\Omega$ antes vista, entonces van a formar una partición de $\Omega.$ Es decir, que su unión disjunta forman la totalidad de $\Omega$. Así, si $R$ es un conjunto de representantes de estas clases de equivalencia (órbitas de la acción), tenemos que $$\Omega = \bigsqcup_{x\in R} O_x.$$ Como la unión es disjunta y $\Omega$ finito tenemos que $$|\Omega | = \sum_{x\in R} |O_x|.$$ A estas dos fórmulas equivalentes se las conoce como \textbf{\textit{fórmula de las órbitas}}. (Se ha empleado $||$ para hablar de cardinal de un conjunto, lo cuál podría considerarse abuso de notación).
+
+\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, si $\alpha \in \Omega$ entonces definimos el \textbf{estabilizador} de $\alpha$ en $G$ como $$G_\alpha = \lbrace g \in G : g\cdot \alpha = \alpha \rbrace.$$
+\end{definition}
+
+\begin{theorem}[\textbf{\textit{Teorema de la órbita-estabilizadora}}] \label{eq:torest}
+Sea $G$ un grupo que actúa sobre un conjunto $\Omega$ y sea $\alpha \in \Omega$. Entonces $G_\alpha \leq G$ y $$|O_\alpha| = [G:G_\alpha].$$
+\end{theorem}
+\emph{Demostración: }Sea $g,h \in G_\alpha$. Entonces $(gh) \cdot \alpha = g \cdot (h\cdot \alpha) = g \cdot \alpha = \alpha.$ Por lo que $gh \in G_\alpha$, además si $g\cdot \alpha = \alpha$ entonces $g^{-1} \cdot \alpha = g^{-1} \cdot (g\cdot \alpha)= (g^{-1}g) \cdot \alpha = \alpha,$ luego $g^{-1} \in G_\alpha$ y así $G_\alpha \leq G$.
+
+Ahora, busquemos una aplicación biyectiva $f \colon \lbrace xG_\alpha : x \in G \rbrace \longrightarrow O_\alpha$. Definimos $f(xG_\alpha) = x\cdot \alpha$. Ahora, $xG_\alpha = y G_\alpha$ si y sólo si $x^{-1}y \in G_\alpha$ si y sólo si $(x^{-1}y) \cdot \alpha = \alpha$ si y sólo si $x \cdot ((x^{-1}y) \cdot \alpha) = x \cdot \alpha$ si y sólo si $y \cdot \alpha = x \cdot \alpha$, luego $f$ está bien definida y es inyectiva. Al ser $f$ claramente suprayectiva, ya está.
+
+$\hfill \square$
+
+Cuando un grupo $G$ actúa sobre un conjunto $\Omega$, de entre todos los elementos de $\Omega$ destacamos aquellos que son fijados por todos los elementos de $G$:
+
+\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, y dado un $\alpha \in \Omega$ decimos que $\alpha$ es un \textbf{punto fijo} de $\Omega$ si $g \cdot \alpha = \alpha$ $\forall g \in G$, es decir aquellos $\alpha \in \Omega$ tales que $O_\alpha = \lbrace \alpha \rbrace$. Igualmente escribimos $$\Omega_0 = \lbrace \alpha \in \Omega : |O_\alpha | = 1. \rbrace$$ para referirnos al conjunto de los puntos fijos de $\Omega$.
+\end{definition}
+
+\begin{definition}Sea $p$ un número primo. Un grupo $G$ es un \textbf{$p$-grupo finito} si $G$ es finito y $|G|$ es una potencia de $p$.
+\end{definition}
+
+\begin{theorem}\label{eq:ecClasesp}
+Sea $G$ un grupo actuando sobre un conjunto finito $\Omega$. Escogemos $\alpha_1, \ldots, \alpha_s$ representantes de las órbitas de longitud mayor que 1. Entonces $$|\Omega| = |\Omega_0| + \sum_{j=1}^s |O_{\alpha_j}|.$$ En particular, si $G$ es un $p$-grupo finito, entonces $$|\Omega| \equiv |\Omega_0|\hspace{0.1cm} \text{mod}\hspace{0.1cm} p.$$
+\end{theorem}
+\emph{Demostración: }La primera parte se deduce de la fórmula de las órbitas y del teorema de la órbita estabilizadora. Sea ahora $G$ un grupo tal que $|G| = p^n$. Por~\ref{eq:torest}, tendremos que $|O_{\alpha_j}| = [G:G_{\alpha_j}] > 1$, con $j = 1, \ldots , s$. Como $[G:G_{\alpha_j}]$ divide a $|G| = p^n$, ya está.
+
+$\hfill \square$
+
+La descomposición del conjunto $\Omega$ en unión de las diferentes órbitas tiene especial interés cuando la acción es la conjugación de un grupo $G$ sobre sí mismo. En este caso consideraremos: 
+
+\begin{definition}\label{eq:accConj} Consideremos la acción $$\begin{array}{rccl}
+\rho\colon &G& \longrightarrow &S_G\\
+&g& \longmapsto &\alpha_{g}
+\end{array}
+$$
+donde ya sabemos que $\alpha_{g}(x) = x^{g}=gxg^{-1}$ con $x \in G$. Notar que en este caso el conjunto sobre el que consideramos la acción es $G$, y que también la hemos presentado antes, al comienzo del capítulo concretamente, como la \textbf{acción conjugación}.
+
+Como $\alpha_{g} \in Aut(G)$ tenemos que en particular es biyectiva. Además es claro que $\alpha_{gh}=\alpha_{g}\alpha_{h}$, luego $\varphi$ es homomorfismo.
+
+El núcleo de este homomorfismo, $Ker \hspace{0.1cm} \varphi = \lbrace g \in G: \alpha_{g} = id \rbrace = \lbrace g \in G: gxg^{-1} = x \hspace{0.1cm} \forall x \in G \rbrace =  \lbrace g \in G: gx = xg \hspace{0.1cm} \forall x \in G \rbrace$ es el \textbf{centro de $G$} y se escribe \textbf{$Z(G)$}.
+
+El estabilizador, dado un $x \in G$, $G_{x}= \lbrace g \in G: gxg^{-1} = x \rbrace = \lbrace g \in G: gx=xg \rbrace$ también se presentó en el primer capítulo y lo denominamos \textbf{centralizador de $x$ en $G$} y se escribe como \textbf{$C_{G}(x)$}. Además, ya que $G_{x} \leq G$ entonces también $C_{G}(x) \leq G$.
+
+Por último, si $x \in G$, su órbita $O_{x}$ será entonces $O_{x} = \lbrace gxg^{-1}:g \in G \rbrace$. La denominaremos \textbf{clase de conjugación de $x$ en $G$}. Y, siguiendo el teorema de la órbita estabilizadora vemos que tiene $[G:C_{G}(x)] = \dfrac{|G|}{|C_{G}(x)|}$ elementos. En particular, la denotaremos por $Cl_{G}(x)$, es decir, tendremos: $$Cl_{G}(x) = \lbrace gxg^{-1} : g \in G \rbrace$$ $$|Cl_{G}(x)| = [G :C_G(x)] = \dfrac{|G|}{|C_G(x)|}.$$
+\end{definition}
+
+Notar que $|Cl_G(x) | = 1$ si y sólo si $gx = xg$ $\forall g \in G$, es decir, si y sólo si $x \in Z(G)$. Luego, en este caso $\Omega_0 = Z(G).$
+
+\begin{theorem}[\textit{\textbf{Ecuación de las clases de conjugación de un grupo}}] \label{eq:ecClases}
+Sean $G$ un grupo finito. Sean $K_{1}, \ldots, K_{s}$ las clases de conjugación de $G$ de longitud mayor que $1$. Entonces $$|G| = |Z(G)| + \sum_{j=1}^{s} |K_{j}|.$$ Esta fórmula recibe el nombre de \textbf{ecuación de clases de conjugación de un grupo finito}.
+\end{theorem} 
+\emph{Demostración: } Se sigue inmediatamente a partir de lo discutido anteriormente y del teorema~\ref{eq:ecClasesp}. Notar que, por el teorema de la órbita estabilizadora, $|K_{j}| = |O_{\alpha_{j}}| = [G:G_{\alpha_{j}}] = [G:C_{G}(\alpha_{j})]$ para $j=1, \ldots, s$, con los $\alpha_{j}$ representantes de las clases de conjugación (órbitas) de longitud mayor que $1$.   ($G = C_{G}(x) \Longleftrightarrow x \in Z(G)$, entonces $\left[ G:C_{G}(x) \right] > 1$ si $x \notin Z(G)$.)
+
+$\hfill \square$
+
+\begin{proposition}Sea $G \neq \lbrace 1 \rbrace$ un $p$-grupo finito. Entonces tenemos que $Z(G) \neq \lbrace 1 \rbrace$.
+\end{proposition}
+\emph{Demostración: }Por~\ref{eq:ecClasesp} y~\ref{eq:ecClases} tenemos que $|G| \equiv |Z(G)|\hspace{0.1cm}\text{mod}\hspace{0.1cm} p$. Como $|G| = p^a$ y $p^a \not\equiv 1 \hspace{0.1cm}\text{mod}\hspace{0.1cm}p$ ya está.
+
+$\hfill \square$
+
+\begin{corolario}Sea $G$ un $p$-grupo finito simple. Entonces $|G| = p$.
+\end{corolario}
+\emph{Demostración: }Si $G$ es simple entonces $Z(G) = G$, ya que sabemos por el resultado anterior que $Z(G) \neq \lbrace 1 \rbrace$, y como el centro es un subgrupo normal y $G$ es simple entonces necesariamente $Z(G) = G$. Luego $G$ es abeliano y el resultado se sigue de~\ref{eq:abSimple}.
+
+$\hfill \square$
+
+\begin{definition}Si $H \leq G$ definimos el \textbf{normalizador} de $H$ en $G$ como $$N_G(H) = \lbrace g \in G : H^g = H \rbrace.$$
+\end{definition}
+
+Notar que $N_G(H)$ es el estabilizador de $H$ en la acción de $G$ sobre sus subgrupos por conjugación. Es claro que $H \unlhd N_G(H)$ y que $H \unlhd G$ si y sólo si $N_G(H) =G$. Por el \textit{Teorema de la órbita estabilizadora} tenemos que el número de subgrupos distintos de la forma $H^g$, con $g \in G$, es $[G:N_G(H)]$.
+
+\begin{proposition}Sea $G$ un grupo finito y $H \leq G$ con $|H| = p^a$ para cierto primo $p$. Entonces $$[G:H] \equiv [N_G(H):H] \hspace{0.1cm}\text{mod} \hspace{0.1cm} p.$$
+\end{proposition}
+\emph{Demostración: }Consideremos el conjunto $\Omega = \lbrace xH : x \in G \rbrace$. Tenemos que $H$ actúa sobre $\Omega$ por multiplicación a izquierda. Calculamos el número de puntos fijos, es decir $\Omega_0$. Se tiene que $hxH = xH$ $\forall h \in H$ si y sólo si $x^{-1}hx \in H$ $\forall h \in H$ si y sólo si $H^{x^{-1}} \subseteq H$ si y sólo si $H \subseteq H ^x$ si y sólo si $H = H^x$ (ya que $|H| = |H^x|$) si y sólo si $x\in N_G(H)$. El resultado se sigue de la segunda parte de~\ref{eq:ecClasesp}.
+
+$\hfill \square$
+
+\begin{corolario}\label{eq:cor411} Sea $G$ un $p$-grupo finito. Si $H \leq G$ entonces $H \leq N_G(H)$.
+\end{corolario}
+\emph{Demostración: }Como $p^a \not\equiv 1 \hspace{0.1cm}\text{mod} \hspace{0.1cm} p$ si $a \geq 1$, aplicando el resultado anterior ya está.
+
+$\hfill \square$
+
+Es decir, en los $p$-grupos los normalizadores crecen.
+
+\begin{corolario}\label{eq:cor412} Sea $G$ un $p$-grupo finito. Si $p^a$ divide a $|G|$, entonces $G$ tiene un subgrupo de orden $p^a$.
+\end{corolario}
+\emph{Demostración: }Lo haremos por inducción sobre el orden de $G$. Podemos suponer que $G \neq \lbrace 1 \rbrace$ y que $p^a < |G|$. Entre los subgrupos propios de $G$ elegimos el de mayor orden posible, $H$. Por el corolario anterior sabemos que $H \unlhd G$. Por el \textit{Teorema de correspondencia} tenemos que $G/H$ no tiene subgrupos propios. Por~\ref{eq:abSimple}, se tiene que $[G:H] = p$. Ahora, $p^a$ divide a $|H|$ y el resultado se sigue por inducción.
+
+$\hfill \square$
+
+Finalmente, hablaremos de las acciones transitivas.
+
+\begin{definition}Diremos que una acción de un grupo $G$ sobre un conjunto $\Omega$ es \textbf{transitiva} si sólo hay una órbita, es decir, si $\Omega$ es una $G$-órbita. Dicho de otra manera: la acción de $G$ sobre $\Omega$ es transitiva si dados $\alpha, \beta \in \Omega$ existe un $g \in G$ tal que $g \cdot \alpha = \beta$.
+\end{definition}
+
+\begin{proposition}Sea $G$ un grupo actuando sobre un conjunto $\Omega$. Dados $\alpha \in \Omega$ y $g \in G$, entonces $$(G_\alpha)^g = G_{g\cdot \alpha}.$$ En particular, si la acción de $G$ sobre $\Omega$ es transitiva, entonces todos los estabilizadores son conjugados.
+\end{proposition}
+\emph{Demostración: }Se tiene que $x \in G_{g\cdot \alpha}$ si y sólo si $x \cdot(g\cdot \alpha) = g \cdot \alpha$ si y sólo si $g^{-1} \cdot(xg \cdot \alpha) = \alpha$ si y sólo si $(g^{-1}xg) \cdot \alpha = \alpha$ si y sólo si $g^{-1}xg \in G_\alpha$ si y sólo si $x \in (G_\alpha)^g$, luego se tiene la igualdad.
+
+Supongamos ahora que la acción de $G$ sobre $\Omega$ es transitiva y sean $\alpha, \beta \in \Omega$. Entonces existe $g \in G$ tal que $g \cdot \alpha = \beta$ y $$(G_\alpha)^g = G_\beta.$$
 
 $\hfill \square$
 
