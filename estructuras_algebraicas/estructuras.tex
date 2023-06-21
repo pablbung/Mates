@@ -769,6 +769,9 @@ Más adelante veremos más desarrollados estos homomorfismos. Ahora veamos algun
 \item $f(a^{-1}) = (f(a))^{-1}$ para cada $a \in G$, puesto que $$f(a)f(a^{-1}) = f(aa^{-1}) = f(1_{G}) = 1_{H},$$ $$f(a^{-1})f(a) = f(a^{-1}a) = f(1_{G}) = 1_{H}.$$
 \item $f(x^n) = f(x)^n$. Esto es así ya que $f(x^n) = f(x\overbrace{\cdots}^n x) = f(x) \overbrace{\cdots}^n f(x) = f(x)^n.$
 \item $o(f(x))$ divide al orden de $x$. En efecto, si $o(x) = m$ como $x^{m} = 1_{G}$ se tiene que $1_{H} = f(1_{G}) = f(x^{m}) = f(x)^{m}$ y así $o(f(x))$ divide a $m$. 
+\item Si $X$ es un subgrupo de $G$, su imagen $f(X)$ es un subgrupo de $H$.
+
+En efecto, ya sabemos que $f(X)$ contiene el elemento neutro, $f(1_G)$. Ahora, sean $f(x), f(y) \in f(X)$, entonces $f(x) f(y)^{-1} = f(x)f(y^{-1}) = f(xy^{-1}) \in f(X)$ al ser $X$ subgrupo de $G$, luego $f(X)$ es subgrupo de $H$.
 \item Si $Y$ es un subgrupo de $H$, $$f^{-1}(Y) = \lbrace x \in G : f(x) \in Y\rbrace$$ es un subgrupo de $G$. Además si $Y$ es subgrupo normal de $H$, $f^{-1}(Y)$ lo es de $G$.
 
 En efecto, si $x,y \in f^{-1}(Y)$, entonces $f(x),f(y) \in Y$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in Y$, luego $xy^{-1} \in f^{-1}(Y)$ y $f^{-1}(Y)$ es subgrupo. Para probar la normalidad de $f^{-1}(Y)$ tenemos que ver que $[f^{-1}(Y)]^a \subseteq f^{-1}(Y)$, con $a \in G$. Sea $x \in [f^{-1}(Y)]^a$, luego $a^{-1}xa \in f^{-1}(Y)$ y así $f(a^{-1}xa)=f(a)^{-1}f(x)f(a) \in Y$, por lo que $f(x) \in Y^{f(a)}$ y como $f(a)$ es un elemento de $H$ e $Y$ es normal entonces $f(x) \in Y$ y así $x \in f^{-1}(Y)$.
@@ -892,7 +895,7 @@ Y a esta expresión la llamaremos \textbf{\textit{descomposición canónica de u
 
 \begin{proposition}\label{eq:lemIsom} Sea $N \unlhd G$ y sea $f \colon G \longrightarrow G/N$ el homomorfismo $f(g) = gN$. Si $H \leq G$, entonces $f(H) = f(NH)=NH/N \leq G/N$.
 \end{proposition}
-\emph{Demostración: }Si $H \leq G$ sabemos que $NH$ es subgrupo de $G$. Como $N \unlhd G$ y $N \subseteq NH$, tenemos que $N \unlhd NH$. Ahora, $$f(H) = \lbrace hN : h \in H \rbrace = \lbrace nhN :n, \in N, h \in H \rbrace = NH/N.$$ Por~\ref{eq:propHoms}, $NH/N$ es un subgrupo de $G/N$.
+\emph{Demostración: }Si $H \leq G$ sabemos que $NH$ es subgrupo de $G$. Como $N \unlhd G$ y $N \subseteq NH$, tenemos que $N \unlhd NH$. Ahora, $$f(H) = \lbrace hN : h \in H \rbrace = \lbrace nhN :n, \in N, h \in H \rbrace = NH/N.$$ Por~\ref{eq:propHoms}($5.$), $NH/N$ es un subgrupo de $G/N$.
 
 $\hfill \square$
 
@@ -1457,6 +1460,13 @@ Del conjunto $\Omega$ realmente lo que nos interesa desde el punto de vista de l
 &\sigma& \longmapsto &\sigma'
 \end{array}
 $$ es un homomorfismo inyectivo de grupos y, por el \textit{Primer Teorema de Isomorfía}, $S_{n}$ es isomorfo a su imagen, que es un subgrupo de $S_{m}$.
+
+De aquí se desprende que, dado $H = \lbrace \sigma \in S_{n} : \sigma(n) = n \rbrace \leq S_{n}$ el estabilizador de $n$ en $S_{n}$ en su acción sobre $\Omega$, si $\sigma \in H$ y definimos un $\bar{\sigma} \in S_{n-1}$ como $\bar{\sigma}(i) = \sigma(i)$ para $i=1, \ldots, n-1$, entonces la aplicación $$\begin{array}{rccl}
+&H& \longrightarrow &S_{n-1}\\
+&\sigma& \longmapsto &\bar{\sigma}
+\end{array}
+$$ 
+es un isomorfismo de grupos.
 \item Como hemos dicho antes, lo realmente importante del conjunto $\Omega$ es que tenga $n$ elementos. Así, si $I_{n}$ es otro conjunto con $n$ elementos, el grupo $Biy(I_{n})$ de biyecciones de $I_{n}$ en sí mismo es isomorfo a $S_{n}$, y no distinguiremos entre ambos. Para verlo, fijada una biyección cualquiera $\alpha \colon \Omega \longrightarrow I_{n}$ se comprueba inmediatamente que la aplicación  $$\begin{array}{rccl}
 &Biy(I_{n})& \longrightarrow &S_{n}\\
 &\beta& \longmapsto &\alpha\circ \beta \circ \alpha^{-1}
@@ -1545,7 +1555,7 @@ Si $o(\sigma) = r$, entonces $(\tau_1)^r\ldots (\tau_k)^r = 1$. Probaremos que $
 
 $\hfill \square$
 
-\begin{proposition}Sea $\sigma = (\alpha_1, \ldots, \alpha_k)$ es un $k$-ciclo de $S_n$ y sea $\gamma \in S_n$. Entonces $\sigma^\gamma = (\gamma(\alpha_1), \ldots, \gamma(\alpha_k))$.
+\begin{proposition}Sea $\sigma = (\alpha_1, \ldots, \alpha_k)$ un $k$-ciclo de $S_n$ y sea $\gamma \in S_n$. Entonces $\sigma^\gamma = (\gamma(\alpha_1), \ldots, \gamma(\alpha_k))$.
 \end{proposition}
 \emph{Demostración: }Sabemos que $\sigma(\alpha_i) = \alpha_{i+1}$, con $i=1, \ldots, k-1$ y $\sigma(\alpha_k)= \alpha_1$ (recordemos que la acción es $\sigma \cdot \alpha = \sigma(\alpha)$). Así, $(\gamma \sigma \gamma^{-1}) (\gamma(\alpha_i)) = \gamma(\alpha_{i+1})$, con $i=1, \ldots, k-1$ y $(\gamma \sigma \gamma^{-1}) (\gamma(\alpha_k)) = \gamma(\alpha_{1})$. Finalmente, si $\beta \in \Omega \setminus \lbrace \sigma(\alpha_1), \ldots, \sigma(\alpha_k) \rbrace$ entonces $\gamma^{-1}(\beta) \in \Omega \setminus \lbrace \alpha_1, \ldots, \alpha_k \rbrace$. Por lo que $\sigma \cdot (\gamma^{-1} (\beta)) = \gamma^{-1}(\beta)$ y así $\sigma^\gamma$ fija $\beta$. Luego $\sigma^\gamma$ y $(\gamma(\alpha_1), \ldots, \gamma(\alpha_k))$ actúan igual sobre cada elemento de $\Omega$ y así son iguales.
 
@@ -1595,6 +1605,8 @@ Por otro lado, llamemos $a = (1,3,2,4)$ y $b = (1,3)(2,4)$. Es claro que $o(a) =
 Luego $\langle a \rangle \cap \langle b \rangle = id$, y así $|\langle a \rangle \langle b \rangle | = |\langle a \rangle| |\langle b \rangle| = 4\cdot 2 = 8$. Sólo quedaría ver que $\langle (1,3,2,4),(1,3)(2,4)\rangle \leq C_{G}(\sigma)$, pero esto se desprende del hecho de que $\sigma \in \langle a \rangle$ (que es un grupo cíclico, luego abeliano) y de que $\sigma \cdot b = b \cdot \sigma = (1,4)(2,3)$ (simple comprobación). Así, tenemos un subgrupo del mismo orden que el centralizador, luego son lo mismo.
 \end{enumerate}
 \end{example}
+
+$\hfill \blacksquare$
 
 
 \begin{proposition} Sea $n \geq 3$. Entonces $Z(S_{n}) =1$.
@@ -1657,7 +1669,6 @@ sig \colon &S_{n}& \longrightarrow &\lbrace -1, 1\rbrace\\
 $$
 es un homomorfismo de grupos. Su núcleo, que está formado por las permutaciones pares, es un subgrupo de índice $2$, el \textbf{grupo alternado $\mathcal{A}_{n}$}. Además, $$S_{n}/\mathcal{A}_{n} \cong C_{2}.$$
 \end{proposition}
-
 
 \begin{observation} Para $n \geq 4$ el grupo alternado $\mathcal{A}_{n}$ no es abeliano puesto que las permutaciones $\sigma = (1,2,3) \in \mathcal{A}_{n}$ y $\tau = (1,2)(3,4) \in \mathcal{A}_{n}$, por la proposición anterior y que $\sigma\tau(1) = 1 \neq 3 = \tau\sigma(1)$.
 
