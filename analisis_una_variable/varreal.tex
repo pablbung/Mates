@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{cancel}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm]{geometry}
+\usepackage[all]{xy}
+\usepackage{cancel}
+\usepackage{pictexwd}
+\usepackage{parskip}
+%\usepackage{pgfplots}    ESTOS DOS HAY QUE COMENTARLOS (A VECES NO HACE FALTA)
+%\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usepackage{vmargin}
+\usepackage{hyperref}
+
+\DeclarePairedDelimiter\Floor\lfloor\rfloor
+\DeclarePairedDelimiter\Ceil\lceil\rceil
+
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{definicion}[theorem]{Definición}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}{Lema}[theorem]
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}{Ejemplo}[theorem]
+\newtheorem{corolario}{Corolario}[theorem]
+\newtheorem{observation}{Observación}[theorem]
+\newtheorem{properties}{Propiedades}[theorem]
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+
+\author{Pablo Pallàs}
+\title{Teoría de funciones de una variable real}
+\setlength{\parindent}{10pt}
+
+
+\begin{document}
+\rmfamily
+\maketitle
+\tableofcontents
+\parindent= 0cm
+
+
+\section{Introducción}
+\section{Conceptos previos}
+\section{Sucesiones}
+\section{Continuidad}
+\subsection{Límites de funciones}
+
+\begin{definition}Dado un $a \in \mathbb{R}$, un conjunto $V \subseteq \mathbb{R}$ es un \textbf{entorno} de $a$ si contiene un intervalo de la forma $(a - \varepsilon, a + \varepsilon)$ para algún $\varepsilon >0$. Si $V$ es un entorno de $a$, diremos que $V \setminus \lbrace a \rbrace$ es un \textbf{entorno reducido} de $a$.
+\end{definition}
+
+Notar que todo conjunto que contenga un entorno de un punto también será a su vez entorno de ese punto.
+
+\begin{definition}Sea $D \subseteq \mathbb{R}$ y $a \in \mathbb{R}$, entonces diremos que $a$ es un \textbf{punto de acumulación} de $D$ si todo entorno reducido de $a$ contiene puntos de $D$. Dicho de otra forma, si para cada $\varepsilon >0$ existe algún $y \in D$ tal que $y \neq a$, con $|y-a| < \varepsilon$, es decir, $0 < |y-a| < \varepsilon$.
+\end{definition}
+
+\begin{definition}El conjunto de puntos de acumulación de un conjunto $D$ suele denominarse \textbf{conjunto derivado} y se denota por $D'$.
+\end{definition}
+
+Así, podemos decir de forma intuitiva que $a \in D'$ si y sólo si hay puntos de $D$, distintos de $a$, arbitrariamente próximos al punto $a$.
+
+\begin{example}Veamos algunos ejemplos: 
+\begin{enumerate}
+\item Si $D$ es finito, entonces $D' = \emptyset$.
+\item $\mathbb{N}' = \mathbb{Z}' = \emptyset$, y $\mathbb{Q}' = \mathbb{R}$.
+\item $(a,b)' = [a,b]' = [a,b]$.
+\item Si $D = \lbrace 1/n : n \in \mathbb{N} \rbrace$, entonces $0 \in D'$ a pesar de que $0 \notin D$ y $1 \notin D'$ a pesar de que $1 \in D$.
+\end{enumerate}
+\end{example}
+
+Podemos probar que $a \in D'$ si y sólo si existe una sucesión $(x_n)$ de puntos de $D$ distintos de $a$ que converge al punto $a$.
+
+\begin{definition}[\textbf{\textit{Límite de una función en un punto}}]Sea $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$, $a \in D'$, $b \in \mathbb{R}$. Escribiremos $$\lim_{x\rightarrow a} f(x) = b$$ cuando se cumpla que para cada $\varepsilon >0$ existe algún $\delta >0$ tal que $\forall x \in D$ con $0 < |x-a | < \delta$ se tiene $|f(x) -b| < \varepsilon$.
+
+Entonces diremos que $b$ es el \textbf{límite} de $f(x)$ cuando $x$ tiende al punto $a$.
+\end{definition}
+
+La condición de que $|f(x) -b | < \varepsilon$ para todo $x \in D$ con $0 < |x-a| < \delta$ se puede escribir de otra forma: $$f(U) \subseteq (b- \varepsilon, b + \varepsilon), \quad U = [D \cap (a- \delta, a + \delta)] \setminus \lbrace a \rbrace.$$
+
+Podemos decir de forma resumida que $b$ será el límite de $f(x)$ cuando $x$ tiende a $a$ si $f(x)$ se acerca a $b$ cuando $x$ se acerca al punto $a$, aunque sin tomar su valor, dentro del dominio de $f$. Esto último es muy importante.
+
+\begin{proposition}[\textbf{\textit{Unicidad del límite}}] Sea $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$, $a \in D'$, $b_1,b_2 \in \mathbb{R}$. Si $$\lim_{x \rightarrow a} f(x) = b_1, \quad \lim_{x\rightarrow a} f(x) = b_2,$$ entonces $b_1 = b_2.$
+\end{proposition}
+\begin{proof}
+Supongamos, por ejemplo, que $b_1 < b_2$. Elijamos $\varepsilon = \dfrac{b_2-b_1}{2}$. Deben existir entonces $\delta_1 >0$ tal que para todo $x \in D$ con $0 <|x-a| < \delta_1$ tenemos $f(x) < b_1 + \varepsilon = \dfrac{b_1+b_2}{2}$ y un $\delta_2 >0$ tal que para todo $x \in D$ con $0 < |x-a | < \delta_2$ se tiene que $\dfrac{b_1+b_2}{2} = b_2-\varepsilon < f(x)$. Definiendo $\delta = \min{\delta_1, \delta_2}$, resulta que para todo $x \in D$ con $0 < |x-a | < \delta$ tenemos $\dfrac{b_1+b_2}{2} < f(x) < \dfrac{b_1+b_2}{2}$, esto es absurdo. Análogo si $b_2 <b_1$.
+
+\end{proof}
+
+\begin{proposition}Sea $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$, $a \in D'$, $b \in \mathbb{R}$. Son equivalentes: 
+\begin{enumerate}
+\item $\lim_{x\rightarrow a} f(x) = b$.
+\item Para cada sucesión $(s_n)$ de puntos de $D \setminus \lbrace a \rbrace $ tal que $\lim_n s_n = a$ se verifica $\lim_nf(s_n) = b$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Supongamos que $\lim_{x \rightarrow a} f(x) = b$. Para cualquier $\varepsilon >0$ se puede encontrar un $\delta >0$ de modo que para todo $x \in D$ con $0 < |x-a|< \delta$ se cumple $|f(x) -b | < \varepsilon$. Sea $(s_n)$ una sucesión de puntos de $D \setminus \lbrace a \rbrace$ tal que $\lim_n s_n = a$. Dado $\delta >0$, existirá un $N \in \mathbb{N}$ tal que para todo $n > N$ se verifica $|s_n-a | < \delta$, y como $s_n \neq a$, deducimos que $|f(s_n) -b | < \varepsilon$, es decir, $\lim_n f(s_n) = b$.
+
+Recíprocamente, probaremos que si $1.$ no se cumple entonces $2.$ tampoco. Que no se cumpla $1.$ quiere decir que existe algún $\varepsilon >0$ tal que para todo $\delta >0$ hay al menos un $x_\delta \in D$ que cumple $0 < |x_\delta - a | < \delta$ y, sin embargo, $|f(x_\delta)-b | \geq \varepsilon$.
+Para cada $n \in \mathbb{N}$, elegimos $\delta = 1/n$. Hay algún punto $s_n \in D$ que cumple $0 < |s_n -a| < 1/n$ y, sin embargo, $|f(s_n)-b | \geq \varepsilon$. La sucesión $(s_n)$ así obtenida tiene las siguientes propiedades: 
+\begin{enumerate}
+\item Está contenida en $D \setminus \lbrace a \rbrace$, porque $s_n \in D$, pero $0< |s_n -a|$. 
+\item $\lim_n s_n=a$ porque $0 < |s_n-a|<1/n$ (basta aplicar la definición de límite).
+\item La sucesión $f(s_n)$ no tiende a $b$ porque para todos los $n \in \mathbb{N}$, $|f(s_n)-b| \geq \varepsilon$.
+\end{enumerate}
+Por lo tanto, no se cumple $2.$
+\end{proof}
+
+
+\end{document}
