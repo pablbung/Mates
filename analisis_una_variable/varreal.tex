@@ -96,7 +96,7 @@ Supongamos, por ejemplo, que $b_1 < b_2$. Elijamos $\varepsilon = \dfrac{b_2-b_1
 
 \end{proof}
 
-\begin{proposition}Sea $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$, $a \in D'$, $b \in \mathbb{R}$. Son equivalentes: 
+\begin{proposition}\label{eq:limsuc} Sea $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$, $a \in D'$, $b \in \mathbb{R}$. Son equivalentes: 
 \begin{enumerate}
 \item $\lim_{x\rightarrow a} f(x) = b$.
 \item Para cada sucesión $(s_n)$ de puntos de $D \setminus \lbrace a \rbrace $ tal que $\lim_n s_n = a$ se verifica $\lim_nf(s_n) = b$.
@@ -114,6 +114,120 @@ Para cada $n \in \mathbb{N}$, elegimos $\delta = 1/n$. Hay algún punto $s_n \in
 \end{enumerate}
 Por lo tanto, no se cumple $2.$
 \end{proof}
+
+Igualmente, diremos que un conjunto $V \subseteq \mathbb{R}$ es un \textbf{entorno reducido} de $+ \infty$ ó de $-\infty$ si existe un $r \in \mathbb{R}$ tal que $(r, + \infty) \subseteq V$ ó respectivamente $(- \infty, r) \subseteq V$.
+
+\begin{definition} Se dice que $+ \infty	$ es un punto de acumulación de un conjunto $D \subseteq \mathbb{R}$ si $D$ no está acotado superiormente, y escribiremos $+ \infty \in D'$. Igualmente, diremos que $- \infty$ es un punto de acumulación de un conjunto $D \subseteq \mathbb{R}$ si $D$ no está acotado inferiormente, y escribiremos $- \infty	\in D'$.
+\end{definition}
+
+\begin{definition} Sea $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$, $a,b \in \mathbb{R} \cup \lbrace \pm \infty \rbrace$, $a \in D'$. Escribiremos $$\lim_{x \rightarrow a } f(x) = b$$ si para cada entorno $V$ de $b$ existe un entorno reducido $U$ de $a$ tal que $f(U) \subseteq V$.
+\end{definition}
+
+Pueden darse definiciones en términos de desigualdades, desglosando los diferentes casos posibles. Concretamente, sean $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$, $a,b \in \mathbb{R}$. Entonces
+\begin{enumerate}
+\item $\lim_{x \rightarrow a} f(x) = + \infty	$ si para cada $M \in \mathbb{R}$ existe algún $\delta >0$ tal que todos los $x \in D$ con $0 < |x-a | < \delta$ cumplen $f(x) > M$.
+\item $\lim_{x \rightarrow a} f(x) = - \infty	$ si para cada $M \in \mathbb{R}$ existe algún $\delta >0$ tal que todos los $x \in D$ con $0 < |x-a | < \delta$ cumplen $f(x) < M$.
+\item $\lim_{x \rightarrow + \infty} f(x) = b	$ si para cada $\varepsilon >0 $ existe algún $K \in \mathbb{R}$ tal que todos los $x \in D$ con $x >K$ cumplen $|f(x) -b | < \varepsilon$.
+\item $\lim_{x \rightarrow + \infty} f(x) = + \infty	$ si para cada $M \in \mathbb{R}$ existe algún $K \in \mathbb{R}$ tal que todos los $x \in D$ con $x>K$ cumplen $f(x) >M$. 
+\item $\lim_{x \rightarrow + \infty} f(x) = - \infty	$ si para cada $M \in \mathbb{R}$ existe algún $K \in \mathbb{R}$ tal que todos los $x \in D$ con $x>K$ cumplen $f(x) <M$. 
+\item $\lim_{x \rightarrow -\infty} f(x) = b	$ si para cada $\varepsilon >0 $ existe algún $K \in \mathbb{R}$ tal que todos los $x \in D$ con $x <K$ cumplen $|f(x) -b | < \varepsilon$.
+\item $\lim_{x \rightarrow - \infty} f(x) = + \infty	$ si para cada $M \in \mathbb{R}$ existe algún $K \in \mathbb{R}$ tal que todos los $x \in D$ con $x<K$ cumplen $f(x) >M$.
+\item $\lim_{x \rightarrow - \infty} f(x) = - \infty	$ si para cada $M \in \mathbb{R}$ existe algún $K \in \mathbb{R}$ tal que todos los $x \in D$ con $x<K$ cumplen $f(x) >M$.
+\end{enumerate}
+
+Con todo esto, sigue habiendo unicidad de límite e igualmente se mantiene la caracterización mediante sucesiones: 
+\begin{proposition}\label{eq:maslimsuc} Sea $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$, $a,b \in \mathbb{R} \cup \lbrace \pm \infty \rbrace$, $a \in D'$. Son equivalentes: 
+\begin{enumerate}
+\item $\lim_{x \rightarrow a} f(x) = b$.
+\item Para cada sucesión $(s_n)$ de puntos de $D \setminus \lbrace a \rbrace$ tal que $\lim_n s_n = a$ se verifica $\lim_n f(s_n) = b$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Basta adaptar a cada caso la demostración de~\ref{eq:limsuc}.
+\end{proof}
+
+\begin{proposition}[\textbf{\textit{Operaciones algebraicas con límites}}] Sean $D \subseteq \mathbb{R}$, $a \in \mathbb{R} \cup \lbrace \pm \infty \rbrace$ un punto de acumulación de $D$, $c \in \mathbb{R}$ y $f,g \colon D \longrightarrow \mathbb{R}$. Se tiene entonces: 
+\begin{enumerate}
+\item $\lim_{x \rightarrow a } (f(x) + g(x)) = \lim_{x \rightarrow a} f(x) + \lim_{x \rightarrow a} g(x)$, si estos últimos límites existen y su suma está definida en $\mathbb{R} \cup \lbrace \pm \infty \rbrace$.
+\item $\lim_{x \rightarrow a} cf(x) = c \lim_{x \rightarrow a} f(x)$, si este último límite existe y su producto por $c$ está definido en $\mathbb{R} \cup \lbrace \pm \infty	 \rbrace$.
+\item $\lim_{x \rightarrow a} f(x)g(x) = \lim_{x \rightarrow a} f(x) \lim_{x \rightarrow a} g(x)$, si estos últimos existen y su producto está definido en $\mathbb{R} \cup \lbrace \pm \infty	\rbrace$. 
+\item $\lim_{x \rightarrow a} \dfrac{f(x)}{g(x)} = \dfrac{\lim_{x \rightarrow a} f(x)}{\lim_{x \rightarrow a}g(x)}$, si estos últimos límites existen y su cociente está definido en $\mathbb{R} \cup \lbrace \pm \infty \rbrace.$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Basta aplicar el resultado anterior y el análogo para sucesiones.
+
+\end{proof}
+
+\begin{proposition}[\textbf{\textit{Acotación y límite cero}}]
+Sean $D \subseteq \mathbb{R}$, $a \in \mathbb{R} \cup \lbrace \pm \infty	 \rbrace$ un punto de acumulación de $D$, y $f, g \colon D \longrightarrow \mathbb{R}$. Supongamos que 
+\begin{enumerate}
+\item La función $f$ está acotada, es decir, existe $M >0$ tal que $|f(x)| \leq M$ para todo $x \in D$.
+\item $\lim_{x  \rightarrow a} g(x) = 0$. 
+\end{enumerate}
+Entonces, $\lim_{x \rightarrow a} f(x)g(x) = 0$.
+\end{proposition}
+\begin{proof}
+Igual que antes, aplicar~\ref{eq:maslimsuc} y el resultado análogo para sucesiones.
+
+\end{proof}
+
+\begin{proposition}[\textbf{\textit{Cambios de variable}}]Sean $D, E$ subconjuntos de $\mathbb{R}$, $a$ un punto de acumulación de $D$, $b$ un punto de acumulación de $E$, $f \colon D \longrightarrow \mathbb{R}$, y $g \colon E \longrightarrow \mathbb{R}$ tales que $f(D) \subseteq E$ y supongamos que $$\lim_{x \rightarrow a} f(x) = b, \lim_{y \rightarrow b} g(y) = c.$$ Si $b \notin f(D)$, entonces existe $\lim_{x \rightarrow a} g(f(x)) = c$.
+\end{proposition}
+\begin{proof}
+Sea $\varepsilon >0$. Como $\lim_{y \rightarrow b } g(y) = c$, existe algún $r >0$ tal que para todo $y \in E$ con $0 < |y-b |<r$, se tiene que $|g(y) -c | < \varepsilon$. 
+
+Ahora, como $\lim_{x \rightarrow a} f(x) = b$, existe algún $\delta >0$ tal que para todo $x \in D$ con $0 < |x-a| < \delta$, se tiene $ |f(x) - b | < r$.
+
+Sea $x \in D$, con $0 < |x-a| < \delta$. No sólo es $|f(x)-b| < r$, sino que como $b  \notin f(D)$ y $f(D) \subseteq E$, resulta $$0 < |f(x) -b | < r, \quad f(x) \in E.$$ Por lo tanto, $|g(f(x)) -c| < \varepsilon$.
+
+\end{proof}
+
+A veces es útil en el cálculo de límites tener en cuenta las siguientes consecuencias inmediatas de la definición de límite: 
+
+\begin{proposition}Si $D \subseteq \mathbb{R}$, $a$ es un punto de acumulación de $D$ y $f \colon D \longrightarrow \mathbb{R}$, 
+\begin{enumerate}
+\item $\lim_{x\rightarrow a} f(x) = b \in \mathbb{R} \Longleftrightarrow \lim_{x \rightarrow a} |f(x) -b | = 0$.
+\item $\lim_{x \rightarrow a} f(x) = b \in \mathbb{R} \Longrightarrow \lim_{x \rightarrow a} |f(x) | = |b|$. El recíproco, en general, sólo es cierto cuando $b= 0$.
+\item $\lim_{x \rightarrow a} f(x) = b \Longleftrightarrow \lim_{t \rightarrow 0} f(a+t) = b$.
+\end{enumerate}
+\end{proposition}
+
+Si en las definiciones de límites añadimos una de las dos condiciones, $x>a$, $x <a$, entonces se habla de límites laterales (por la derecha y por la izquierda). Emplearemos la notación $\lim_{x \rightarrow a^+} f(x), \lim_{x \rightarrow a^-} f(x)$.
+
+\begin{definition}[\textbf{\textit{Límites laterales: por la derecha y por la izquierda}}]
+Sean $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$, $a \in \mathbb{R}$ un punto de acumulación de $D$ y $b \in \mathbb{R}$.
+\begin{enumerate}
+\item Se dice que $\lim_{x \rightarrow a^+}f(x) = b$ si para cada $\varepsilon >0$ existe algún $\delta >0$ tal que todos los $x \in D$ con $0< x-a < \delta$ cumplen $|f(x) -b | < \varepsilon$.
+\item Se dice que $\lim_{x \rightarrow a^+}f(x) = +\infty$ si para cada $M \in \mathbb{R}$ existe algún $\delta >0$ tal que todos los $x \in D$ con $0< x-a < \delta$ cumplen $f(x) >M$.
+\item Se dice que $\lim_{x \rightarrow a^+}f(x) = -\infty$ si para cada $M \in \mathbb{R}$ existe algún $\delta >0$ tal que todos los $x \in D$ con $0< x-a < \delta$ cumplen $f(x) <M$.
+\item Se dice que $\lim_{x \rightarrow a^-}f(x) = b$ si para cada $\varepsilon >0$ existe algún $\delta >0$ tal que todos los $x \in D$ con $0< a-x < \delta$ cumplen $|f(x) -b | < \varepsilon$.
+\item Se dice que $\lim_{x \rightarrow a^-}f(x) = +\infty$ si para cada $M \in \mathbb{R}$ existe algún $\delta >0$ tal que todos los $x \in D$ con $0< a-x < \delta$ cumplen $f(x) >M$.
+\item Se dice que $\lim_{x \rightarrow a^-}f(x) = -\infty$ si para cada $M \in \mathbb{R}$ existe algún $\delta >0$ tal que todos los $x \in D$ con $0< a-x < \delta$ cumplen $f(x) <M$.
+\end{enumerate}
+\end{definition}
+
+Como consecuencia inmediata de las definiciones tenemos: 
+
+\begin{proposition}Sean $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$ y $a \in \mathbb{R}$ de modo que $(a - \delta, a+ \delta) \subseteq D$ para algún $\delta >0$. Sea $b \in \mathbb{R} \cup \lbrace \pm \infty \rbrace$. Entonces, $$\lim_{x \rightarrow a}f(x) = b \Longleftrightarrow \lim_{x\rightarrow a^-}f(x) = \lim_{x \rightarrow a^+} f(x) = b.$$
+\end{proposition}
+
+\begin{proposition}Sean $D \subseteq \mathbb{R}$, $f \colon D \longrightarrow \mathbb{R}$ monótona no decreciente, $a \in \mathbb{R} \cup \lbrace \pm \infty \rbrace$. 
+\begin{enumerate}
+\item Si $a \in [D \cap (- \infty, a)]'$, entonces $f$ tiene \textbf{límite por la izquierda} en $a$ (finito o infinito) y es $$\lim_{x \rightarrow a^-} f(x) = \sup \lbrace f(x) : x \in D \cap (-\infty,a) \rbrace$$ (entendindo que, si el conjunto no está acotado superiormente, su supremo es $+ \infty$).
+\item Si $a \in [D \cap (- \infty, a)]'$, entonces $f$ tiene \textbf{límite por la derecha} en $a$ (finito o infinito) y es $$\lim_{x \rightarrow a^+} f(x) = \inf \lbrace f(x) : x \in D \cap (a,+\infty) \rbrace$$ (entendindo que, si el conjunto no está acotado inferiormente, su ínfimo es $- \infty$).
+\end{enumerate}
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}

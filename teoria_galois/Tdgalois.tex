@@ -1288,9 +1288,10 @@ es un \textbf{anillo} si cumple que \begin{enumerate}
 \item Para todo $a \in A$ existe un único elemento $b$ tal que $a + b = b +a = 0$, que denominaremos \textbf{elemento opuesto} y denotaremos por $-a$.
 \end{itemize}
 \item $A$ dotado del producto es un \textbf{semigrupo}, es decir, que el producto cumple la propiedad \textbf{asociativa}. Dados $a, b, c \in A$, entonces se tiene que $$a(bc)= (ab)c.$$
-\item La propiedad \textbf{distributiva}, es decir que dados $a,b,c \in A$, tenemos que $$(a+b)c = ac+bc, \hspace{0.3cm} a(b+c) = ab+ac.$$
+\item La propiedad \textbf{distributiva} del producto con respecto a la suma, es decir que dados $a,b,c \in A$, tenemos que $$(a+b)c = ac+bc, \hspace{0.3cm} a(b+c) = ab+ac.$$
 \end{enumerate}
-Además es importante matizar que el elemento neutro para la suma, el cero, podrá escribirse como $0_{A}$ ó simplemente $0$. Denotaremos por $A^{\ast} = A\setminus \lbrace 0 \rbrace.$ Y, como en grupos, la operación conocida como producto podrá denotarse con un $\cdot$ en ocasiones ó con simple yuxtaposición.\vspace{0.2cm}\\
+Además es importante matizar que el elemento neutro para la suma, el cero, podrá escribirse como $0_{A}$ o simplemente $0$. Denotaremos por $A^{\ast} = A\setminus \lbrace 0 \rbrace.$ Y, como en grupos, la operación conocida como producto podrá denotarse con un $\cdot$ en ocasiones o con simple yuxtaposición.
+
 Finalmente, una notación usual para los anillos será ($A$, $+$, $\cdot$), que incluye el conjunto y las dos operaciones dotadas.
 \end{definition}
 
@@ -1300,7 +1301,8 @@ Finalmente, una notación usual para los anillos será ($A$, $+$, $\cdot$), que 
 \begin{definition}Sea $A$ un anillo unitario. Una \textbf{unidad} de $A$ es un elemento $a \in A$ para el que existe un $b \in A$ tal que $$ab = ba = 1.$$ Es decir, $b$ será el \textbf{inverso} de $a$ con respecto al producto. Lo denotaremos por $a^{-1}$, y observar que si ciertos $a, b, c \in A$ verifican $ab = ca = 1$, entonces $$c = c(ab) = (ca)b = b.$$ Por lo que, de existir el inverso, será único. El conjunto de todas las unidades de $A$ lo denotaremos por $\mathcal{U}(A)$, que es un grupo con la operación producto. En efecto, dados $a,b \in \mathcal{U}(A)$, entonces $$(ab)(b^{-1}a^{-1}) = a(bb^{-1})a^{-1} = aa^{-1} = 1 = b^{-1}b = b^{-1}(a^{-1}a)b = (b^{-1}a^{-1})(ab).$$ De aquí deducimos que $(ab)^{-1} = b^{-1}a^{-1}.$ Finalmente, diremos que un anillo es \textbf{conmutativo} si se cumple, para cualesquiera $a,b \in A$ que $$ab = ba.$$
 \end{definition}
 
-\begin{definition} Llamaremos \textbf{cuerpo} a un anillo $K$ tal que $K^{\ast} = K \setminus \lbrace 0 \rbrace$ forma un grupo con la multiplicación. Dicho de otra forma, en todo anillo unitario vamos a tener que $\mathcal{U}(A) \subseteq A^{\ast}$, y los cuerpos son aquellos anillos unitarios tales que $\mathcal{U}(A) = K^{\ast}$. De igual manera que para anillos, también podremos definir los \textbf{cuerpos conmutativos} como aquellos que, para cualesquiera $a,b \in K$ se tiene que $$ab = ba.$$
+\begin{definition} Llamaremos \textbf{cuerpo} a un anillo $K$ tal que $K^{\ast} = K \setminus \lbrace 0 \rbrace$ forma un grupo con la multiplicación. Dicho de otra forma, en todo anillo unitario vamos a tener que $\mathcal{U}(A) \subseteq A^{\ast}$, y los cuerpos son aquellos anillos unitarios $K$ tales que $\mathcal{U}(A) = K^{\ast}$. De igual manera que para anillos, también podremos definir los \textbf{cuerpos conmutativos} como aquellos que, para cualesquiera $a,b \in K$ se tiene que $$ab = ba.$$
+Además, un elemento $a \in A$ diremos que es \textbf{idempotente} si $a^{2} = a$. Y diremos que es \textbf{nilpotente} si existe un entero positivo $n$ tal que $a^{n} = 0$. Un anillo cuyo único elemento nilpotente sea el $0$ se dirá \textbf{reducido}.
 \end{definition}
 
 \begin{definition}Si $A$ es un anillo, podemos construir el \textbf{anillo de polinomios} $A[x]$ sobre $A$. 
@@ -1317,6 +1319,18 @@ Diremos que dos polinomios $p = \sum_n a_nx^n$, $q = \sum	_n b_nx^n$ son iguales
 
 Importante remarcar una propiedad fundamental de los dominios de integridad, y también de los cuerpos: se pueden simplificar factores comunes en las igualdades ya que si tenemos $ab = ac$, con $a \neq 0$, entonces $a(b-c) = 0$, y al no ser $a$ un divisor de cero, tenemos que $b-c = 0$ y de aquí $b = c$. Esto se conoce como \textbf{ley cancelativa} y también puede darse en estructuras de anillos, siempre y cuando los elementos implicados no sean divisores de cero. 
 \end{definition}
+
+\begin{definition}[\textbf{\textit{Característica de un anillo}}]
+Llamaremos \textbf{característica} de un anillo $A$ al menor natural no nulo $n$ tal que $n\cdot 1=n1 = 0$. En caso de que no exista diremos que $A$ tiene característica $0$.
+\end{definition}
+
+Es decir, la característica de un anillo es el mínimo número de veces que hay que sumar $1$ consigo mismo para obtener $0$, y si no existe dicho número entonces diremos que será $0$.
+
+\begin{proposition}La característica de un dominio de integridad $A$ es $0$ o $p$, con $p$ primo.
+\end{proposition}
+\emph{Demostración: }Supongamos que $A$ es un dominio de integridad cuya característica no es $0$. Sea $p$ la característica de $A$ y supongamos que no es primo, luego $p = nm$, con $n,m>1$ enteros, y $m 1 \neq 0 \neq n  1$ pero $(m 1)(n 1 ) = (n m)1 = 0$, contradiciendo que $A$ sea dominio de integridad.
+
+$\hfill \square$
 
 \begin{definition} Sea $B$ un anillo conmutativo y unitario, $A \subseteq B$ un subconjunto que, con las operaciones inducidas por $B$, es a su vez un anillo unitario tal que $1_{B} =1_{A}.$ Diremos que $A$ es un \textbf{subanillo} de $B$, y ya sabemos que la aplicación
 $$\begin{array}{rccl}
@@ -1362,9 +1376,10 @@ $$\begin{array}{rccl}
 \cdot \colon &A/I \times A/I&\longrightarrow & A/I\\
 &((x + I),(y + I)) & \longmapsto &(x + I)\cdot(y + I) = xy + I.
 \end{array}
-$$ Esta última operación además no depende de los representantes elegidos. Supongamos que $x + I = x' + I$ (es decir, $x-x' \in I$) y que $y + I = y' + I$ ($y-y' \in I$). Entonces $xy + I = x'y' + I$, ya que $$xy -x'y' = xy - x'y + x'y - x'y' = (x-x')y + x'(y-y') \in I$$ esto último es así por la segunda condición que deben cumplir los ideales.\vspace{0.2cm}\\
-Una vez visto esto, las propiedades  asociativa y conmutativa del producto, así como la distributiva, son inmediatas. El \textbf{elemento neutro} de $A/I$ será $1 + I$. Así, $A/I$ dotado con las dos operaciones, suma y producto respectivamente, y las demás propiedades enunciadas tiene estructura de anillo conmutativo unitario, que denominaremos \textbf{anillo cociente ó anillo de clases de restos módulo $I$}.\vspace{0.2cm}\\
-Finalmente, los ideales del cociente $A/I$ serán aquellos ideales de $A$ que contengan a $I$, de hecho se puede establecer fácilmente una biyección entre ambos conjuntos. Sea $L$ un ideal del anillo cociente y consideremos el conjunto $$J = \lbrace x \in A : x + I \in L \rbrace.$$ Entonces es claro que $J$ es un ideal de $A$ y que contiene a $I$, puesto que si $x \in I$ entonces $x + I = 0 + I \in L.$ Luego la biyección se establece entre los conjuntos de la forma $L$ y de la forma $J$, es decir, entre los ideales de $A/I$ y los ideales de $A$ que contienen a $I$ respectivamente.
+$$ 
+Las propiedades  asociativa y conmutativa del producto, así como la distributiva, son inmediatas. El \textbf{elemento neutro} de $A/I$ será $1 + I$. Así, $A/I$ dotado con las dos operaciones, suma y producto,  tiene estructura de anillo conmutativo unitario, que denominaremos \textbf{anillo cociente ó anillo de clases de restos módulo $I$}.
+
+Además, notar que los ideales del cociente $A/I$ serán aquellos ideales de $A$ que contengan a $I$.
 \end{definition}
 
 \begin{definition} Sea $A$ un anillo conmutativo y unitario. Un ideal $I \subseteq A$ se llama \textbf{finitamente generado} si es un ideal generado por un subconjunto finito $L = \lbrace x_{1}, \ldots, x_{r}\rbrace \subseteq A.$ En dicho caso, $$I = Ax_{1} + \ldots + Ax_{r} = \left\lbrace \sum_{k=1}^{r}a_{k}x_{k} : \hspace{0.1cm} a_{1}, \ldots, a_{r} \in A \right\rbrace.$$ Lo denotaremos $I = (x_{1}, \ldots, x_{r}).$ Y recordar que si $r=1$, es decir, si el ideal está generado por un solo elemento, entonces $I$ se llama \textbf{ideal principal}.
@@ -1380,9 +1395,9 @@ A continuación daremos una caracterización de estos ideales:
 \item $I$ es un ideal propio y ningún otro ideal propio lo contiene estrictamente.
 \end{enumerate}
 \end{proposition}
-\emph{Demostración: } Sea $A/I$ un cuerpo y supongamos que $I$ no es maximal. Entonces existirá un ideal $J$ de $A$ tal que $I \subsetneq J \subsetneq A$. Sea $x \in J \setminus I$ un elemento de $J$ que no pertenece a $I$. Entonces $x + I$ es un elemento no nulo del cuerpo $A/I$ ya que $x \notin I$, por lo que tendrá inverso, es decir, existirá $y \in A$ tal que $$1 + I = (x + I)(y + I)= xy + I,$$ y en consecuencia $1 -xy \in I \subseteq J$. Ahora como $xy \in J$, por ser $J$ un ideal, tendremos que $1 = (1- xy) + xy \in J$ y así $J = A$, lo cual es falso.
+\emph{Demostración: } Sea $A/I$ un cuerpo y supongamos que $I$ no es maximal. Entonces existirá un ideal $J$ de $A$ tal que $I \subsetneq J \subsetneq A$. Sea $x \in J \setminus I$ un elemento de $J$ que no pertenece a $I$. Entonces $x + I$ es un elemento no nulo del cuerpo $A/I$ ya que $x \notin I$, por lo que tendrá inverso, es decir, existirá $y \in A$ tal que $$1 + I = (x + I)(y + I)= xy + I,$$ y en consecuencia $1 -xy \in I \subseteq J$. Ahora como $xy \in J$, por ser $J$ un ideal, tendremos que $1 = (1- xy) + xy \in J$ y así $J = A$, lo cual es absurdo.
 
-Recíprocamente, sea $x + I$ un elemento no nulo de $A/I$. Entonces $x \in A \setminus I$, es decir, será un elemento de $A$ que no estará en $I$, por lo que el ideal $I + xA$ contiene estrictamente a $I$. Como este último es maximal tendremos que $I + xA = A$, es decir que existirá $b \in I$ e $y \in A$ tal que $b + xy = 1$. Así que $1 - xy \in I$, es decir, $$xy + I = (x + I)(y + I ) = 1 + I,$$ por lo que $A/I$ es un cuerpo.
+Recíprocamente, sea $x + I$ un elemento no nulo de $A/I$. Entonces $x \in A \setminus I$, es decir, será un elemento de $A$ que no estará en $I$, por lo que el ideal $I + (x)$ contiene estrictamente a $I$. Como este último es maximal tendremos que $I + (x) = A$, es decir que existirá $b \in I$ e $y \in A$ tal que $b + xy = 1$. Así que $1 - xy \in I$, es decir, $$xy + I = (x + I)(y + I ) = 1 + I,$$ por lo que $A/I$ es un cuerpo.
 
 $\hfill \square$
 
@@ -1473,7 +1488,8 @@ Así, en estas condiciones, todas las aplicaciones son homomorfismos y el diagra
 Lo último es claro ya que, dado un $x \in A$, tenemos que $$f(x) = (i \circ \bar{f} \circ \pi) (x) = i(\bar{f}(\pi(x))) = i(\bar{f}(x + Kerf)) = i(f(x)) = f(x).$$
 $\hfill \square$
 
-\begin{definition} Sean $x, y$ elementos de $A$ tales que $x \neq 0$. Se dice que \textbf{$x$ divide a $y$, que $x$ es un divisor de $y$, que $y$ es divisible por $x$ ó que $y$ es un múltiplo de $x$} si existe $a \in A$ tal que $y = ax$. Se escribe $x \mid y$. Si $x$ no divide a $y$ se escribe $x \nmid y$.\vspace{0.2cm}\\
+\begin{definition} Sean $x, y$ elementos de $A$ tales que $x \neq 0$. Se dice que \textbf{$x$ divide a $y$, que $x$ es un divisor de $y$, que $y$ es divisible por $x$ ó que $y$ es un múltiplo de $x$} si existe $a \in A$ tal que $y = ax$. Se escribe $x \mid y$. Si $x$ no divide a $y$ se escribe $x \nmid y$.
+
 En otras palabras, $x \mid y \Leftrightarrow y \in (x)$, ó equivalentemente $(y) \subseteq (x)$.
 \end{definition}
 
@@ -1484,7 +1500,7 @@ $x$ está relacionado con $y$ si $x \mid y$ e $y \mid x$, o sea si $(x) = (y).$
 \end{center} 
 Estas condiciones son equivalentes a: \begin{enumerate}
 \item Existe una unidad $a \in \mathcal{U}(A)$ tal que $y = ax$. Esto es así ya que si $(y) = (x)$ tendremos que $y \in (x), x \in (y)$, luego $y = ax$ y $x = by$. Luego $y = aby$ y como $A$ es un dominio de integridad podremos simplificar y obtener $1 = ab$, y así $a$ es unidad.
-\item Si $y \in A^{\ast}$ no es unidad, denotaremos $div(y)$ el conjunto de todos los divisores de $y$. Es claro que los conjuntos $y \cdot \mathcal{U}(A)$ y $\mathcal{U}(A)$ están contenidos en $div(y)$. Así, si $y$ no tiene más divisores que las unidades y los productos del propio $y$ por unidades, es decir asociados, diremos que $y$ es \textbf{\textit{irreducible}}.
+\item Si $y \in A^{\ast}$ no es unidad, denotaremos $div(y)$ el conjunto de todos los divisores de $y$. Es claro que los conjuntos $y \cdot \mathcal{U}(A)$ y $\mathcal{U}(A)$ están contenidos en $div(y)$. Así, si $y$ no tiene más divisores que las unidades y los productos del propio $y$ por unidades (después veremos que estos elementos se denominan asociados) diremos que $y$ es \textbf{\textit{irreducible}}.
 \item Si $y \in A^{\ast}$ genera un ideal primo diremos que $y$ es primo. \textbf{\textit{Todo elemento primo es irreducible}}. Veámoslo. 
 
 \emph{Demostración: } Sea $y = ax$. Si $y$ es primo entonces $(y)$ es primo y se tendrá que $a \in (y)$ ó $x \in (y)$. Si $a \in (y)$ tendremos que $a = zy$, luego $y = zyx$ y $1 = zx$. Así, $x \in \mathcal{U}(A)$ y $a = yx^{-1} \in y \cdot \mathcal{U}(A)$. Análogo si $x \in (y)$.
@@ -1503,7 +1519,7 @@ El recíproco en general no se cumple, aunque esto lo desarrollaremos más adela
 \norm{\cdot}\colon A\longrightarrow \mathbb{N}
 \end{array}
 $$
-con $\mathbb{N}$ el conjunto de los enteros no negativos, que cumpla: \begin{enumerate}
+que cumpla: \begin{enumerate}
 \item $\norm{x} = 0$ si y sólo si $x = 0$.
 \item $\norm{xy} = \norm{x} \cdot \norm{y}.$
 \item Si $x, y \in A^{\ast}$, existe $r \in A$ tal que $y \mid (x-r)$ y $\norm{r} < \norm{y}$. Esto no viene a ser más que la división de los enteros, donde $r$ es el resto y el elemento $q \in A$ tal que $x-r = qy$ el cociente. 
@@ -1515,7 +1531,7 @@ La última condición puede ser reformulada tal que así: dados $x,y \in A$ no n
 
 Notar que el anillo de los enteros $\mathbb{Z}$ es un dominio eculídeo tomando como aplicación el módulo $|\cdot |$.
 
-En un dominio euclídeo se cumple la siguiente propiedad:
+En un dominio euclídeo se cumple la siguiente propiedad, que ya vimos por encima cuando hablamos de los anillos $\mathbb{Z}[\sqrt{n}]$ en~\ref{def:ard}.
 
 \begin{proposition} Sea $A$ un dominio euclídeo. Entonces: $$\mathcal{U}(A) = \lbrace x \in A : \norm{x} = 1 \rbrace.$$
 \end{proposition}
@@ -1534,7 +1550,7 @@ En efecto, sea $y \in I$, $y \neq 0$. Entonces como $x \in A^{\ast}$, existirá 
 
 $\hfill \square$
 
-Este resultado que acabamos de ver nos dice que todos los dominios euclídeos tienen todos sus ideales generados por un sólo elemento, si definimos a éstos como una nueva clase de dominios habremos encontrado otra estructura que nos facilitará mucho el trabajo con ideales.
+Esto quiere decir que todos los ideales de un DE son generados por un sólo elemento. Si definimos a éstos como una nueva clase de dominios habremos encontrado otra estructura que nos facilitará mucho el trabajo con ideales.
 
 \begin{definition} Llamaremos \textbf{dominio de ideales principales}, escrito como $DIP$, a un dominio de integridad en el que todos sus ideales son principales. Todo $DE$ es un $DIP$.
 \end{definition} 

@@ -1016,7 +1016,8 @@ Notar que la conjugación la hemos definido para subconjuntos en general.
 \end{proposition}
 \emph{Demostración: }Veamos:
 \begin{enumerate}
-\item Tenemos que $\alpha_g \alpha_{g^{-1}} = \alpha_{g^{-1}} \alpha_g = 1$, luego $(\alpha_g)^{-1}=\alpha_{g^{-1}}$ y así $\alpha_g$ es biyectiva. Sean ahora $x,y \in G$, entonces: $$(xy)^g = g(xy)g^{-1} = gxg^{-1}gyg^{-1} = x^gy^g.$$ Luego $\alpha_g$ es un homomorfismo, y notar que $\alpha_1$ es la identidad.
+\item 
+Sean $x,y \in G$, entonces: $$\alpha_g(xy) = (xy)^g = g(xy)g^{-1} = gxg^{-1}gyg^{-1} = x^gy^g = \alpha_g(x) \alpha_g(y).$$ Luego $\alpha_g$ es un homomorfismo, y notar que $\alpha_1$ es la identidad. Además, $\alpha_g \alpha_{g^{-1}} = \alpha_{g^{-1}} \alpha_g = id$, luego $(\alpha_g)^{-1}=\alpha_{g^{-1}}$ y así $\alpha_g$ es biyectiva.
 \item Sea $h \in G$, entonces: $$(x^g)^h=h(gxg^{-1})h^{-1} = (hg)x(g^{-1}h^{-1}) = (hg)x(hg)^{-1} = x^{hg}.$$ Luego, $\alpha_h\alpha_g(x) =\alpha_h(\alpha_g(x)) = (x^g)^h = x^{hg} = \alpha_{hg}(x).$ Así, $\alpha_h\alpha_g = \alpha_{hg}$. 
 \end{enumerate}
 
@@ -1886,7 +1887,9 @@ Aclaremos algo desde el principio: si tenemos un anillo $A$, utilizaremos la not
 
 A lo largo de las siguiente páginas siempre trabajaremos con anillos unitarios, y en este tipo de anillos podremos distinguir un tipo especial de elementos: 
 
-\begin{definition}Sea $A$ un anillo unitario. Una \textbf{unidad} de $A$ es un elemento $a \in A$ para el que existe un $b \in A$ tal que $$ab = ba = 1.$$ Es decir, $b$ será el \textbf{inverso} de $a$ con respecto al producto. Lo denotaremos por $a^{-1}$, y observar que si ciertos $a, b, c \in A$ verifican $ab = ca = 1$, entonces $$c = c(ab) = (ca)b = b.$$ Por lo que, de existir el inverso, será único. El conjunto de todas las unidades de $A$ lo denotaremos por $\mathcal{U}(A)$, que es un grupo con la operación producto. En efecto, dados $a,b \in \mathcal{U}(A)$, entonces $$(ab)(b^{-1}a^{-1}) = a(bb^{-1})a^{-1} = aa^{-1} = 1 = b^{-1}b = b^{-1}(a^{-1}a)b = (b^{-1}a^{-1})(ab).$$ De aquí deducimos que $(ab)^{-1} = b^{-1}a^{-1}.$ Finalmente, diremos que un anillo es \textbf{conmutativo} si se cumple, para cualesquiera $a,b \in A$ que $$ab = ba.$$
+\begin{definition}Sea $A$ un anillo unitario. Una \textbf{unidad} de $A$ es un elemento $a \in A$ para el que existe un $b \in A$ tal que $$ab = ba = 1.$$ Es decir, $b$ será el \textbf{inverso} de $a$ con respecto al producto. Lo denotaremos por $a^{-1}$, y observar que si ciertos $a, b, c \in A$ verifican $ab = ca = 1$, entonces $$c = c(ab) = (ca)b = b.$$ Por lo que, de existir el inverso, será único. El conjunto de todas las unidades de $A$ lo denotaremos por $\mathcal{U}(A)$, que es un grupo con la operación producto. En efecto, dados $a,b \in \mathcal{U}(A)$, entonces $$(ab)(b^{-1}a^{-1}) = a(bb^{-1})a^{-1} = aa^{-1} = 1 = b^{-1}b = b^{-1}(a^{-1}a)b = (b^{-1}a^{-1})(ab).$$ De aquí deducimos que $(ab)^{-1} = b^{-1}a^{-1}$ y así $ab$ es invertible, luego $ab \in \mathcal{U}(A)$. Como es evidente que si $a \in \mathcal{U}(A)$ entonces $a^{-1} \in \mathcal{U}(A)$ entonces es claro que $\mathcal{U}(A)$ es grupo.
+
+Finalmente, diremos que un anillo es \textbf{conmutativo} si se cumple, para cualesquiera $a,b \in A$ que $$ab = ba.$$
 \end{definition}
 
 \begin{observation}Es importante tener en cuenta que a lo largo de las siguientes páginas en ocasiones podremos escribir $x/y$ en vez de $xy^{-1}$, siempre que $x \in A$ e $y \in \mathcal{U}(A)$.
@@ -2228,7 +2231,8 @@ $$\begin{array}{rccl}
 &((x + I),(y + I)) & \longmapsto &(x + I)\cdot(y + I) = xy + I.
 \end{array}
 $$ Esta última operación además no depende de los representantes elegidos. Supongamos que $x + I = x' + I$ (es decir, $x-x' \in I$) y que $y + I = y' + I$ ($y-y' \in I$). Entonces $xy + I = x'y' + I$, ya que $$xy -x'y' = xy - x'y + x'y - x'y' = (x-x')y + x'(y-y') \in I$$ esto último es así por la segunda condición que deben cumplir los ideales.\vspace{0.2cm}\\
-Una vez visto esto, las propiedades  asociativa y conmutativa del producto, así como la distributiva, son inmediatas. El \textbf{elemento neutro} de $A/I$ será $1 + I$. Así, $A/I$ dotado con las dos operaciones, suma y producto respectivamente, y las demás propiedades enunciadas tiene estructura de anillo conmutativo unitario, que denominaremos \textbf{anillo cociente ó anillo de clases de restos módulo $I$}.\vspace{0.2cm}\\
+Una vez visto esto, las propiedades  asociativa y conmutativa del producto, así como la distributiva, son inmediatas. El \textbf{elemento neutro} de $A/I$ será $1 + I$. Así, $A/I$ dotado con las dos operaciones, suma y producto respectivamente, y las demás propiedades enunciadas tiene estructura de anillo conmutativo unitario, que denominaremos \textbf{anillo cociente ó anillo de clases de restos módulo $I$}.
+
 Finalmente, los ideales del cociente $A/I$ serán aquellos ideales de $A$ que contengan a $I$, de hecho se puede establecer fácilmente una biyección entre ambos conjuntos. Sea $L$ un ideal del anillo cociente y consideremos el conjunto $$J = \lbrace x \in A : x + I \in L \rbrace.$$ Entonces es claro que $J$ es un ideal de $A$ y que contiene a $I$, puesto que si $x \in I$ entonces $x + I = 0 + I \in L.$ Luego la biyección se establece entre los conjuntos de la forma $L$ y de la forma $J$, es decir, entre los ideales de $A/I$ y los ideales de $A$ que contienen a $I$ respectivamente.
 \end{definition}
 
@@ -3027,7 +3031,7 @@ Para obtener otro representante de la clase de $k$, $[k]$, dividiremos por $n$ y
 
 Por ejemplo, en $\mathbb{Z}/(3)$ si $k = -8$ tenemos que $-8 = -3 \cdot 3 + 1$, luego $-8$ pertenece a la clase de $[1]$ y así la clase de $[-8] = [1] = \lbrace \ldots, -11, -8, -5, -2, 1, 4, 7, 10, \ldots \rbrace$ (notar que en $\mathbb{Z}/(3)$ la clase de $8$ no es la de $-8$). 
 
-Consideremos ahora dos restos $0 \leq r < s < n$. Si $[r] = [s]$, entonces $s-r \in (n)$, y así $n \mid (s-r)$, y en particular $n  \leq s-r$. Esto es absurdo porque $s-r \leq s < n$. Por lo tanto, en $\mathbb{Z}/(n)$ cada clase de equivalencia está determinada por un \textbf{único} representante $r$ tal que $0 \leq r <n$, es decir, $$\mathbb{Z}/(n) = \lbrace [0], [1], \ldots, [n-1] \rbrace.$$
+Consideremos ahora dos restos $0 \leq r < s < n$. Si $[r] = [s]$, entonces $s-r \in (n)$, y así $n \mid (s-r)$, y en particular $n  \leq s-r$. Esto es absurdo porque $s-r \leq s < n$. Por lo tanto, en $\mathbb{Z}/(n)$ \textbf{cada clase de equivalencia está determinada por un único representante} $r$ tal que $0 \leq r <n$, es decir, $$\mathbb{Z}/(n) = \lbrace [0], [1], \ldots, [n-1] \rbrace.$$
 En particular, $\mathbb{Z}/(n)$ tiene $n$ elementos. $[0]$ y $[1]$ son el cero y el uno de $\mathbb{Z}/(n)$. Es evidente que si sumamos $n$ veces la clase del uno tenemos: $[1] + \ldots +[1] = [n] = [0]$, y que $-[1] = [-1] = [n-1]$. Con esto recordemos que las igualdades entre clases las podemos escribir como $$k \equiv l \hspace{0.1cm}\text{mod}\hspace{0.1cm} n$$ y viene a decir que $[k] = [l]$, es decir, que $k-l = qn$ con un $q \in \mathbb{Z}$. 
 
 Si nos situamos, por ejemplo, en $\mathbb{Z}/(5)$, tenemos que $[3] + [1] = [4]$, que $[2] + [0] = [2]$ y que $[4]+ [3] = [2]$, además $[2] \cdot [2] = [4]$, $[4] \cdot [1] = [4]$ y $[2] \cdot [4] = [3]$; esto por poner sólo unos ejemplos. En $\mathbb{Z}/(6)$, sin embargo, $[2] \cdot [4] = [2]$ y $[4] + [3] = [1]$.
