@@ -42,7 +42,7 @@
 \graphicspath{{images/}}
 
 \author{Pablo Pallàs}
-\title{Estructuras Algebraicas (UNED)}
+\title{Introducción a la Teoría de Grupos (UNED)}
 \setlength{\parindent}{10pt}
 \newpage
 \begin{document}
@@ -502,7 +502,7 @@ Veamos que es subgrupo. Ya sabemos que $S = S^1$, luego $1 \in N_G(S)$ y así $N
 
 \end{proof}
 
-\begin{observation}Si $\lbrace H_i : i \in I \rbrace$ es una familia no vacía de subgrupos de un grupo $G$ entonces $$H = \bigcap_{i \in I} H_i$$ es un subgrupo de $G$. Además, para cada $a \in G$ se tiene que $$H ^a = \bigcap_{i \in I} H_i^a.$$
+\begin{observation}\label{ob:intGru} Si $\lbrace H_i : i \in I \rbrace$ es una familia no vacía de subgrupos de un grupo $G$, entonces $$H = \bigcap_{i \in I} H_i$$ es un subgrupo de $G$. Además, para cada $a \in G$ se tiene que $$H ^a = \bigcap_{i \in I} H_i^a.$$
 \end{observation}
 \begin{proof}
 Esto es así puesto que $1 \in H$ y si $x,y \in H$ se sigue que $x,y \in H_i$ para cada $i \in I$ y así $xy^{-1} \in H_i$, por ser $H_i$ subgrupo, para cada $i \in I$. Por lo tanto, $xy^{-1} \in H$.
@@ -525,7 +525,7 @@ Recíprocamente, supongamos que $HK = KH$. Evidentemente $HK$ es no vacío, pues
 
 \end{proof}
 
-\begin{example} Sean $m$ y $n$ enteros no negativos, $H = m\mathbb{Z}$, $K = n\mathbb{Z}$ dos subgrupos de $\mathbb{Z}$. Como $\mathbb{Z}$ es abeliano es obvio que $H+K = K+H$, luego por el resultado anterior $H+K$ es subgrupo de $\mathbb{Z}$ (notar que aquí la operación es la suma).
+\begin{example}\label{ex:idBez} Sean $m$ y $n$ enteros no negativos, $H = m\mathbb{Z}$, $K = n\mathbb{Z}$ dos subgrupos de $\mathbb{Z}$. Como $\mathbb{Z}$ es abeliano es obvio que $H+K = K+H$, luego por el resultado anterior $H+K$ es subgrupo de $\mathbb{Z}$ (notar que aquí la operación es la suma).
 
 
 $H+K$ no es el subgrupo $\lbrace 0 \rbrace$ pues, $m = m + 0 \in H + K$. Y, como ya sabemos, existirá un $d \in \mathbb{Z}$ tal que $m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, veamos que $d = mcd(m,n)$:
@@ -692,7 +692,7 @@ $$
 $$ son biyectivas. La inyectividad se deduce de las leyes de simplificación que vimos al principio, mientras que la sobreyectividad es obvia.
 \end{observation}
 
-\begin{observation}De la observación anterior deducimos que, dado un $x \in G$, existe una biyección entre $Hx$ y $xH$. Sin embargo, $Hx$ y $xH$ pueden ser distintos (de hecho normalmente así será). Consideremos por ejemplo $G = D_n$ para algún $n \geq 3$, y con las notaciones vistas en~\ref{ex:gDie} $$H = \langle g \rangle, x = f.$$ Como $o(g) = 2$ tal y como vimos en~\ref{ej:gDie2}, $H = \lbrace 1,g \rbrace$, luego $Hf = \lbrace f, g \circ f \rbrace$, $fH = \lbrace f, f \circ g \rbrace$. Y en~\ref{prop:abDie} vimos que $f \circ g \neq g \circ f$, luego $Hf \neq fH$.
+\begin{observation}\label{ob:obNoBiy} De la observación anterior deducimos que, dado un $x \in G$, existe una biyección entre $Hx$ y $xH$. Sin embargo, $Hx$ y $xH$ pueden ser distintos (de hecho normalmente así será). Consideremos por ejemplo $G = D_n$ para algún $n \geq 3$, y con las notaciones vistas en~\ref{ex:gDie} $$H = \langle g \rangle, x = f.$$ Como $o(g) = 2$ tal y como vimos en~\ref{ej:gDie2}, $H = \lbrace 1,g \rbrace$, luego $Hf = \lbrace f, g \circ f \rbrace$, $fH = \lbrace f, f \circ g \rbrace$. Y en~\ref{prop:abDie} vimos que $f \circ g \neq g \circ f$, luego $Hf \neq fH$.
 \end{observation}
 
 \begin{theorem}[\textbf{\textit{Teorema de Lagrange}}]
@@ -733,7 +733,7 @@ $H\cap K$ es subgrupo de $H$ y de $K$, luego $o(H\cap K)$ debe dividir a $m$ y $
 
 \end{proof}
 
-\begin{proposition}[\textbf{\textit{Transitividad del índice}}]Sean $G$ un grupo y $H$ y $K$ subgrupos de $G$ tales que $H \subseteq K$. Entonces:
+\begin{proposition}[\textbf{\textit{Transitividad del índice}}]\label{prop:tranIn} Sean $G$ un grupo y $H$ y $K$ subgrupos de $G$ tales que $H \subseteq K$. Entonces:
 \begin{enumerate}
 \item $H$ es subgrupo de $K$
 \item Si el índice de $H$ en $G$ es finito lo son también el índice de $K$ en $G$ y el de $H$ en $K$, y $$\left[ G:H \right] = \left[ G:K \right]\cdot \left[ K:H \right].$$
@@ -966,11 +966,477 @@ Luego, $\langle a^{d} \rangle$ es el único subgrupo de $G$ de orden $m$. Como a
 
 \begin{proposition}Todo subgrupo de un grupo cíclico es cíclico.
 \end{proposition}
+\begin{proof}
+Sea $G$ un grupo cíclico. Si $G$ es finito, ya hemos probado el resultado en la proposición anterior.
 
+Supongamos así que $G$ no es finito, se razona igual. Si $G = \langle a \rangle$ y $H$ es subgrupo de $G$, consideramos $k$ el menor entero positivo tal que $a^k \in H$. Así, dado $x \in H \subseteq G$, será $x = a^p$, con $p \in \mathbb{N}$, y dividiendo $$p = qk + r, \quad 0 \leq r <k.$$ Como $a^r = a^p(a^k)^{-q} \in H$, debe ser $r = 0$ por la elección de $k$. Por lo tanto, $x = a^p = (a^k)^q \in \langle a^k \rangle$, con lo que $H = \langle a^k \rangle$.
+
+\end{proof}
+
+Terminamos este capítulo con un resultado que relaciona el orden de un grupo finito con el mínimo número de elementos de un sistema generador del grupo.
+
+\begin{definition} Sea $G$ un grupo finitamente generado. Un sistema generador finito $S$ de $G$ se llama \textbf{minimal} si cualquier subconjunto de $G$ con menos elementos que $S$ no es sistema generador de $G$.
+\end{definition}
+
+Evidentemente, todo grupo finitamente generado tiene algún sistema generador minimal.
+
+\begin{proposition}
+Sea $G$ un grupo finito de orden $n$ y $S = \lbrace x_1, \ldots, x_p \rbrace$ un sistema generador minimal de $G$. Entonces $2^p \leq n$.
+\end{proposition}
+\begin{proof}Llamemos $S_i = \lbrace x_1, \ldots, x_i \rbrace$ para cada $1 \leq i \leq p$ y $H_i = \langle S_i \rangle$. Desde luego, $H_p = G$.
+
+Evidentemente $H_i \subseteq H_{i+1}$ para cada $1 \leq i \leq p-1$, pues $H_{i+1} \supseteq S_{i+1} \supseteq S_i$ y $H_i$ es el menor subgrupo que contiene a $S_i$.
+
+Además, el contenido es estricto; en caso contrario, $x_{i+1} \in H_{i+1} = H_i$, luego $x_{i+1} = x_i^{l_i} \ldots$ para ciertos enteros $l_1, \ldots, l_i$.
+
+Consideremos $$T = \lbrace x_1, \ldots, x_i, x_{i+2}, \ldots, x_p \rbrace,$$ que tiene $p-1$ elementos. Si probamos que $T$ es sistema generador de $G$ habremos obtenido una contradicción, pues $S$ no sería minimal.
+
+Dado $x \in G = \langle S \rangle$, se escribe: $$x = s_1^{h_1}\ldots s_m^{h_m}, \quad m \in \mathbb{N}, s_j \in \lbrace x_1, \ldots, x_p \rbrace, h_j \in \mathbb{Z}, 1 \leq j \leq m.$$
+
+Cada vez que en la expresión anterior aparezca $s_j = x_{i+1}$ lo sustituimos por $x_{i+1} = x_i^{l_i}$. Así, $x \in \langle T \rangle$, y $T$ es sistema generador de $G$. 
+
+Así (volviendo a lo que estábamos viendo), tenemos pues $H_1 \subsetneq H_2 \subsetneq \ldots \subsetneq H_p = G.$ Y aplicando reiteradamente la transitividad del índice~\ref{prop:tranIn} se deduce $$[G:H_1] = [H_p:H_{p-1}] \cdot [H_{p-1}:H_{p-2}] \cdot \ldots \cdot [H_2:H_1].$$ Usando el teorema de Lagrange, para cada $1 \leq i \leq p-1$, $[H_{i+1}:H_i] = \dfrac{o(H_{i+1})}{o(H_i)} >1$ pues $H_i \subsetneq H_{i+1}$, y como $[H_{i+1}:H_i]$ es un número entero, $[H_{i+1}:H_i] \geq 2$. Así, tenemos $$\dfrac{o(G)}{o(H_1)} = [G:H_1] \geq 2^{p-1},$$ y por lo tanto $n = o(G) \geq o(H_1) \cdot 2^{p-1}.$
+
+Si $o(H_1) = 1$ sería $H_1 = \lbrace 1 \rbrace$, luego $x_1 = 1$ y $U = \lbrace x_2, \ldots, x_p \rbrace$ sería un sistema generador de $G$ con menos elementos que $S$. Esto es absurdo y por lo tanto $o(H_1) \geq 2$. En consecuencia, $n \geq 2 \cdot 2^{p-1} = 2^p$.
+
+\end{proof}
+
+\begin{observation}En determinadas situaciones, la cota $2^p \leq n$ es mejorable. Supongamos que $q$ es el menor número primo que divide a $n$. Como cada $[H_{i+1}:H_i] \neq 1$ tendremos $$[H_{i+1}:H_i]\geq q,$$ y análogamente $o(H_1)\geq q$. De este modo obtendremos $q^p \leq n$. Por ejemplo, si $n$ es impar tenemos $q \geq 3$ y así $3^p \leq n$.
+\end{observation}
 \section{Subgrupos normales. Grupos cocientes. Homomorfismos}
-\subsection{Subgrupos normales}
+
+\subsection{Subgrupos normales. Propiedades}
+
+Al trabajar con cualquier clase de objetos en Matemáticas es importante hallar relaciones de equivalencia tales que los cocientes admitan, de modo natural, una estructura del tipo de la de los objetos iniciales. En el caso de los grupos, si $H$ es un subgrupo de un grupo $G$, los cocientes $G/R_H$ y $G/R^H$ no admiten, en general, estructura de grupo de modo natural. Estudiaremos aquí los subgrupos $H$ para los que esto es posible. 
+
+Posteriormente estudiaremos las aplicaciones entre grupos «compatibles» con la estructura de grupo. De la existencia de una tal aplicación entre dos grupos $G$ y $G'$ obtendremos información sobre $G'$ a partir de información sobre $G$ y recíprocamente.
+
+\begin{proposition}\label{prop:gruNo} Sean $G$ un grupo y $H$ un subgrupo de $G$. Las siguientes condiciones son equivalentes:
+\begin{enumerate}
+\item Para cada $a \in G$, $Ha = aH$.
+\item $H = H^{a}$ para cada $a \in G$. Es decir, $a^{-1}Ha = H \hspace{0.2cm} \forall a\in G$.
+\item Para cada par de elementos $a,b \in G$ tales que $ab \in H$ se verifica que $ba \in H$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}Sigamos una demostración circular:
+
+1 $\Rightarrow$ 2. Si $y \in H^{a}$ entonces $aya^{-1} = h \in H$. Como $ay = ha \in Ha = aH$ existirá un $h' \in H$ con $ay = ah'$. Simplificando tenemos que $y = h' \in H$, luego $H^{a}\subseteq H$. Y aplicando el contenido que acabamos de probar para $a^{-1}$ se tiene que $H^{a^{-1}}\subseteq H$, y así $H = (H^{a^{-1}})^{a}\subseteq H^{a}$, por lo tanto $H = H^{a}$.
+
+2 $\Rightarrow$ 3. Como $ab \in H$ entonces $ba = a^{-1}(ab)a \in H^{a} = H.$
+
+3 $\Rightarrow$ 1. Sea $x \in Ha$. Entonces, $x = ha$ con $h \in H$ y, por ello, $xa^{-1} = h \in H.$ Por hipótesis $a^{-1}x = h' \in H$, y así $x = ah'\in aH,$ demostrando el primer contenido $Ha \subseteq aH$.
+
+Recíprocamente, si $x = ah \in aH$, resulta que $a^{-1}x = h \in H$, luego $xa^{-1} = h' \in H$, es decir, $x = h'a \in Ha,$ demostrando con esto el contenido recíproco $aH \subseteq Ha$, y por lo tanto $aH = Ha$.
+
+\end{proof}
+
+\begin{definition}Un subgrupo $H$ de un grupo $G$ que cumple cualquiera (y por tanto todas) de las condiciones de la propoposición anterior se llama \textbf{normal}. Con más precisión, diremos que $H$ es subgrupo normal de $G$.
+\end{definition}
+
+\begin{observation}Evidentemente la condición $(1)$ de~\ref{prop:gruNo} equivale a decir que $R_H = R^H$. En particular, si $H$ es normal, $G/R_H = G/R^H$ y denotaremos ambos cocientes por $G/H$. Más adelante veremos qué es exactamente este cociente.
+\end{observation}
+
+\begin{observation}\label{ob:FacNo} Para probar que $H$ es un subgrupo normal de $G$ basta ver que $H^a \subseteq H$ para cada $a \in G$. Probado esto y aplicado para $a^{-1}$, se tendrá $H^{a^{-1}} \subseteq H$, luego $H = (H^{a^{-1}})^a \subseteq H^a$ y por ello $H = H^a$ y así $H$ es normal.
+\end{observation}
+
+\begin{observation}\label{ob:abNo} Todo subgrupo de un grupo abeliano es normal, puesto que en un grupo abeliano siempre se cumple $ab = ba$, luego se tiene la condición $(3)$ de~\ref{prop:gruNo}.
+\end{observation}
+
+\begin{proposition}Si $G$ es un grupo y $H$ un subgrupo de $G$ con índice $2$, $H$ es subgrupo normal de $G$.
+\end{proposition}
+\begin{proof}
+Por hipotesis, $G/R_H$ tiene dos elementos, y también $G/R^H$. 
+
+Entonces, dado $a \in G$ puede ocurrir: 
+\begin{enumerate}
+\item $a \in H$. En tal caso, $a1^{-1} = a \in H$, luego $aR_H 1$ y $Ha = H1 = H$. Como $a^{-1}1 = a^{-1} \in H$, también se tiene $aR^H1$ y así $aH = 1H = H$. Luego, $aH = Ha$.
+\item Si $a \notin H$, $aH \neq H$. Como $G/R^H$ tiene dos elementos, será $G = H \cup aH$ (unión disjunta). Así, $aH = G\setminus H = Ha$ y $H$ es normal.
+\end{enumerate}
+
+\end{proof}
+
+\begin{observation}En cualquier grupo $G$ los subgrupos $\lbrace 1_G \rbrace$ y $G$ son normales. En efecto, dado $a \in G$ se tiene $a \lbrace 1_G \rbrace = \lbrace 1_G \rbrace a$ (de aquí se deduce que $G/\lbrace 1_G \rbrace = G$). Y $aG = G = Ga$ (ya que $ax = (axa^{-1})a$).
+\end{observation}
+
+\begin{observation}El recíproco de~\ref{ob:abNo} es falso. EL grupo cuaternión $Q$ no es abeliano, pero todos sus subgrupos son normales.
+\end{observation}
+\begin{proof}
+Que no es abeliano es claro, pues $ij = k \neq -k = ji$. Los subgrupos $\lbrace 1 \rbrace$ y $Q$ son normales por lo que acabamos de ver. Los subgrupos de orden $4$ tienen índice $2$, luego son normales. El único subgrupo de orden $2$ es $H = \lbrace 1, -1 \rbrace$, que es normal porque para cada $a \in Q$, $$aH = a\lbrace 1, -1 \rbrace = \lbrace a, -a \rbrace = \lbrace 1, -1 \rbrace a = Ha.$$
+
+\end{proof}
+
+\begin{definition}Los grupos como $Q$, cuyos subgrupos son todos normales, se llaman \textbf{hamiltonianos}.
+\end{definition}
+
+\begin{observation}\label{ob:gruNNo} Existen grupos cuyos subgrupos no son todos normales. Consideremos $G = D_n$, con $n \geq 3$, y, con las notaciones usuales, $H = \lbrace 1, g\rbrace$. Vimos en~\ref{ob:obNoBiy} que $fH \neq Hf$, luego $H$ no es subgrupo normal de $D_n$.
+
+Calculemos ahora los subgrupos normales de $D_4$. Evidentemente, $\lbrace 1 \rbrace$ y $D_4$ son normales.
+
+Los subgrupos $\lbrace 1, f, f^2, f^3 \rbrace$, $\lbrace 1,f^2, g, g \circ f^2 \rbrace$ y $\lbrace 1,f^2, g \circ f, g \circ f^3 \rbrace$ son los subgrupos de $D_4$ de orden $4$. Como todos ellos tienen índice $2$, son normales.
+
+Debemos decidir si los subgrupos de orden $2$, que son $$H_1 = \lbrace 1,f^2 \rbrace, \quad H_2 = \lbrace 1,g \rbrace, \quad H_3 = \lbrace 1, g \circ f \rbrace,$$ $$H_4 = \lbrace 1, g \circ f^2 \rbrace, \quad H_5 = \lbrace 1, g \circ f^3 \rbrace,$$ son normales.
+
+\begin{enumerate}
+\item $H_2$ y $H_4$.
+
+Tenemos $f \circ g \circ f^{-1} = f \circ g \circ f^3 = (f \circ g \circ f) \circ f^2 = g \circ f^2 \in H_4$, luego $g \in H^f_4$. Como $H^f_4$ es un subgrupo de orden $2$ resulta que $H^f_4 = \lbrace 1,g \rbrace = H_2$. Así, $H_2^{f^{-1}} = (H^f_4)^{f^{-1}} = H_4$. En consecuencia, $H^f_4 = H_2 \neq H_4$, luego $H_4$ no es normal; $H^{f^{-1}}_2 = H_4 \neq H_2$, luego $H_2$ no es normal.
+\item $H_3$ y $H_5$.
+
+Tenemos $f \circ (g \circ f) \circ f^{-1} = (f \circ g \circ f) \circ f^3 = g \circ f^3 \in H_5$, luego $g \circ f \in H_5^f$ y al ser $H_5^f$ subgrupo de orden $2$ resulta que $H_5^f = \lbrace 1, g \circ f \rbrace = H_3$ y por lo tanto, $H_5 = H_3^{f^{-1}}$. Así, $H_5^f = H_3 \neq H_5$, luego $H_5$ no es normal; $H_3^{f^{-1}} = H_5 \neq H_3$, luego $H_3$ no es normal.
+
+\item $H_1$.
+
+Veamos, para acabar, que $H_1$ es subgrupo normal de $D_4$. En primer lugar, $a^{-1} \circ f^2 \circ a = f^2$ para cada $a \in D_4$, ya que si $a = f^i$ tenemos $a^{-1} \circ f^2 \circ f = f^{-i} \circ f^2 \circ f^i = f^{-i+2+i} = f^2$, y si $a = g \circ f^i$ tenemos $a^{-1} \circ f^2 \circ a = (g \circ f^i)^{-1} \circ f^2 \circ (g \circ f^i) = f^{-i} \circ g^{-1} \circ f^2 \circ g \circ f^i = f^{-i} \circ g^{-1} \circ (f^2 \circ g \circ f^2) \circ f^{i-2} = f^{-i} \circ g^{-1} \circ g \circ f^{i-2} = f^{-i} \circ f^{i-2} = f^{-2} = f^2.$
+
+Ahora, dado $a \in D_4$, si $x \in H_1^a$ tendremos $axa^{-1} \in H_1$ y por lo tanto, $axa^{-1} = 1$ ó $axa^{-1} = f^2$. En el primer caso, $ax = a$, luego $x = 1 \in H_1$. En el segundo caso, $x = a^{-1}f^2a = f ^2 \in H_1.$ Así, $H_1^a \subseteq H_1$ para cada $a \in D_4$, con lo que, por~\ref{ob:FacNo}, $H_1$ es subgrupo normal de $D_4$. Por lo tanto, $H_1 = \lbrace 1, f^2 \rbrace$ es el único subgrupo normal de orden $2$ de $D_4$.
+\end{enumerate}
+\end{observation}
+
+\begin{proposition} Si $G$ es un grupo, todo subgrupo $H \subseteq Z(G)$ es un subgrupo normal de $G$.
+\end{proposition}
+\begin{proof}
+Recordemos que el centro de $G$ es $$Z(G) = \lbrace x \in G : ax = xa \hspace{0.2cm} \forall a \in G\rbrace$$ y es subgrupo de $G$.
+
+Usando~\ref{ob:FacNo} bastará probar que $H^{a}\subseteq H$ para cada $a \in G$. Sea $x \in H^{a}$. Así $axa^{-1} = h \in H$, luego $x = a^{-1}ha$. Como $h \in H \subseteq Z(G)$, $ha = ah$ y así $$x = a^{-1}ha = h \in H.$$
+
+\end{proof}
+
+\begin{observation}[\textbf{\textit{Grupo especial lineal}}] Sea $n \in \mathbb{N}$ (no nulo) y $G = GL_n (\mathbb{R})$ el grupo de las matrices de orden $n$ con coeficientes en $\mathbb{R}$ y determinante no nulo. Ya sabemos que, con la operación producto de matrices, $G$ es un grupo.
+
+Sea $H = \lbrace A \in G: det\hspace{0.1cm} A = 1 \rbrace.$ H es subgrupo normal de $G$, llamado \textbf{grupo especial lineal} y que se denota por $SL_n (\mathbb{R})$.
+
+Dados $A, B \in H$, como $BB^{-1} = I_n$, $det\hspace{0.1cm} B \cdot det\hspace{0.1cm} B^{-1} = 1$, luego $det B^{-1} = \dfrac{1}{det\hspace{0.1cm} B} = 1$ y así $$det(AB^{-1}) = det\hspace{0.1cm} A \cdot det\hspace{0.1cm} B^{-1} = 1 \cdot 1 = 1.$$ En consecuencia, $AB^{-1} \in H$ y por lo tanto $H$ es subgrupo de $G$. Para probar que es normal veremos que se cumple la condición $(3)$ de~\ref{prop:gruNo}.
+
+Si $A,B \in G$ y $AB \in H$ significa que $det(AB) = 1$. Entonces $det (BA) = det \hspace{0.1cm} B \cdot det A = det\hspace{0.1cm} A \cdot det\hspace{0.1cm} B = det(AB) = 1$, es decir, $BA \in H$.
+
+\end{observation}
+
+\begin{proposition}Sean $G$ un grupo y $H$ un subgrupo de $G$.
+\begin{enumerate}
+\item $H$ es subgrupo de $N_G(H)$.
+\item $H$ es subgrupo normal de $N_G(H)$.
+\item Si $K$ es un subgrupo de $G$ que contiene a $H$ y $H$ es un subgrupo normal de $K$, entonces $K \subseteq N_G(H)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}Veámoslo por partes.
+\begin{enumerate}
+\item Basta ver que $H \subseteq N_{G}(H)$, o lo que es lo mismo, que si $a \in H$ entonces $H = H^{a}$.
+
+Pero si $x \in H^{a}$ es $axa^{-1} = h \in H$, luego $x = a^{-1}ha \in H$. Por lo tanto $H^{a} \subseteq H.$ Recíprocamente, como también $a^{-1} \in H$ tendremos por lo anterior $H^{a^{-1}} \subseteq H$ y así $H = (H^{a^{-1}})^{a} \subseteq H^{a}$ y de aquí $H = H^{a}$.
+\item Para cada $a \in N_{G}(H)$ es $H = H^{a}$ por definición. Así que $H$ es subgrupo normal de $N_{G}(H)$.
+\item Si $a \in K$, como $H$ es subgrupo normal de $K$, es $H = H^{a}$, con lo que $a \in N_{G}(H)$.
+\end{enumerate}
+
+\end{proof}
+
+\begin{proposition}Si $H$ y $K$ son subgrupos de un grupo $G$ decimos que $K$ es un \textbf{subgrupo conjugado} de $H$ si existe $a \in G$ tal que $$K = H^a.$$
+\begin{enumerate}
+\item Si $K$ es conjugado de $H$, entonces $H$ es conjugado de $K$, y diremos que $H$ y $K$ son \textit{conjugados}.
+\item Si $\Sigma$ es la familia de subgrupos conjugados de $H$ (distintos) y $N = N_{G}(H)$ es el normalizador de $H$ en $G$, la aplicación $$
+\begin{array}{rccl}
+\varphi \colon &G/R_{N} & \longrightarrow & \Sigma\\
+&Na & \longmapsto &H^{a}
+\end{array}
+$$ es biyectiva.
+\item En particular, si $N_{G}(H)$ tiene índice finito en $G$, el número de conjugados de $H$ en $G$ es $\left[ G:N_{G}(H) \right]$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}Veámoslo por partes.
+\begin{enumerate}
+\item Es evidente, pues si $K = H^{a}$, $K^{a^{-1}} =(H^{a})^{a^{-1}} = H$.
+\item Comencemos por demostrar que $\varphi$ está bien definida:
+
+Si $Na = Nb$, entonces $ab^{-1} \in N$, luego $H^{ab^{-1}} = H$ y así $$H^{b} = (H^{ab^{-1}})^{b} = H^{a},$$ Veamos ahora que es inyectiva: 
+
+Si $H^{a} = H^{b}$ se tiene $H^{ab^{-1}} = (H^{b})^{b^{-1}} = H$, luego $ab^{-1} \in N$ y $Na = Nb.$ Como la sobreyectividad es evidente, queda demostrado.
+\item  Es claro ya que $$card\hspace{0.1cm} \Sigma = card(G/R_{N}) = \left[ G:N \right].$$
+\end{enumerate}
+
+\end{proof}
+
+\begin{proposition}\label{eq:nhnormal} Sea $N$ un subgrupo normal de un grupo $G$ y sean $H$ y $K$ subgrupos de $G$ tales que $H$ es subgrupo normal de $K$. Entonces $NH$ es subgrupo normal de $NK$.
+\end{proposition}
+\begin{proof}
+Primeramente veamos que $NH=HN$ y así $NH$ es subgrupo de $G$:
+
+En particular $NH$ es subgrupo de $NK$, pues $NH \subseteq NK$. Pero si $x \in NH$ se escribirá $x = nh, \hspace{0.1cm} n \in N, \hspace{0.1cm} h \in H$. Así $x \in Nh = hN \subseteq HN$, la igualdad $Nh = hN$ se tiene por ser $N$ subgrupo normal de $G$. Esto prueba el contenido $NH \subseteq HN$. El otro es análogo. De igual forma se prueba que $NK = KN$, luego $NK$ es subgrupo de $G$, y así es grupo. Ahora veamos la normalidad:
+
+Usaremos la condición $(1)$ de~\ref{prop:gruNo}. Veamos que si $a \in NK$, entonces $a(NH) = (NH)a$. Como $a \in NK$ se escribirá $a = nk, \hspace{0.1cm} n \in N, \hspace{0.1cm} k \in K$. Si $x \in a(NH) = a(HN)$ se tendrá $x = ahn_{1}, \hspace{0.1cm} h \in H, \hspace{0.1cm} n_{1} \in N.$ Como $x \in (ah)N = N(ah)$ por ser $N$ subgrupo normal de $G$, tendremos entonces $x = n_{2}ah = n_{2}nkh, \hspace{0.1cm} n_{2} \in N.$ Como $kh \in kH = Hk$ por ser $H$ subgrupo normal de $K$, $x = n_{2}nh_{1}k, \hspace{0.1cm} h_{1} \in H,$ o también, $x = n_{2}nh_{1}n^{-1}nk = n_{2}nh_{1}n^{-1}a$. Ahora $h_{1}n^{-1} \in HN = NH$, con lo que se tiene $h_{1}n^{-1} = n_{3}h_{2}$, $n_{3} \in N$, $h_{2} \in H$. Finalmente, $x = n_{2}nn_{3}h_{2}a \in (NH)a$. Y así $a(NH) \subseteq (NH)a$. Para el otro contenido se procede de igual forma.
+
+\end{proof}
+
+\begin{definition}Decimos que un grupo $G$ es simple si sus únicos subgrupos normales son $\lbrace 1_G \rbrace$ y $G$. Los ejemplos más sencillos de grupos simples son los de orden primo. De hecho
+\end{definition}
+
+\begin{observation}Si $p$ es un número primo y $G$ un grupo de orden $p$, los únicos subgrupos de $G$ son $\lbrace 1_{G}\rbrace$ y $G$. En particular, $G$ es simple.
+
+Esto se sigue del hecho que si $H$ es un subgrupo de $G$, su orden debe dividir a $p$ por el teorema de Lagrange. Y como $p$ es primo, ó bien $o(H) = 1$ y así $H = \lbrace 1_{G}\rbrace$, ó bien $o(H) = p$ y así $H = G$.
+\end{observation}
+
+\begin{observation}La normalidad no es una propiedad \textbf{transitiva}, esto es, existen un grupo $G$ y subgrupos suyos $H$ y $K$ con $H \subseteq K$, $H$ subgrupo normal de $K$, $K$ subgrupo normal de $G$, pero $H$ no es subgrupo normal de $G$.
+
+Por ejemplo, tomemos $G = D_4$ y con las notaciones usuales, $$K = \lbrace 1, f^2, g, g \circ f^2 \rbrace, \quad H = \lbrace 1,g \rbrace.$$ Como $[D_4 : K ] = 2$, $K$ es subgrupo normal de $D_4$. Como $[K:H] = \dfrac{o(K)}{o(H)} = 2$, también $H$ es subgrupo normal de $K$. Sin embargo, ya vimos en~\ref{ob:gruNNo} que $H$ no es subgrupo normal de $G$.
+\end{observation}
+
+\begin{definition}Si $H$ es un subgrupo de un grupo $G$, se llama \textbf{corazón} de $H$ a $$K(H) = \bigcap_{a\in G} H^a.$$ Por~\ref{ob:intGru}, $K(H)$ es subgrupo de $G$. Además, $K(H)$ es subgrupo normal de $G$.
+\end{definition}
+\begin{proof}
+Basta probar que $K(H)^{b} \subseteq K(H)$ para cada $b \in G$:
+
+Sea $x \in K(H)^{b}$, tenemos que ver que $x \in H^{a}$ para cada $a \in G$. Pero $
+bxb^{-1} \in K(H) \subseteq H^{ab^{-1}}$, luego $$ab^{-1}(bxb^{-1})(ab^{-1})^{-1} \in H,$$ y por lo tanto $axa^{-1} \in H$, esto es, $x\in H^{a}$.
+
+\end{proof}
+
+Veamos por último que 
+
+\begin{observation}Si $N \subseteq H$ es un subgrupo normal de $G$, entonces $N \subseteq K(H)$, puesto que, para cada $a \in G$, $$N = N^a \subseteq H^a,~luego~N \subseteq \bigcap_{a\in G} H^a = K(H).$$
+\end{observation}
+
+Ahora podemos demostrar:
+
+\begin{theorem}[\textbf{\textit{Teorema de Poincaré}}]
+Si $G$ posee un subgrupo de índice finito, también posee un subgrupo normal de índice finito.
+\end{theorem}
+\begin{proof}
+Probemos que si $H$ es un subgrupo de índice finito, $K(H)$, que es normal, tiene índice finito.
+
+Como $\left[ G:H \right]$ es finito, también lo es $$\left[ G:N_{G}(H) \right] = \frac{\left[ G:H \right]}{\left[ N_{G}(H):H \right]},$$ luego sabemos que $H$ tiene un número finito de conjugados. Y como $K(H)$ es la intersección de los conjugados de $H$, y hay una cantidad finita de éstos, para probar que $\left[ G:K(H) \right]$ es finito basta (ya que la intersección de subgrupos de índice finito es subgrupo de índice finito) demostrar que cada $H^{a}$ es subgrupo de $G$ de índice finito. De hecho probaremos la igualdad $$\left[ G:H \right] = \left[ G:H^{a} \right].$$ Para eso es suficiente demostrar que la aplicación $$
+\begin{array}{rccl}
+&G/R_{H^{a}} & \longrightarrow & G/R_{H}\\
+&H^{a}x & \longmapsto &Hax
+\end{array}
+$$ es biyectiva.
+
+
+Está bien definida, y es inyectiva, pues $H^{a}x = H^{a}y$ equivale a que $xy^{-1} \in H^{a},$ y así $axy^{-1}a^{-1} \in H,$ o lo que es lo mismo, $ax(ay)^{-1} \in H$ y esto es $Hax = Hay.$ Además es sobreyectiva, puesto que $Hy = Hax$ con $x=a^{-1}y$ para cada $y \in G.$
+
+\end{proof}
+
+Como adelantamos en la introducción, buscamos subgrupos $H$ tales que $G/R_H$ tenga, de modo natural, estructura de grupo. La siguiente proposición pone de manifiesto que los subgrupos normales son los adecuados.
+
 \subsection{Grupos cocientes}
+
+\begin{proposition}\label{eq:cociente} Sean $G$ un grupo y $H$ un subgrupo normal de $G$. El cociente $G/H = G/R_{H} = G/R^{H}$ tiene estructura de grupo con la operación $$\begin{array}{rccl}
+&G/H \times G/H & \longrightarrow & G/H\\
+&(aH,aH) & \longmapsto &abH.
+\end{array}
+$$
+El elemento neutro es $H=1H.$ Además, si $H$ es subgrupo de $G$ de índice finito, $o(G/H) = \left[ G:H \right]$.
+\end{proposition}
+\begin{proof}
+Ya sabemos que cuando $H$ es normal, los conjuntos cocientes $G/R_{H}$ y $G/R^{H}$ coinciden, y los denotaremos por $G/H$. El único punto problemático, y donde se hace uso de la normalidad de $H$, es cuando hay que comprobar que la operación está bien definida, es decir, que no dependa de los representantes $a$ y $b$ elegidos.
+\begin{enumerate}
+\item Sea pues $aH = xH$, $bH = yH$, comprobemos que $abH =xyH,$ es decir que $(ab)^{-1}xy \in H$, y así $b^{-1}a^{-1}xy \in H.$
+Como $aH = xH$, $a^{-1}x = h \in H$. Como $bH = yH$, $b^{-1}y = h' \in H$. Por ello, $$b^{-1}a^{-1}xy = b^{-1}hy = b^{-1}yy^{-1}hy = h'y^{-1}hy.$$
+Si $z = y^{-1}hy$, resulta que  $z \in H^{y} = H$ por ser $H$ normal. Por lo que, $$b^{-1}a^{-1}xy = h'z \in H.$$
+\item Además la operación es asociativa, pues \begin{center}$aH((bH)(cH)) = (aH)(bcH) = (a(bc))H = ((ab)c)H = ((ab)H)(cH) = ((aH)(bH))cH.$\end{center}
+\item Como
+\begin{center}
+$(aH)H=(aH)(1H)=(a1)H=(aH)$ y\\
+$H(aH)=(1H)(aH)=(1a)H=aH$,
+\end{center}
+la clase $H$ es el elemento neutro. 
+\item Dado $aH \in G/H$ se verifica $$(aH)(a^{-1}H) = (aa^{-1}H) = 1H = H,$$ $$(a^{-1}H)(aH) = (a^{-1}aH) = 1H = H,$$ y así $a^{-1}H$ es el inverso de $aH$. Es decir $$(aH)^{-1} = a^{-1}H.$$
+\item Finalmente, si $H$ tiene índice finito en $G$, $$|G/H| = card(G/R_{H}) = \left[ G:H \right].$$
+\end{enumerate}
+
+\end{proof}
+
+
+Es decir, si tenemos un grupo $G$ y un subgrupo normal $H$, entonces el cociente $G/H$ es también un grupo. Los subgrupos normales son los adecuados para dotar a un cociente de estructura de grupo. 
+
+\begin{observation}Vamos a estudiar cómo son los subgrupos de un grupo cociente $G/H$.
+
+Si $K$ es un subgrupo de $G$ que contiene a $H$, $H$ es subgrupo normal de $K$, por serlo de $G$. Entonces tiene sentido considerar el grupo cociente $K/H$. Evidentemente $K/H \subseteq G/H$ y es subgrupo de $G/H$, puesto que dados $aH, bH \in K/H$, $a,b \in K$ se tiene $$(aH)(bH)^{-1} = (aH)(b^{-1}H) = ab^{-1}H \in K/H,$$ ya que al ser $K$ subgrupo de $G$, $ab^{-1} \in K$.
+
+Recíprocamente, sea $M$ un subgrupo de $G/H$, y llamemos $$K = \lbrace x \in G : xH \in M \rbrace.$$ Veamos que $K$ es un subgrupo de $G$ que contiene a $H$ y que $M = K/H$.
+
+Desde luego, si $h \in H$ se tiene que $hH = H$ que pertenece a $M$ pues $M$ es subgrupo y $H$ es el neutro de $G/H$. Esto prueba que $h \in K$ y con ello que $H \subseteq K$.
+
+Dados $x,y \in K$, tenemos $xH, yH \in M$ de donde $$xy^{-1}H = (xH)(y^{-1}H) = (xH)(yH)^{-1} \in M$$ por ser $M$ subgrupo. Esto quiere decir que $xy^{-1} \in K$. Por lo tanto $K$ es subgrupo de $G$.
+
+Veamos que se cumple la igualdad $M = K/H$. Dado $xH \in K/H$, es $x \in K$ y por tanto $xH \in M$. En el otro sentido, si $xH \in M$, entonces $x \in K$, luego $xH \in K/H$. Es inmediato que si $K_{1}$ y $K_{2}$ son subgrupos de $G$ que contienen a $H$ y $K_{1}/H = K_{2}/H$, entonces $K_{1} = K_{2}$.
+\end{observation}
+
+Por lo tanto, hemos demostrado que la aplicación $$\begin{array}{rccl}
+&K & \longrightarrow & K/H\\
+&x & \longmapsto &xH.
+\end{array}
+$$ es una biyección entre los subgrupos de $G$ que contienen a $H$ y los subgrupos de $G/H$. Este resultado se conoce como \textbf{\textit{Teorema de la correspondencia}}. Además la biyección preserva la normalidad y por lo tanto tenemos que:
+
+\begin{proposition} K es subgrupo normal de $G$ si y sólo si $K/H$ es subgrupo normal de $G/H$.\end{proposition}
+\begin{proof}
+Utilizaremos la condición $(3)$ de~\ref{prop:gruNo}. Supongamos que $K$ es normal. Dados $aH, bH$ con $(aH)(bH) \in K/H$, entonces $(ab)H \in K/H$, es decir, $ab \in K$.
+Como $K$ es normal, y $ab \in K$, deducimos que $ba \in K$, luego $(bH)(aH) = (ba)H \in K/H,$ y así $K/H$ es normal. Para el recíproco es análogo.
+
+\end{proof}
+
+\begin{observation}Si $G$ es cíclico y $H$ es un subgrupo normal de $G$, también el cociente $G/H$ es cíclico. 
+
+En efecto, si $G = \langle a \rangle$, es obvio que $G/H = \langle aH \rangle$.
+\end{observation}
+
+\begin{example}Dado un entero positivo $m$, el subgrupo $H = m\mathbb{Z}$ del grupo $\mathbb{Z}$ es desde luego normal, por ser $\mathbb{Z}$ abeliano. Como aquí la notación es aditiva, la operación en el cociente vendrá dada por 
+$$\begin{array}{rccl}
+&\mathbb{Z}/m\mathbb{Z} \times \mathbb{Z}/m\mathbb{Z} & \longrightarrow & \mathbb{Z}/m\mathbb{Z}\\
+&(a+m\mathbb{Z}, b+m\mathbb{Z}) & \longmapsto &a+b+m\mathbb{Z}.
+\end{array}
+$$
+
+Además el grupo cociente $\mathbb{Z}/m\mathbb{Z}$ es cíclico de orden $m$. Y sabemos que $$\mathbb{Z}/m\mathbb{Z} = \lbrace 0+m\mathbb{Z}, 1+m\mathbb{Z}, \ldots, (m-1)+m\mathbb{Z}\rbrace,$$ siendo todos los elementos del miembro de la derecha distintos. Visto esto tendremos $$o(\mathbb{Z}/m\mathbb{Z}) = m, \quad \mathbb{Z}/m\mathbb{Z} = \langle 1+m\mathbb{Z}\rangle.$$
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}Sea $m$ un entero positivo. Denotamos 
+
+$$\mathbb{Z}_{m}^{\ast} = \lbrace a +m\mathbb{Z} \in \mathbb{Z} / m\mathbb{Z} : mcd(a,m)= 1 \rbrace,$$
+y consideremos la operación binaria $$\begin{array}{rccl}
+&\mathbb{Z}_{m}^{\ast} \times \mathbb{Z}_{m}^{\ast} & \longrightarrow & \mathbb{Z}_{m}^{\ast}\\
+&(a+m\mathbb{Z},b+m\mathbb{Z})& \longmapsto &ab+m\mathbb{Z}.
+\end{array}
+$$
+Queremos demostrar que, con esta operación, $\mathbb{Z}^\ast_m$ es un grupo abeliano. En primer lugar hemos de ver que la operación está bien definida, y para ello 
+\begin{enumerate}
+\item Si $a + m\mathbb{Z} = a' + m\mathbb{Z}$ y $b + m\mathbb{Z} = b' + m\mathbb{Z}$, tendremos que $a = a' + mu$, $b = b' + mv$, con $u,v \in \mathbb{Z}$ y así $$ab = a'b' + m(b'u + a'v + muv).$$ Luego $ab - a'b' \in m\mathbb{Z}$ y por tanto $ab + m\mathbb{Z} = a'b' + m\mathbb{Z}.$ Esto demuestra que la definición no depende de los representantes.
+\item Ahora veamos que es interna:
+
+Si $mcd(a,m) = mcd(b,m) = 1$, entonces $mcd(ab,m) = 1$. Usando~\ref{ex:idBez} (Identidad de Bézout) tenemos que $$1 = ua +vm, \hspace{0.1cm} 1= u'b + v'm, \hspace{0.1cm} u,v,u',v' \in \mathbb{Z}.$$ Por lo que, $$1 = (ua +vm)(u'b + v'm)= uu'ab+(auv'+bvu' + mvv')m = u'' ab + v''m,$$
+con $u''= uu'$ y $v''= auv'+bvu' + mvv'$. Y de nuevo, por~\ref{ex:idBez}, $mcd(ab,m)=1$ como queríamos ver.
+
+El resto de las propiedades de grupo son fáciles de comprobar. La asociatividad es obvia, y es claro que $1 + m\mathbb{Z}$ es el elemento neutro. También es inmediato que $\mathbb{Z}^\ast_m$ es abeliano. 
+
+Por último, para cada $a + m\mathbb{Z}$, como $mcd(a,m)=1$, se tiene que $1= au+mv$, $u,v \in \mathbb{Z}$, y así $1 + m\mathbb{Z} = (au+ m\mathbb{Z}) + (mv + m\mathbb{Z}) = (a + m\mathbb{Z})(u+ m\mathbb{Z}),$ por lo que $u + m\mathbb{Z}$ es el inverso de $a + m\mathbb{Z}$.
+
+A la función $$\begin{array}{rccl}
+\phi\colon &\mathbb{N}\setminus \lbrace 0 \rbrace & \longrightarrow &\mathbb{N}\setminus \lbrace 0 \rbrace\\
+&m& \longmapsto &\phi (m)
+\end{array}
+$$ que a cada natural positivo $m$ le hace corresponder el orden $\phi(m)$ del grupo $\mathbb{Z}_{m}^{\ast}$ se le llama \textbf{función de Euler}.
+
+Vamos a dar un procedimiento para calcular $\phi(m)$.
+
+\begin{itemize}
+\item Si $p$ es primo, $\phi(p) = p-1$, pues cada natural $1 \leq a \leq p-1$ cumple $mcd(a,p)=1.$
+\item Si $p$ es un número primo y $m$ un natural positivo, $$\phi(p^{m})= p^{m-1}(p-1).$$ Esto se desprende del hecho de que los naturales $1 \leq a \leq p^{m}$ que no son primos con $p^{m}$ son $$p, 2p, 3p, \ldots, p^{m-1}p.$$ Así que hay $p^{m-1}$ que no son primos con $p$, por lo que $$\phi(p^{m}) = p^{m}-p^{m-1} = p^{m-1}(p-1).$$
+\item Si $m$ y $n$ son primos primos entre sí, $\phi(mn)= \phi(m) \phi(n)$. Para ver esto se trata de encontrar una biyección 
+$$\begin{array}{rccl}
+&\mathbb{Z}_{mn}^{\ast} & \longrightarrow &\mathbb{Z}_{m}^{\ast} \times \mathbb{Z}_{n}^{\ast},
+\end{array}
+$$ 
+ya que el primer miembro tiene $\phi(mn)$ elementos, y el segundo $\phi(m)\phi(n)$. Y, ¿cúal es esta biyección?, bien pues aquí la tenemos 
+$$\begin{array}{rccl}
+f \colon &a + mn\mathbb{Z}& \longrightarrow &(a+ m\mathbb{Z}, a + n\mathbb{Z}).
+\end{array}
+$$ 
+Es claro que, si $mcd(a,mn)=1$, se tendrá $$mcd(a,m)= mcd(a,n)=1.$$ Además, si $a \in mn\mathbb{Z}$, también $a \in m\mathbb{Z}$ y $a \in n\mathbb{Z}$. Esto prueba que $f$ está bien definida.
+
+También es inyectiva: si $a + m\mathbb{Z} = b + m\mathbb{Z}$ y $a + n\mathbb{Z} = b + n\mathbb{Z}$, resulta que $a-b$ es múltiplo de $m$ y de $n$. Y como $m$ y $n$ son primos entre sí, deducimos que $a-b$ es múltiplo de $mn$, luego $a + mn\mathbb{Z}= b + mn\mathbb{Z}$.
+
+Lo más sorprendente es que es sobreyectiva. Sea $(x + m\mathbb{Z}, y + n\mathbb{Z}) \in \mathbb{Z}_{m}^{\ast} \times \mathbb{Z}_{n}^{\ast}$. Como $m$ y $n$ son primos entre sí, por~\ref{ex:idBez} existen $u,v \in \mathbb{Z}$ tales que $um + vn = 1$. Sea entonces $$a = yum + xvn.$$
+Veamos que si $a + mn\mathbb{Z} \in \mathbb{Z}_{mn}^{\ast}$, entonces $f(a + mn\mathbb{Z}) = (x + m\mathbb{Z}, y + n\mathbb{Z})$ probando así la sobreyectividad:
+
+Si $mcd(a,mn) \neq 1$, existirá un primo $p$ que dividirá a ambos. Como $p$ es primo y divide a $mn$, divide a uno de ellos, digamos $m$. Entonces también divide a $$a - yum = xvn,$$ y por ello $p$ ha de dividir a $x, v$ o $n$. Como $mcd(m,x) = mcd(m,n)=1$, se sigue que $p$ divide a $v$. En tal caso dividirá a $$um + vn = 1,$$ lo cual es absurdo. Por lo tanto, $a + mn\mathbb{Z} \in \mathbb{Z}_{mn}^{\ast}$. Como $$a - x = yum + x(vn- 1) = yum - xum \in m\mathbb{Z},$$ $$a - y = xvn + y(um-1) = xvn -yvn \in n\mathbb{Z},$$ y así tenemos que $$f(a + mn\mathbb{Z}) = (a + m\mathbb{Z}, a + n\mathbb{Z}) = (x + m\mathbb{Z}, y + n\mathbb{Z}).$$
+\item Por fin, descomponiendo en factores primos $m = p_{1}^{a_{1}} \ldots p_{k}^{a_{k}}$, resulta $$\phi(m) = \phi(p_{1}^{a_{1}} \ldots p_{k}^{a_{k}}) = p_{1}^{a_{1}-1} \ldots p_{k}^{a_{k}-1}(p_{1}-1) \ldots (p_{k}-1).$$
+\end{itemize}
+
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+Ya sabemos que los grupos $\mathbb{Z}$ y $\mathbb{Z}/m\mathbb{Z}$, con $m$ un entero positivo, son cíclicos. De hecho, éstos son los únicos grupos cíclicos. Precisaremos enseguida lo que significa esto.
+
 \subsection{Homomorfismos}
+
+\begin{definition}Una aplicación $f\colon G \longrightarrow  G'$ entre dos grupos $G$ y $G'$ se llama \textbf{homomorfismo de grupos} si
+\begin{center}
+$f(ab) = f(a)f(b)$ para cada $a,b \in G$.
+\end{center}
+\end{definition}
+
+\begin{observation} Algunas propiedades sobre los homomorfismos de grupos que serán importantes tenerlas en cuenta: (consideraremos $f$ un homomorfismo cualquiera)
+\begin{enumerate}
+\item $f(1_{G}) = 1_{G'}$ ya que $$1_{G'}f(1_{G}) = f(1_{G}) = f(1_{G}1_{G}) = f(1_{G})f(1_{G}) \Longrightarrow 1_{G'} = f(1_{G}).$$
+\item $f(a^{-1}) = (f(a))^{-1}$ para cada $a \in G$, puesto que $$f(a)f(a^{-1}) = f(aa^{-1}) = f(1_{G}) = 1_{G'},$$ $$f(a^{-1})f(a) = f(a^{-1}a) = f(1_{G}) = 1_{G'}.$$
+\item Se llama \textbf{núcleo de $f$} a $$ker f = \lbrace a \in G: f(a) = 1_{G'} \rbrace.$$
+El núcleo es un subgrupo normal de $G$. En efecto, dados $a,b \in ker f$ $$f(ab^{-1}) = f(a)f(b^{-1}) = f(a)f(b)^{-1} = 1_{G'}(1_{G'})^{-1} = 1_{G'},$$ probando así que $ker f$ es subgrupo de $G$. Para probar que es normal es suficiente comprobar que $(ker f)^a \subseteq ker f$ para cada $a \in G$. Si $x \in (ker f)^a$ resulta que $axa^{-1} \in ker f$, es decir, $f(axa^{-1}) = 1_{G'}$, o lo que es lo mismo, $f(a)f(x)f(a)^{-1} = 1_{G'}$. Entonces, $f(a)f(x) = 1_{G'}f(a) = f(a) = f(a)1_{G'},$ y simplificando $f(x) = 1_{G'}$, luego $x \in ker f$.
+\item $f$ es inyectiva si y sólo si $ker f = \lbrace 1_G \rbrace.$
+
+Supongamos que $f$ es inyectiva. Entonces cada $a \in G$ distinto de $1_G$ cumplirá $$f(a) \neq f(1_G) = 1_{G'},~luego~a \notin ker f.$$ Como $1_G \in ker f$ tendremos que $ker f = \lbrace 1_G \rbrace.$
+
+Recíprocamente, si $ker f = \lbrace 1_G \rbrace$, dados elementos distintos $a,b \in G$, tendremos $ab^{-1} \neq 1_{G'}$, luego $ab^{-1} \notin ker f$, es decir, $$f(ab^{-1}) \neq 1_{G'}.$$ Entonces, $f(a)f(b)^{-1} \neq 1_{G'}$, de donde $f(a) \neq f(b)$ y así $f$ es inyectiva.
+\item Se llama \textbf{imagen} de $f$ a la imagen conjuntista, esto es, $$im f = \lbrace f(x) : x \in G \rbrace.$$ La imagen es un subgrupo de $G'$ pues dados $a = f(x), b = f(y)$, $a,b \in im f$, se tiene $$ab^{-1} = f(x)f(y)^{-1} = f(x)f(y^{-1}) = f(xy^{-1})  \in im f.$$
+\item Si $f \colon G \longrightarrow G'$ es un homomorfismo de grupos y $H'$ es un subgrupo de $G'$, $$f^{-1}(H') = \lbrace x \in G : f(x) \in H'\rbrace$$ es un subgrupo de $G$. Además si $H$ es subgrupo normal de $G'$, $f^{-1}(H')$ lo es de $G$.
+
+En efecto, si $x,y \in f^{-1}(H')$, entonces $f(x),f(y) \in H'$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in H'$, luego $xy^{-1} \in f^{-1}(H')$. Para probar la normalidad de $f^{-1}(H')$ usamos la condición $(3)$ de~\ref{prop:gruNo}: Si $ab \in f^{-1}(H')$ se sigue que $f(a)f(b) = f(ab) \in H'$ y como $H'$ es normal, $f(ba) = f(b)f(a) \in H'.$ Por lo tanto $ba \in f^{-1}(H').$
+
+Observemos que $ker f = f^{-1}(\lbrace 1_{G'} \rbrace )$.
+
+\item Si $H$ es un subgrupo de un grupo $G$, la inclusión $$\begin{array}{rccl}
+i\colon &H& \longrightarrow &G\\
+&x& \longmapsto &x
+\end{array}
+$$ es un homomorfismo inyectivo puesto que $i(xy)= xy = i(x)i(y)$ y $x \in ker\hspace{0.1cm} i$ equivale a $i(x) = 1_G$, es decir, $x = 1_G = 1_H.$
+\item Si $H$ es un subgrupo normal de un grupo $G$, la proyección  $$\begin{array}{rccl}
+\pi\colon &G& \longrightarrow &G/H\\
+&x& \longmapsto &xH
+\end{array}
+$$ es un homomorfismo sobreyectivo. La sobreyectividad es obvia. Además, $\pi (xy) = xyH = (xH)(yH)= \pi(x) \pi(y)$, luego $\pi$ es homomorfismo.
+\item Si $f\colon G \longrightarrow  G'$, $g\colon G' \longrightarrow  G''$ son homomorfismos entre grupos, también lo es $g\circ f\colon G \longrightarrow G''$, ya que
+$$ (g \circ f)(xy) = g(f(xy)) = g(f(x)f(y)) = g(f(x))g(f(y)) = (g \circ f)(x) (g \circ f)(y).$$
+\item Sean $f\colon G \longrightarrow G'$ un homomorfismo de grupos y $x\in G$ un elemento de orden $m$.
+\begin{enumerate}
+\item $o(f(x))$ divide a $m$.
+\item Si $f$ es inyectiva, $o(f(x)) = m$.
+\end{enumerate} 
+
+Para lo primero, como $x^{m} = 1$ se tiene que $1 = f(1) = f(x^{m}) = f(x)^{m}$ y así $o(f(x))$ divide a $m$. 
+
+Para lo segundo, sea $k = o(f(x))$. Entonces $f(x)^k = 1$, luego $f(x^k) = 1$ y $x^k \in ker f = \lbrace 1 \rbrace$. Así, $x^k = 1$. De nuevo, $k$ ha de ser múltiplo de $m$. Esto junto con lo visto antes nos da que $k=m$.
+
+\item Supongamos que $S = \lbrace x_1, \ldots, x_p \rbrace$ es un sistema generador de un grupo $G$. Entonces, si $f \colon G \longrightarrow G'$, $g \colon G \longrightarrow G'$ son dos homomorfismos tales que $f(x_i) = g(x_i)$, con $1 \leq i \leq p$, se cumple $f=g$. (Abreviadamente diremos que $f$ queda determinado por las imágenes de $x_1, \ldots, x_p$.)
+
+En efecto: dado $x\in G$ será $x = x_1^{h_1} \ldots x_p^{h_p}, h_1, \ldots, h_p \in \mathbb{Z}$ y así $$f(x) =  f(x_1)^{h_1} \ldots f(x_p)^{h_p} =  g(x_1)^{h_1} \ldots g(x_p)^{h_p} = g(x).$$
+\end{enumerate}
+\end{observation}
+
+\begin{proposition}[\textbf{\textit{Factorización canónica de un homomorfismo}}]
+Sea $f \colon G \longrightarrow G'$ un homomorfismo. Entonces existe un homomorfismo biyectivo $$\bar{f} \colon G/ker f \longrightarrow im f$$ que hace conmutativo el siguiente diagrama $$\xymatrix @=2cm {G\ar[r]^{f} \ar[d]_\pi & G'  \\ G/Ker f \ar[r]^{\bar{f}} & Im f \ar[u]_{i}}$$ donde $i$ y $\pi$ tienen el significado visto en las observaciones $7$ y $8$ anteriores, notemos que $ker f$ es subgrupo normal, y la conmutatividad del diagrama significa que $$f = i \circ \bar{f} \circ \pi.$$
+\end{proposition}
+\begin{proof}
+La última condición nos dice cómo debe ser $\bar{f}$, pues para cada $x \in G$ debe cumplirse:
+$$f(x) = (i \circ \bar{f} \circ \pi) (x) =i((\bar{f} \circ \pi)(x)) =i(\bar{f}(\pi(x))) = \bar{f}(\pi(x)) = \bar{f}(x ker f).$$ Y con esto definimos $\bar{f}$. Comprobamos que se cumple lo del enunciado: 
+\begin{enumerate}
+\item $\bar{f}$ está bien definida ya que si $xker f = yker f$, entonces $$x^{-1}y \in ker f \Longrightarrow f(x^{-1}y) = f(x)^{-1}f(y)=1_{G'}$$ y así $f(x) = f(y) \Longrightarrow \bar{f}(xker f) = \bar{f}(yker f)$.
+\item $\bar{f}$ es homomorfismo ya que $$\bar{f}((xkerf)(ykerf)) = \bar{f}(xykerf) = f(xy) = f(x)f(y) = \bar{f}(xkerf)\bar{f}(ykerf).$$
+\item $\bar{f}$ es inyectiva ya que si $xkerf \in ker\bar{f}$ entonces 
+
+$f(x) = \bar{f}(xkerf) = 1_{im f} = 1_{G'} \Longrightarrow x \in kerf$ y así $xkerf = kerf$, que es el elemento neutro de $G/ker f$ y así $\bar{f}$ es inyectiva.
+\item $\bar{f}$ es sobreyectiva, pues cada elemento de $im f$ es de la forma $im f\ni g = f(x) = \bar{f}(xkerf)$ para cierto $x \in G.$
+
+\end{enumerate}
+
+Además la conmutatividad del diagrama es obvia, pues $\bar{f}$ se ha definido para que cumpla esta condición.
+
+\end{proof}
+
+\begin{definition}Un homomorfismo biyectivo entre dos grupos se llama \textbf{isomorfismo}. Cuando exista un isomorfismo $f \colon G \longrightarrow G'$ diremos que los grupos $G$ y $G'$ son \textbf{isomorfos}, y escribiremos $G \simeq G'$.
+\end{definition}
+
+\begin{observation}Algunas observaciones:
+\begin{enumerate}
+\item El término «$G$ y $G'$ son isomorfos» no es ambiguo, pues si $f \colon G \longrightarrow G'$ es isomorfismo, también lo es $f^{-1}\colon G' \longrightarrow G$. 
+
+En efecto, como la inversa de toda aplicación biyectiva es biyectiva también, bastará comprobar que $f^{-1}$ es homomorfismo de grupos.
+
+Ahora bien, si $a,b \in G'$ y $f^{-1}(a) = x$, $f^{-1}(b) = y$, se tiene $f(x) = a, f(y) = b$, luego $f(xy) = f(x) f(y) = ab,$ es decir, $xy = f^{-1}(ab)$, de donde $f^{-1}(ab) = f^{-1}(a)f^{-1}(b)$.
+\item Dos grupos isomorfos tienen las «mismas propiedades» (siempre que sean propiedades de la teoría de grupos). Por ejemplo 
+\end{enumerate}
+\end{observation}
+
+\subsection{Teoremas de Isomorfía}
 \subsection{Teorema de estructura de los grupos abelianos finitos}
 \section{Grupos abelianos finitamente generados. Acciones de grupos sobre conjuntos}
 \subsection{Grupos abelianos finitamente generados}
