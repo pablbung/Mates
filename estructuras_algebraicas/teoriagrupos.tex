@@ -121,7 +121,7 @@ Lo probaremos por inducción. Si $n = 1$, es evidente. Si $n>1$, usando la asoci
 
 \end{proof}
 
-\begin{example}Veamos algunos ejemplos:
+\begin{example}\label{ex:exPri} Veamos algunos ejemplos:
 \begin{enumerate}
 \item Los conjuntos $\mathbb{Z}, \mathbb{Q}, \mathbb{R}$ y $\mathbb{C}$ con la suma usual son grupos cuyo neutro es el número cero.
 \item Los conjuntos $\mathbb{Q}^\ast, \mathbb{R}^\ast, \mathbb{C}^\ast$ obtenidos a partir de $\mathbb{Q}, \mathbb{R}$ y $\mathbb{C}$ quitando el número cero, son grupos con el producto. Sin embargo, no ocurre así con $\mathbb{Z}^\ast$ ya que no contiene a los inversos.
@@ -241,7 +241,7 @@ Si $f$ y $g$ son el giro y la simetría en $D_n$ vistos en el segundo ejemplo de
 
 Veamos otras caracterizaciones de los grupos abelianos:
 
-\begin{proposition}Sea $G$ un grupo. 
+\begin{proposition}\label{prop:gAbe} Sea $G$ un grupo. 
 \begin{enumerate}
 \item Si $x^2 = 1$ para cada $x \in G$, $G$ es abeliano.
 \item Si $(ab)^2 = a^2b^2$ para cada $a,b \in G$, $G$ es abeliano.
@@ -340,6 +340,12 @@ mx = \left\{
 \right.
 $$
 con lo que $H = m\mathbb{Z}$.
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}\label{ex:DS}
+Para cada $n \geq 3$, $D_n$ es subgrupo de $S_n$. De hecho, vimos en~\ref{ex:exPri} que $D_n \subseteq S_n$ y que $D_n$ es grupo con la misma operación (composición de aplicaciones) que $S_n$.
 \end{example}
 
 $\hfill \blacksquare$
@@ -525,7 +531,7 @@ Recíprocamente, supongamos que $HK = KH$. Evidentemente $HK$ es no vacío, pues
 
 \end{proof}
 
-\begin{example}\label{ex:idBez} Sean $m$ y $n$ enteros no negativos, $H = m\mathbb{Z}$, $K = n\mathbb{Z}$ dos subgrupos de $\mathbb{Z}$. Como $\mathbb{Z}$ es abeliano es obvio que $H+K = K+H$, luego por el resultado anterior $H+K$ es subgrupo de $\mathbb{Z}$ (notar que aquí la operación es la suma).
+\begin{example}[\textbf{\textit{Identidad de Bézout}}]\label{ex:idBez} Sean $m$ y $n$ enteros no negativos, $H = m\mathbb{Z}$, $K = n\mathbb{Z}$ dos subgrupos de $\mathbb{Z}$. Como $\mathbb{Z}$ es abeliano es obvio que $H+K = K+H$, luego por el resultado anterior $H+K$ es subgrupo de $\mathbb{Z}$ (notar que aquí la operación es la suma).
 
 
 $H+K$ no es el subgrupo $\lbrace 0 \rbrace$ pues, $m = m + 0 \in H + K$. Y, como ya sabemos, existirá un $d \in \mathbb{Z}$ tal que $m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, veamos que $d = mcd(m,n)$:
@@ -539,7 +545,7 @@ En particular, dos números enteros $m,n$ son primos entre sí si y sólo si $$1
 
 $\hfill \blacksquare$
 
-\begin{observation} Dados dos subgrupos $H$ y $K$ de un grupo $G$ tales que $H \subseteq K$ se tiene $HK = K = KH$.
+\begin{observation}\label{ob:gruHinK} Dados dos subgrupos $H$ y $K$ de un grupo $G$ tales que $H \subseteq K$ se tiene $HK = K = KH$.
 
 En efecto, cada $x \in HK$ se escribe como $x=hk$, con $h \in H \subseteq K$ y $k \in K$ y así $HK = KH \subseteq K$. Recíprocamente, cada $k \in K$ es de la forma $k  = 1 \cdot k \in HK$, y así $K \subseteq HK$. Análogo con $KH$.
 \end{observation}
@@ -925,7 +931,7 @@ Sea $a\in G$, $a \neq 1$. Por el teorema de Lagrange $o(a)$ divide a $p$, como $
 
 De hecho, se ha probado que $G = \langle a \rangle$ para cada $a \in G$, con $a \neq 1$.
 
-\begin{proposition}Todo grupo cíclico es abeliano, pero existen grupos abelianos no cíclicos.
+\begin{proposition}\label{prop:abnocic} Todo grupo cíclico es abeliano, pero existen grupos abelianos no cíclicos.
 \end{proposition}
 \begin{proof}
 Para la primera parte, sea $G = \langle a \rangle$ un grupo cíclico. Dados $x,y \in G$, serán $x = a^k$, $y = a^l$, para ciertos $k,l$. Por lo tanto, $xy = a^ka^l = a^{k+l} = a^{l+k} = yx$ y así $G$ es abeliano.
@@ -1246,7 +1252,7 @@ la clase $H$ es el elemento neutro.
 
 Es decir, si tenemos un grupo $G$ y un subgrupo normal $H$, entonces el cociente $G/H$ es también un grupo. Los subgrupos normales son los adecuados para dotar a un cociente de estructura de grupo. 
 
-\begin{observation}Vamos a estudiar cómo son los subgrupos de un grupo cociente $G/H$.
+\begin{observation}\label{ob:subGruCo} Vamos a estudiar cómo son los subgrupos de un grupo cociente $G/H$.
 
 Si $K$ es un subgrupo de $G$ que contiene a $H$, $H$ es subgrupo normal de $K$, por serlo de $G$. Entonces tiene sentido considerar el grupo cociente $K/H$. Evidentemente $K/H \subseteq G/H$ y es subgrupo de $G/H$, puesto que dados $aH, bH \in K/H$, $a,b \in K$ se tiene $$(aH)(bH)^{-1} = (aH)(b^{-1}H) = ab^{-1}H \in K/H,$$ ya que al ser $K$ subgrupo de $G$, $ab^{-1} \in K$.
 
@@ -1356,7 +1362,7 @@ $f(ab) = f(a)f(b)$ para cada $a,b \in G$.
 \end{center}
 \end{definition}
 
-\begin{observation} Algunas propiedades sobre los homomorfismos de grupos que serán importantes tenerlas en cuenta: (consideraremos $f$ un homomorfismo cualquiera)
+\begin{observation}\label{ob:homs} Algunas propiedades sobre los homomorfismos de grupos que serán importantes tenerlas en cuenta: (consideraremos $f$ un homomorfismo cualquiera)
 \begin{enumerate}
 \item $f(1_{G}) = 1_{G'}$ ya que $$1_{G'}f(1_{G}) = f(1_{G}) = f(1_{G}1_{G}) = f(1_{G})f(1_{G}) \Longrightarrow 1_{G'} = f(1_{G}).$$
 \item $f(a^{-1}) = (f(a))^{-1}$ para cada $a \in G$, puesto que $$f(a)f(a^{-1}) = f(aa^{-1}) = f(1_{G}) = 1_{G'},$$ $$f(a^{-1})f(a) = f(a^{-1}a) = f(1_{G}) = 1_{G'}.$$
@@ -1433,11 +1439,343 @@ En efecto, como la inversa de toda aplicación biyectiva es biyectiva también, 
 
 Ahora bien, si $a,b \in G'$ y $f^{-1}(a) = x$, $f^{-1}(b) = y$, se tiene $f(x) = a, f(y) = b$, luego $f(xy) = f(x) f(y) = ab,$ es decir, $xy = f^{-1}(ab)$, de donde $f^{-1}(ab) = f^{-1}(a)f^{-1}(b)$.
 \item Dos grupos isomorfos tienen las «mismas propiedades» (siempre que sean propiedades de la teoría de grupos). Por ejemplo 
+\begin{enumerate}
+\item Si $G \simeq G'$ y $G$ es abeliano, lo es $G'$ también. En efecto, sean $x,y \in G'$ y $f \colon G \longrightarrow G'$ un isomorfismo. Como $f$ es sobreyectiva, existen $a,b \in G$ con $x = f(a)$, $y = f(b)$. Entonces $$xy = f(a)f(b) = f(ab) = f(ba) = f(b)f(a) = yx.$$
+\item Si $G \simeq G'$ y $G$ es cíclico, también $G'$ es cíclico. 
+
+En efecto, sea $a \in G$ tal que $G = \langle a \rangle$ y $f \colon G\longrightarrow G'$ un isomorfismo. Llamemos $b= f(a)$. Vamos a probar que $G' = \langle b \rangle$. 
+
+Dado $y \in G'$ existe $x \in G$ tal que $y = f(x)$. Como $x \in G = \langle a \rangle$, existe un entero $k$ tal que $x = a^k$. Entonces $$y=f(x) = f(a^k) = f(a)^k = b^k \in \langle b \rangle.$$
+\item Si $X$ e $Y$ son dos conjuntos finitos con $n$ elementos, los grupos $Biy(X)$, $Biy(Y)$ son isomorfos. Esto justifica que llamáramos a ambos $S_n$ en~\ref{ex:exPri} $(3)$.
+
+Como $X$ e $Y$ tienen el mismo número de elementos, existe una biyección $f \colon X \longrightarrow Y$. Consideremos  $$\begin{array}{rccl}
+\phi\colon &Biy(X)& \longrightarrow &Biy(Y)\\
+&g& \longmapsto &f \circ g \circ f^{-1}.
+\end{array}
+$$ Habremos terminado si probamos que $\phi$ es isomorfismo. Como $\phi(g \circ h) = f \circ (g \circ h) \circ f^{-1} = f \circ g \circ f^{-1} \circ f \circ h \circ f^{-1} = \phi(g) \circ \phi(h),$ $\phi$ es homomorfismo. 
+
+Si $\phi(g) = \phi(h)$ entonces $f \circ g \circ f^{-1} = f \circ h \circ f^{-1}$, luego $f^{-1} \circ f \circ g \circ f^{-1} \circ f = f^{-1} \circ f \circ h \circ f^{-1} \circ f,$ y por lo tanto $g = h$. Así, $\phi$ es inyectiva.
+
+Por último, para cada $l \in Biy(Y)$, existe $g = f^{-1} \circ l \circ f \in Biy(X)$ tal que $\phi(g) = f \circ f^{-1} \circ l \circ f \circ f^{-1} = l,$ lo que prueba la sobreyectividad de $\phi$.
+\item Dados grupos $G_1, G_2, G_3$ y $G_4$ tales que $G_1 \simeq G_3$ y $G_2 \simeq G_4$, se tiene 
+\begin{enumerate}
+\item $G_1 \times G_2 \simeq G_2 \times G_2$.
+\item $G_1 times G_2 \simeq G_3 \times G_4$.
+\end{enumerate}
+
+En efecto, es inmediato que $$\begin{array}{rccl}
+&G_1 \times G_2& \longrightarrow &G_2 \times G_1\\
+&(x,y)& \longmapsto &(y,x)
+\end{array}
+$$ es isomorfismo, lo que prueba la primera parte. 
+
+Para la segunda, dejamos al lector que compruebe que si $f \colon G_1 \longrightarrow G_3$ y $g \colon G_2 \longrightarrow G_4$ son isomorfismos, también lo es $$\begin{array}{rccl}
+h\colon &G_1 \times G_2& \longrightarrow &G_3 \times G_4\\
+&(x,y)& \longmapsto &(f(x), g(y)).
+\end{array}
+$$
+\end{enumerate}
 \end{enumerate}
 \end{observation}
 
+\begin{theorem}[\textit{\textbf{Primer Teorema de Isomorfía}}]
+Si$
+\begin{array}{rccl}
+f\colon G \longrightarrow  G
+\end{array}
+$es un homomorfismo entre dos grupos $G$ y $G$, los grupos $G/ker f$ e $im f$ son isomorfos. Es decir
+$$G/ker f \simeq im f.$$
+\end{theorem}
+\begin{proof} 
+Consecuencia de la \textit{descomposición canónica}.$
+\begin{array}{rccl}
+\bar{f}\colon G/ker f \longrightarrow  im f
+\end{array}
+$es un isomorfismo como ya se ha visto.
+
+\end{proof}
+
+\begin{corolario}Todo grupo cíclico es isomorfo, bien a $\mathbb{Z}$, bien a $\mathbb{Z}/m\mathbb{Z}$, para algún entero positivo $m$.
+\end{corolario}
+\begin{proof}
+Sea $G = \langle a \rangle$ un grupo cíclico. Consideremos $$\begin{array}{rccl}
+f\colon &\mathbb{Z}& \longrightarrow &G\\
+&k& \longmapsto &f(k) = a^k.
+\end{array}
+$$Como $f(x+y) = a^{x+y} = a^xa^y = f(x) f(y)$, $f$ es homomorfismo (notar que el grupo $\mathbb{Z}$ tiene operación aditiva).
+
+Cada elemento $b$ de $G = \langle a \rangle$ es de la forma $b = a^k = f(k)$ para algún $k \in \mathbb{Z}$. 
+
+Por lo tanto, $f$ es sobreyectiva, es decir, $im f = G$. Por el primer teorema de isomorfía tenemos $$\mathbb{Z}/ker f \simeq G.$$ Como $ker f$ es un subgrupo de $\mathbb{Z}$, existe un entero no negativo $m$ tal que $ker f = m \mathbb{Z}$. 
+
+Si $m = 0$, resulta $ker f = \lbrace 0 \rbrace$ luego $f$ es inyectiva y como también es sobreyectiva, $\mathbb{Z} = G$. 
+
+Si $m >0$, $\mathbb{Z}/m\mathbb{Z} \simeq G$, lo que termina la demostración.
+
+\end{proof}
+
+\begin{observation}Dos grupos finitos isomorfos tienen, evidentemente, el mismo orden $m$. De lo anterior se deduce que para cada entero positivo $m$ todos los grupos cíclicos de orden $m$ son isomorfos a $\mathbb{Z}/m\mathbb{Z}$.
+\end{observation}
+
+\begin{example}\label{ex:homs} [\textbf{\textit{Ejemplos de homomorfismos}}]
+Veamos algunos ejemplos de homomorfismos: 
+\begin{enumerate}
+\item Vamos a calcular todos los homomorfismos $f\colon \mathbb{Z} \longrightarrow  \mathbb{Z}$.
+
+Sea $f$ uno de estos homomorfismos, y $f(1) = a$, con $a\in \mathbb{Z}$, tendremos para cada entero positivo $n$: $$f(n) = f(\underbrace{1+\ldots+1}_n) = f(1)\underbrace{ + \ldots + }_n f(1) = na$$
+mientras que si $n$ es negativo, $m = -n$ será positivo y así $$f(n) = f(-m) = -f(m) = -(ma) = (-m)a = na.$$
+Y como $f(0) = 0a$, tenemos que
+\begin{center}
+$f(n) = na$ para cada $n\in \mathbb{Z}$.
+\end{center}
+Esta aplicación es homomorfismo, ya que $$f(n+m) = (n+m)a = na + ma = f(n) + f(m).$$
+Así, los homomorfismos de $\mathbb{Z}$ en $\mathbb{Z}$ son las aplicaciones ($a\in \mathbb{Z}$) $$\begin{array}{rccl}
+f_{a}\colon &\mathbb{Z} & \longrightarrow & \mathbb{Z}\\
+&n& \longmapsto &na
+\end{array}
+$$
+\item Sea $n \geq 3$, $X$ el polígono regular de $n$ lados y $V = \lbrace a_1, \ldots, a_n \rbrace$ el conjunto de vértices de $X$. Vimos en~\ref{ex:exPri} $(1)$ que la aplicación $$\begin{array}{rccl}
+\phi\colon &D_n& \longrightarrow &S_n = Biy(V)\\
+&f& \longmapsto &f\big|_V
+\end{array}
+$$ es ineyctiva.
+
+De hecho, es homomorfismo, ya que $$\phi(f \circ g) = (f \circ g)\big|_V = f\big|_V \circ g\big|_V = \phi(f) \circ \phi(g).$$ Como $ker \phi = \lbrace 1 \rbrace$, el primer teorema de isomorfía nos dice que $$D_n \simeq im f,$$ y por lo tanto $D_n$ es isomorfo a un subgrupo de $S_n$, lo cual precisa más~\ref{ex:DS}. Allí deciamos que $D_n$ era un subgrupo de $S_n$ porque identificabamos $f$ con $f\big|_V$.
+\item La aplicación $$\begin{array}{rccl}
+f\colon &GL_{n}(\mathbb{R}) & \longrightarrow & \mathbb{R}^{\ast}\\
+&A& \longmapsto &\det A
+\end{array}
+$$ es un homomorfismo sobreyectivo de grupos con núcleo $SL_{n}(\mathbb{R})$ y así, por el primer teorema de isomorfía, $$GL_{n}(\mathbb{R})/SL_{n}(\mathbb{R}) \simeq \mathbb{R}^{\ast}.$$
+En efecto, $f(AB) = \det(AB) = \det A \cdot \det B = f(A)f(B)$, luego $f$ es homomorfismo. Es evidente que $ker f = SL_{n}(\mathbb{R})$ por definición. Finalmente, si $a \in \mathbb{R}^{\ast}$, la matriz $$A = (a_{ij} : 1 \leq i \leq n,\hspace{0.1cm} 1\leq j \leq n)$$ definida por $$a_{ij} = \left\lbrace \begin{array}{ll} 0&~si~i\neq j\\ a&~si~i=j=1\\1&~si~i=j>1  \end{array}\right.$$ 
+
+cumple $\det A = a1^{n-1} = a$, probando la sobreyectividad de $f$.
+
+\item Sean $m$ y $n$ enteros positivos. Anteriormente estudiamos los homomorfismos entre $\mathbb{Z}$ y $\mathbb{Z}$, ahora vamos a calcular los homomorfismos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$. Sea entonces $$\begin{array}{rccl}
+f\colon &\mathbb{Z}/m\mathbb{Z}& \longrightarrow &\mathbb{Z}/n\mathbb{Z}\\
+\end{array}
+$$ uno de ellos. Llamemos $$f(1 + m\mathbb{Z}) = k + n\mathbb{Z}.$$ Como $$(m+1)+m\mathbb{Z} = 1 + m\mathbb{Z},$$ entonces \begin{center}$k + n\mathbb{Z} = f((m+1)+m\mathbb{Z}) = f(\underbrace{(1 + m\mathbb{Z}) + \ldots + (1 + m\mathbb{Z})}_{m+1}) = (m+1)f(1 + m\mathbb{Z}) = (m+1)(k + n\mathbb{Z}) = k(m+1)+ n\mathbb{Z}.$\end{center} Y así, $$km \in n\mathbb{Z}.$$ Evidentemente $km$ es múltiplo de $m$ y de $n$ luego, si llamamos $M= mcm(m,n),$ es claro que $km$ es múltiplo de $M$. 
+
+Ahora, si $d = mcd(m,n)$, entonces $Md=mn$. En efecto, sean $p_1, \ldots, p_k$ los factores primos comunes a $m$ y $n$. Descomponiendo $m$ y $n$ en producto de números primos será $$m = p_1^{\alpha_1} \ldots p_k^{\alpha_k}q_1^{\gamma_1}  \ldots q_r^{\gamma_r}$$ $$n = p_1^{\beta_1} \ldots p_k^{\beta_k}l_1^{\delta_1}  \ldots l_s^{\delta_s}.$$ Si $\epsilon_j = \max \lbrace \alpha_j, \beta_j \rbrace$ y $\mu_j = \min \lbrace \alpha_j, \beta_j \rbrace$ es claro que $$\alpha_j + \beta_j = \epsilon_j + \mu_j,$$ $$d = p_1^{\mu_1} + \ldots + p_k^{\mu_k},$$ $$M = p_1^{\epsilon_1} \ldots p_k^{\epsilon_k}q_1^{\gamma_1}\ldots q_r^{\gamma_r}l_1^{\delta_1} \ldots l_s^{\delta_s},$$ luego \begin{center}$Md = p_1^{\epsilon_1+\mu_1} \ldots p_k^{\epsilon_k+\mu_k}q_1^{\gamma_1}\ldots q_r^{\gamma_r}l_1^{\delta_1} \ldots l_s^{\delta_s} = p_1^{\alpha_1+\alpha_1} \ldots p_k^{\alpha_k+\beta_k}q_1^{\gamma_1}\ldots q_r^{\gamma_r}l_1^{\delta_1} \ldots l_s^{\delta_s} = mn.$\end{center}
+
+Visto esto, como $km$ es múltiplo de $M$, $k$ es múltiplo de $\dfrac{M}{m} = \dfrac{n}{d}$, digamos $k = \dfrac{n}{d}a$, con $a \in \mathbb{Z}$.
+
+Recíprocamente, si $k = \dfrac{n}{d}a$, la aplicación $$\begin{array}{rccl}
+f_{k}\colon &\mathbb{Z}/m\mathbb{Z}& \longrightarrow &\mathbb{Z}/n\mathbb{Z}\\
+&x + m\mathbb{Z}& \longmapsto &kx+n\mathbb{Z},
+\end{array}
+$$ cumple las siguientes propiedades: \begin{enumerate}
+\item Está bien definida, pues si $x + m\mathbb{Z} = y + m\mathbb{Z}$, $x-y \in m\mathbb{Z}$, entonces $x- y = mb$, con algún $b \in \mathbb{Z}$, y en consecuencia, $$kx - ky= k(x-y) = \dfrac{n}{d} a (x-y) = \dfrac{namb}{d} = \dfrac{m}{d}abn \in n\mathbb{Z},$$ con lo que $kx + n\mathbb{Z} = ky + n\mathbb{Z}.$
+\item $f_{k}(1 + m\mathbb{Z}) = k + n\mathbb{Z}$.
+\item Es homomorfismo ya que 
+\begin{center}
+$f_{k}( (x + m\mathbb{Z}) + (y + m\mathbb{Z})) = f_{k}( (x +y) + m\mathbb{Z}) = k(x + y) + n\mathbb{Z} = (kx+ky) + n\mathbb{Z} = (kx + n\mathbb{Z}) + (ky + n\mathbb{Z}) = f_{k}(x + m\mathbb{Z}) + f_{k}(y + m\mathbb{Z}).$
+\end{center}
+\end{enumerate}
+Por lo tanto, los homomorfismos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$ son las aplicaciones $f_{k}$ vistas ahora, con $k = \dfrac{n}{d} a$, $d = mcd(m,n)$ y $a \in \mathbb{Z}$.
+
+Una vez visto cómo son, veamos cuántas hay. Es claro que si $$k = \dfrac{n}{d}a~y~l = \dfrac{n}{d}b,$$
+
+las aplicaciones $f_{k}$ y $f_{l}$ coincidirán si y sólo si $$f_{k}(1 + m\mathbb{Z}) = f_{l}(1 + m\mathbb{Z})~(\ast),$$ ya que $$f_{k}(x + m\mathbb{Z}) = xf_{k}(1 + m\mathbb{Z}),$$ $$f_{l}(x + m\mathbb{Z}) = xf_{l}(1 + m\mathbb{Z}).$$ La condición $(\ast)$ equivale a $$k + n\mathbb{Z} = l +n\mathbb{Z},$$ es decir, $$\dfrac{n}{d} (a-b)= k - l \in n\mathbb{Z},$$ o lo que es lo mismo $$a-b \in d\mathbb{Z}.$$ Así, los homomorfismos $f_{k}$, con $k = \dfrac{n}{d}a$, $a = 0, 1, \ldots, d-1$ son todos distintos, mientras que para cualquier otro $a$, dividiendo tenemos (por el algoritmo de la división) $$a = dq + r, \hspace{0.1cm} 0 \leq r \leq d-1,$$ es $$a -r = dq \in d\mathbb{Z},$$ luego $$f_{(n/d)a} = f_{(n/d)r}.$$ Por tanto, el número de homomorfismos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$ es $d=mcd(m,n).$
+
+Ahora vamos a ver cómo deben ser $m$ y $n$ para que exista algún homomorfismo inyectivo entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$ y, en tal caso, calcular cuáles son.
+
+Si existe un homomorfismo inyectivo $f\colon\mathbb{Z}/m\mathbb{Z} \longrightarrow \mathbb{Z}/n\mathbb{Z}$ será, por el primer teorema de isomorfía, $$\mathbb{Z}/m\mathbb{Z} \simeq im f,$$ luego $$m= o(im f).$$ Como $im f$ es subgrupo de $\mathbb{Z}/n\mathbb{Z}$, por el teorema de Lagrange, \begin{center}$m = o(im f)$ divide a $o(\mathbb{Z}/n\mathbb{Z})= n$.\end{center}
+Así, $n$ debe ser múltiplo de $m$. En tal caso, $d=mcd(m,n)=m$ y los homomorfismos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$ son $$f_{k}, \hspace{0.1cm} k = \dfrac{n}{d}a=\dfrac{n}{m}a, \hspace{0.1cm} 0 \leq a \leq m-1.$$
+Veamos que $f_{k}$ es inyectiva si y sólo si $mcd(a,m)=1$. Desde luego, si $mcd(a,m)=c \neq 1$, escribimos $$a = cu,$$ $$m= cv,$$ con lo que $av = mu.$ Como $c \neq 1$, $v \notin m\mathbb{Z}$, esto es, $v + m\mathbb{Z} \neq 0 + m\mathbb{Z}$. Sin embargo, $$f_{k}(v + m\mathbb{Z}) = kv + n\mathbb{Z} = \dfrac{n}{m}av + n\mathbb{Z} = \dfrac{n}{m}mu + n\mathbb{Z} = nu + n\mathbb{Z} = 0 + n\mathbb{Z},$$ con lo que $v + m\mathbb{Z} \in ker f_{k}$ y $f_{k}$ no es inyectiva.
+
+Recíprocamente, supongamos que $mcd(a,m)=1$. Si $x + m\mathbb{Z} \in ker f_{k}$ debe ser $kx \in n\mathbb{Z}$, es decir $$\dfrac{n}{m}ax \in n\mathbb{Z},$$ luego $$ax \in m\mathbb{Z}.$$ Como $mcd(a,m)=1$, por~\ref{ex:idBez} $$1 = as + mt, \hspace{0.1cm} s,t \in \mathbb{Z}$$ y por tanto $$x = (ax)s + m(tx) \in m\mathbb{Z},$$ y así $$x + m\mathbb{Z} = 0 + m\mathbb{Z}.$$ Por lo que $f_{k}$ es inyectiva.
+
+Así, para que existan homomorfismos inyectivos $\mathbb{Z}/m\mathbb{Z}\longrightarrow \mathbb{Z}/n\mathbb{Z}$, $n$ debe ser múltiplo de $m$ y en tal caso los homomorfismos inyectivos son  $$\begin{array}{rccl}
+f_{k}\colon &\mathbb{Z}/m\mathbb{Z}& \longrightarrow &\mathbb{Z}/n\mathbb{Z}\\
+&x+m\mathbb{Z}& \longmapsto &kx + n\mathbb{Z},
+\end{array}
+$$ para $k = \dfrac{n}{m}a$, $0 \leq a \leq m-1$, $mcd(a,m)=1.$
+
+Por lo tanto, el número de homomorfismos inyectivos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$, cuando $m$ divide a $n$, coincide con el orden $\phi(m)$ de $\mathbb{Z}_{m}^{\ast}$.
+
+Terminamos este largo ejemplo estudiando en qué condiciones existen homomorfismos sobreyectivos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$ y en tal caso, calculando cuántos hay.
+
+Si existe $f \colon \mathbb{Z}/m\mathbb{Z} \longrightarrow \mathbb{Z}/n\mathbb{Z}$ homomorfismo sobreyectivo, tendremos $$(\mathbb{Z}/m\mathbb{Z})/ker f \simeq im f \simeq \mathbb{Z}/n\mathbb{Z},$$ luego $[\mathbb{Z}/m\mathbb{Z}:ker f] = n$ y por el teorema de Lagrange $$\dfrac{m}{o(ker f)} = n.$$
+
+Por ello, $m$ debe ser múltiplo de $n$. Entonces $mcd(n,m) = n$ con lo que si $f_k$ es homomorfismo tendremos $$k = \dfrac{n}{n}a = a, \hspace{0.2cm} 0 \leq a \leq n-1,$$ esto es, $$f_k \colon x + m \mathbb{Z} \longmapsto kx + n\mathbb{Z}, \hspace{0.2cm} 0 \leq k \leq n-1$$ son, en este caso, los homomorfismos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$.
+
+Para que $f_k$ sea sobreyectivo es suficiente (y por supuesto necesario) que $1 + n\mathbb{Z} \in im f_k$, pues si $1 + n\mathbb{Z} = f_k(u + m\mathbb{Z})$, cada $x + n\mathbb{Z} \in \mathbb{Z}/n\mathbb{Z}$ se escribe como $$x + n\mathbb{Z} = f_k(xu + m\mathbb{Z}).$$ Así, $f_k$ es sobreyectiva si y sólo si existe $u \in \mathbb{Z}$ tal que $ku + n\mathbb{Z} = 1 + n\mathbb{Z}$, o lo que es igual, existe $v \in \mathbb{Z}$ tal que $ku-1 = nv \in n \mathbb{Z}$. 
+
+Llamando $w = -v$, lo anterior se convierte en $1 = ku + nw$, $u,w \in \mathbb{Z}$. Por~\ref{ex:idBez} esto equivale a decir que $mcd(k,n) = 1.$
+
+Resumiendo, para que exista algún homomorfismo sobreyectivo de $\mathbb{Z}/m\mathbb{Z}$ en $\mathbb{Z}/n\mathbb{Z}$, $m$ debe ser múltiplo de $n$ y en tal caso,  $$\begin{array}{rccl}
+f_{k}\colon &\mathbb{Z}/m\mathbb{Z}& \longrightarrow &\mathbb{Z}/n\mathbb{Z}\\
+&x+m\mathbb{Z}& \longmapsto &kx + n\mathbb{Z},
+\end{array}
+$$ con $0 \leq k \leq n-1$, $mcd(k,n)=1$, son los homomorfismos sobreyectivos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$. El número de ellos es, evidentemente, $\phi(n)$.
+
+\item Sea $G$ un grupo abeliano y $$\begin{array}{rccl}
+f\colon &G& \longrightarrow &G\\
+&x& \longmapsto &x^2
+\end{array}$$ 
+una aplicación que es homomorfismo ya que $$f(xy) = (xy)^{2} = xyxy = xxyy = x^{2}y^{2} = f(x)f(y).$$ (De hecho, de~\ref{prop:gAbe} $(2)$ deducimos que $G$ es abeliano si y sólo si $f$ es homomorfismo).
+
+Observar que $$ker f = \lbrace x \in G : x^{2} = 1\rbrace$$ está formado por $1$ y todos los elementos de orden $2$ de $G$. Por ejemplo si $G = \mathbb{R}^{\ast}$, entonces $x^{2} = 1$ equivale a $(x+1)(x-1) = 0$, y así $ker f = \lbrace +1,-1\rbrace$. A este grupo lo denotaremos $U_{2}$. En particular, $f$ no es inyectiva. Cuando $G$ es finito, entonces $f$ es inyectiva si y sólo si el orden de $G$ es impar.
+
+\begin{proof}Supongamos que $o(G) = 2k+1$ es impar y sea $x \in ker f$. Así $x^{2} = 1$ y también $x^{2k+1} = 1$, por ser el orden de $G$. Entonces $$x = x1 = x1^{k} = x(x^{2})^{k} = x^{2k+1} = 1$$ y así $f$ es inyectiva.
+
+Recíprocamente, veamos que si $o(G) = 2k$ es par, sea o no $G$ abeliano, $f$ no es inyectiva. (Esto se deduce directamente del teorema de Cauchy pero lo haremos aquí «artesanalmente»).
+
+Para cada $x \in G$ llamaremos $A_{x} = \lbrace x, x^{-1}\rbrace.$ Los distintos $A_{x}$ constituyen una partición de $G$ pues como cada $x \in A_{x}$, la igualdad $$G = \bigcup_{x \in G} A_{x}$$ es obvia, además si $A_{x}\cap A_{y} \neq \emptyset$ entonces $x \in \lbrace y, y^{-1}\rbrace$ ó $x^{-1} \in \lbrace y,y^{-1}\rbrace$.
+
+Para el primer caso, si $x = y$ entonces $x^{-1} = y^{-1}$ y $A_{x} = A_{y}$, y si $x = y^{-1}$ entonces $x^{-1} = y$ y nuevamente $A_{x} = A_{y}$. Análogamente para el segundo caso.
+
+Es claro que $A_{1} = \lbrace 1 \rbrace$, pues $1^{-1} = 1$. Si el resto de los $A_{x}$ (digamos que hay $m$ de ellos) tuviese dos elementos, entonces $$2k = o(G) = card A_{1} + 2m = 2m +1,~que~es~impar.$$ Esto es absurdo, luego ha de existir $1 \neq a \in G$ tal que $card A_{a} = 1$. Esto significaría que $a^{-1} = a$, y así $f(a) = a^{2} = aa^{-1} = 1 = f(1)$. Por tanto, $f$ no es inyectiva.
+
+\end{proof}
+Esto se puede reformular diciendo: \textit{«Todo grupo finito de orden par posee algún elemento de orden 2»}. 
+
+\item Sea $n\geq 2$ un número natural, $X = \lbrace 1,2, \ldots, n \rbrace$ y $f \in S_n = Biy(X).$ Llamamos \textbf{signatura} de $f$ y notaremos por $s(f)$ el número de pares $(i,j) \in X \times X$ tales que $i <j$ y $f(i) > f(j)$. La aplicación $$\begin{array}{rccl}
+\epsilon\colon &S_n& \longrightarrow &U_2=\lbrace +1, -1 \rbrace\\
+&f& \longmapsto &\epsilon(f) = (-1)^{s(f)}
+\end{array}$$ es homomorfismo de grupos; nótese que $$\epsilon(f) =\prod_{i<j} \dfrac{f(i)-f(j)}{i-j}$$ pues al ser $f$ biyectiva los factores del numerador son, salvo el signo, los del denominador, y hay tantos factores con signos distintos en numerador y denominador como $s(f)$. Entonces, si $f,g \in S_n$, \begin{center}$\epsilon(f \circ g) = \prod_{i<j} \dfrac{f(g(i))-f(g(j))}{i-j} = \prod_{i<j} \dfrac{f(g(i))-f(g(j))}{g(i)-g(j)} \cdot \prod_{i<j} \dfrac{g(i)-g(j)}{i-j} = \epsilon(f) \epsilon(g).$\end{center}
+El número $\epsilon(f)$ se suele llamar \textbf{índice} de $f$ y el núcleo $$ker \epsilon = \lbrace f \in S_n: \epsilon(f) = 1 \rbrace$$ es el llamado \textbf{grupo alternado}, que denotaremos $A_n$.
+
+Observar que por~\ref{ob:homs} $(3)$ $A_n$ es subgrupo normal de $S_n$ y por el primer teorema de isomorfía $$S_n/A_n \simeq U_2.$$ En particular, $$[S_n:A_n] = o(S_n/A_n)= o(U_2)=2$$ y usando el teorema de Lagrange $$\dfrac{o(S_n)}{o(A_n)}=2,$$ de donde $o(A_n) = \dfrac{n!}{2}.$
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+Remarcamos del ejemplo anterior (~\ref{ex:homs}) el apartado $(4)$, que lo podemos resumir en, dados enteros positivos $m,n$: 
+\begin{enumerate}
+\item Los homomorfismos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$ serán de la forma $$\begin{array}{rccl}
+f_{k}\colon &\mathbb{Z}/m\mathbb{Z}& \longrightarrow &\mathbb{Z}/n\mathbb{Z}\\
+&x+m\mathbb{Z}& \longmapsto &kx + n\mathbb{Z}
+\end{array},$$ con $k = \dfrac{n}{d}a$, $d = mcd(m,n)$ y $a \in \mathbb{Z}$.
+\item Para que existan homomorfismos inyectivos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$ $n$ ha de ser múltiplo de $m$ y los homomorfismos serán de la forma $$\begin{array}{rccl}
+f_{k}\colon &\mathbb{Z}/m\mathbb{Z}& \longrightarrow &\mathbb{Z}/n\mathbb{Z}\\
+&x+m\mathbb{Z}& \longmapsto &kx + n\mathbb{Z}
+\end{array}, \quad k=\dfrac{n}{m}a, \hspace{0.2cm} 0 \leq a \leq m-1, \hspace{0.2cm} mcd(a,m)=1.$$ Habrá $\phi(m)$.
+\item Para que existan homomorfismos sobreyectivos entre $\mathbb{Z}/m\mathbb{Z}$ y $\mathbb{Z}/n\mathbb{Z}$ $m$ ha de ser múltiplo de $n$ y los homomorfismos serán de la forma $$\begin{array}{rccl}
+f_{k}\colon &\mathbb{Z}/m\mathbb{Z}& \longrightarrow &\mathbb{Z}/n\mathbb{Z}\\
+&x+m\mathbb{Z}& \longmapsto &kx + n\mathbb{Z}
+\end{array},
+ \quad 0 \leq k \leq n-1, \hspace{0.2cm} mcd(k,n)=1.$$ Habrá $\phi(n)$.
+\end{enumerate}
+
 \subsection{Teoremas de Isomorfía}
+
+Vamos a probar otros teoremas de isomorfía.
+
+\begin{theorem}[\textbf{\textit{Segundo teorema de isomorfía}}]
+Sean $N$ y $H$ subgrupos normales de un grupo $G$, tales que $N \subseteq H$. Entonces $H/N$ es subgrupo normal de $G/N$ y $$(G/N)/(H/N) \simeq G/H.$$
+\end{theorem}
+\begin{proof} 
+Consideremos la aplicación $$\begin{array}{rccl}
+f\colon &G/N & \longrightarrow & G/H\\
+&aN& \longmapsto &aH
+\end{array}
+,$$ que está bien definida, pues si $aN = bN$ se tiene 
+\begin{center}
+$ab^{-1} \in N \subseteq H$, luego $aH = bH$.
+\end{center}
+Como $f((aN)(bN)) = f(abN) = abH = (aH)(bH) = f(aN)f(bN)$, $f$ es homomorfismo.
+
+Cada $aH \in G/H$ es de la forma $aH = f(aN)$ y así $f$ es sobreyectiva.
+
+Por último, $aN \in ker f \Longleftrightarrow aH = f(aN) = H,$ es decir, $$ker f = \lbrace aN \in G/N : a \in H\rbrace = H/N.$$ Y por el primer teorema de isomorfía, $(G/N)/ker f \simeq im f,$ y como $im f = G/H$, por ser $f$ sobreyectiva, y $ker f = H/N$ se tiene $$(G/N)/(H/N) \simeq G/H.$$
+
+\end{proof}
+
+Este resultado ya lo vimos en~\ref{ob:subGruCo}.
+
+\begin{theorem}\label{ex:terIso} [\textbf{\textit{Tercer teorema de isomorfía}}]
+Sean $H$ y $N$ subgrupos de un grupo $G$, con $N$ subgrupo normal de $G$. Entonces:
+\begin{enumerate}
+\item $H \cap N$ es subgrupo normal de $H$.
+\item $HN$ es subgrupo de $G$.
+\item $N$ es subgrupo normal de $HN$.
+\item $HN/N \simeq H/(H \cap N)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Lo probaremos por partes.
+\begin{enumerate}
+\item  Veamos que se cumple la condición $(3)$ de~\ref{prop:gruNo}. Sean $a,b \in H$ tales que $ab \in H \cap N$. Entonces $ab \in N$, $a,b \in G$. Como $N$ es subgrupo normal de $G$, $ba \in N$. Además $ba \in H$, ya que $b, a \in H$, luego $ba \in H \cap N$.
+\item Tenemos que probar que $HN = NH$ (como ya sabemos del primer capítulo). Si $x \in HN$, existen $h \in H$, $n \in N$ tales que $x = hn$. En particular; $$x \in hN = Nh \subseteq NH,$$ ya que $N$ es normal. Esto prueba que $HN \subseteq NH$ y el otro contenido es análogo.
+\item Se sigue de~
+\item  Definimos $$\begin{array}{rccl}
+f\colon &H & \longrightarrow & HN/N\\
+&h& \longmapsto &hN
+\end{array}
+$$ que evidentemente es un homomorfismo.
+
+Veamos que $im f = HN/N$. Dado $xN \in HN/N$ será $$x = hn, \hspace{0.1cm} h \in H, \hspace{0.1cm} n \in N.$$Entonces $x^{-1}h = n^{-1}h^{-1}h = n^{-1} \in N,$ luego $xN = hN = f(h).$
+
+Veamos que $ker f = H \cap N$.
+\begin{center}
+$x \in ker f$ quiere decir que $x \in H$ y $xN = N$, es decir, $x \in H$, $x \in N$ y, por lo tanto, $x \in H \cap N$.
+\end{center}
+Así, por el primer teorema de isomorfía, $$H/ker f \simeq Im f \Longrightarrow H/(H \cap N) \simeq HN/N.$$
+\end{enumerate}
+
+\end{proof}
+
+Antes de probar el cuarto teorema de isomorfía necesitamos:
+
+\begin{lemma}Sean $A,B$ y $C$ tres subgrupos de un subgrupo $G$, $B \subseteq A$. Entonces $$A \cap BC = B(A \cap C).$$
+\end{lemma}
+\begin{proof}
+$B(A \cap C) \subseteq BC$ porque $A \cap C \subseteq C$. Como $B \subseteq A$ y $A \cap C \subseteq A$, se sigue, al ser $A$ subgrupo, que $$B(A \cap C) \subseteq A.$$
+En consecuencia, $B(A \cap C) \subseteq A \cap BC.$
+
+Recíprocamente, sea $a \in A \cap BC$. Entonces $a \in A$ y existen $b \in B$, $c \in C$, tales que $a = bc.$ De este modo, $c = b^{-1}a$, $b^{-1} \in B \subseteq A$. Por ello, $$c = b^{-1}a \in A \cap C,$$ de donde $a = bc \in B (A \cap C)$, lo que prueba el otro contenido.
+
+\end{proof}
+
+\begin{theorem}[\textbf{\textit{Cuarto teorema de isomorfía}}]
+Sean $G$ un grupo, $H_1$ y $H_2$ subgrupos de $G$, $N_1$ subgrupo normal de $H_1$ y $N_2$ subgrupo normal de $H_2$. Entonces 
+\begin{enumerate}
+\item $N_1(H_1 \cap H_2)$ y $N_2(H_1 \cap H_2)$ son subgrupos, respectivamente, de $H_1$ y $H_2$.
+\item $N_1(H_1 \cap N_2)$ es subgrupo normal de $N_1(H_1 \cap H_2)$ y $N_2 (N_1 \cap H_2)$ es subgrupo normal de $N_2(H_1 \cap H_2)$.
+\item $(H_1 \cap N_2)(N_1 \cap H_2)$ es subgrupo normal de $H_1 \cap H_2$.
+\item $(N_1(H_1 \cap H_2))/(N_1(H_1 \cap N_2)) \simeq (H_1 \cap H_2)/(H_1 \cap N_2)(N_1 \cap H_2) \simeq (N_2(H_1 \cap H_2))/(N_2(N_1 \cap H_2)).$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Lo haremos por partes:
+\begin{enumerate}
+\item Es consecuencia inmediata de~\ref{ex:terIso} $(2)$, pues para $i=1,2$, $N_i$ es subgrupo normal del grupo $H_i$ y $H_1 \cap H_2$ es subgrupo de $H_i$.
+\item Por simetría, basta ver la primera parte. Como $N_2$ es subgrupo normal de $H_2$ y $H_1 \cap H_2$ es subgrupo de $H_2$, de $(1)$ de~\ref{ex:terIso} se deduce que $(H_1 \cap H_2) \cap N_2$ es subgrupo normal de $H_1 \cap H_2$, es decir, $H_1 \cap N_2$ es subgrupo normal de $H_1 \cap H_2$, y ambos son subgrupos del grupo $H_1$.
+
+Ahora el resultado se sigue de~\ref{eq:nhnormal}, pues $N_1$ es subgrupo normal de $H_1$.
+\item Basta demostrar que si $a \in H_1 \cap H_2$, $$a(H_1 \cap N_2)(N_1 \cap H_2) = (H_1 \cap N_2)(N_1 \cap H_2)a.$$
+Probaremos que el primer miembro está contenido en el segundo y dejamos al lector la comprobación del otro contenido. 
+
+Si $x \in a(H_1 \cap N_2)(N_1 \cap H_2)$, se escribirá $$x = auv, u \in H_1 \cap N_2, v \in N_1 \cap H_2.$$ Como $au \in aN_2$, $a \in H_2$ y $N_2$ es subgrupo normal de $H_2$, $au = n_2a,$ $n_2 \in N_2.$ 
+
+Además, $n_2 = aua^{-1} \in H_1$, pues $a, u \in H_1$. Así, $x=auv = n_2av,$ $n_2 \in H_1 \cap N_2.$ 
+
+Como $av \in aN_1$, $a \in H_1$ y $N_1$ es subgrupo normal de $H_1$, $av= n_1a$, $n_1 \in N_1$.
+
+Además, $n_1 = ava^{-1} \in H_2$, pues $a,v \in H_2$. Por tanto, $x = n_2n_1a$, $n_2 \in H_1 \cap N_2$, $n_1 \in N_1 \cap H_2$, es decir, $x \in (H_1 \cap N_2) (N_1 \cap H_2)a.$
+\item Llamemos $H = H_1 \cap H_2$, $N = N_1(H_1 \cap N_2)$, $G' = N_1 (H_1 \cap H_2)$. Sabemos que $H$ es subgrupo de $G'$ y, por $(2)$, $N$ es subgrupo normal de $G'$.
+
+Aplicando el tercer teorema de isomorfía (aquí el grupo «ambiente» es $G'$) se tiene \begin{center}$(N_1(H_1\cap N_2)(H_1 \cap H_2))/(N_1(H_1\cap N_2)) = NH/N = HN/N \simeq H /(H \cap N) = (H_1 \cap H_2)/(H_1 \cap H_2 \cap N_1(H_1 \cap N_2)).$ $(\ast)$\end{center} Los subgrupos $A = H_1$, $B = H_1 \cap N_2$, $C = H_2$ cumplen $B \subseteq A$. En virtud del lema anterior, $$A \cap BC  = B(A	 \cap C),~es~decir~, H_1 \cap (H_1 \cap N_2)H_2 = (H_1 \cap N_2)(H_1 \cap H_2).$$ Ahora bien, $H_1 \cap N_2 \subseteq N_2 \subseteq H_2$. Por~\ref{ob:gruHinK}, $(H_1 \cap N_2)H_2 = H_2,$ luego $H_1 \cap H_2 = (H_1 \cap N_2)(H_1 \cap H_2)$ y multiplicando ambos miembros por $N_1$, $$N_1(H_1\cap H_2)= N_1 (H_1 \cap N_2)(H_1 \cap H_2).$$ Sustituyendo en $(\ast)$ obtenemos \begin{center}$(N_1(H_1 \cap H_2))/(N_1(H_1 \cap N_2)) \simeq (H_1 \cap H_2)/(H_1 \cap H_2 \cap N_1(H_1 \cap N_2)).$ $(\ast\ast)$\end{center} Aplicamos de nuevo el lema anterior, ahora con $$A = H_1 \cap H_2, B = H_1 \cap N_2, C = N_1,$$ y obtenemos \begin{center}$H_1 \cap H_2 \cap (H_1 \cap N_2)N_1 = A \cap BC = B(A \cap C) = (H_1 \cap N_2)(H_1 \cap H_2 \cap N_1) = (H_1 \cap N_2)(N_1 \cap H_2),$\end{center} pues $N_1 \subseteq H_1$.
+
+Como $N_1(H_1 \cap N_2)$ es subgrupo, se tiene $N_1(H_1 \cap N_2) = (H_1 \cap N_2)N_1,$ y así $$H_1 \cap H_2 \cap N_1(H_1 \cap N_2) = H_1 \cap H_2 \cap (H_1 \cap N_2)N_1 = (H_1 \cap N_2)(N_1 \cap H_2).$$
+Sustituyendo en $(\ast\ast)$ obtenemos finalmente $$(N_1(H_1 \cap H_2))/(N_1(H_1\cap N_2)) \simeq (H_1 \cap H_2)/((H_1 \cap N_2)(N_1 \cap H_2)).$$ Esto prueba la primera parte. La segunda se obtiene a partir de ésta por simetría.
+\end{enumerate}
+
+\end{proof}
+
 \subsection{Teorema de estructura de los grupos abelianos finitos}
+
+\textbf{\textit{Comentario}}. Terminamos este capítulo utilizando los teoremas de isomorfía para estudiar cuáles son los grupos abelianos finitos. Ya vimos en~\ref{prop:abnocic} que no todo grupo abeliano es cíclico. Sin embargo, vamos a probar que los finitos son \textit{producto directo de grupos cíclicos}. 
+
+\begin{lemma}Sea $G$ un grupo abeliano finito y $x \in G$ un elemento de orden máximo. Entonces, para cada $y \in G$ el orden de $y$ divide al de $x$.
+\end{lemma}
+\begin{proof}
+Sea $n=o(x)$ y sea $y \in G$ con $o(y) = m$. Si $m$ no dividiese a $n$, en la factorización de ambos como producto de primos aparecería un factor primo $p$ más veces en $m$ que en $n$, esto es, $$m = p^ka, \hspace{0.2cm} k \geq 1,~a~no~m\acute{u}ltiplo~de~p,$$ $$n = p^hb, \hspace{0.2cm} k >h \geq 0,~b~no~m\acute{u}ltiplo~de~p.$$ En virtud de~\ref{prop:ordenes} $(7)$ se deduce $$o(x^{p^h}) = n/p^h = b, \hspace{0.2cm} o(y^a) = m/a =p^k.$$ Como $G$ es abeliano y $mcd(b,p^k) = 1$, se sigue de~\ref{prop:ordenes} $(9)$ que el orden de $z = x^{p^h} \cdot y^a$ es $o(z) = bp^k >bp^h = o(x)$ en contradicción con la definición de $x$.
+
+\end{proof}
+
 \section{Grupos abelianos finitamente generados. Acciones de grupos sobre conjuntos}
 \subsection{Grupos abelianos finitamente generados}
 \subsection{Algoritmo para la obtención del número de Betti y los coeficientes de torsión}
