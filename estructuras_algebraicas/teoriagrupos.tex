@@ -20,6 +20,7 @@
 \usepackage{mathrsfs}
 \usepackage{vmargin}
 \usepackage{graphicx}
+\usepackage{tikz-cd}
 %activar hyperref para moverse rápidamente en el documento, desactivar para visualizar o imprimir
 %\usepackage{hyperref} 
 
@@ -522,7 +523,7 @@ Para lo segundo, si $x \in H^a$ entonces $axa^{-1} \in H$, luego $axa^{-1} \in H
 
 Sin embargo, este producto no se suele comportar muy bien. En general, el producto de subgrupos no será subgrupo, para que lo sea tendrá que ocurrir lo siguiente:
 
-\begin{proposition}$HK$ es subgrupo de $G$ si y sólo si $HK = KH$. Es claro que $H \subseteq HK$, $K \subseteq HK$.
+\begin{proposition}\label{prop:subsSon} $HK$ es subgrupo de $G$ si y sólo si $HK = KH$. Es claro que $H \subseteq HK$, $K \subseteq HK$.
 \end{proposition}
 \begin{proof}
 Supongamos que $HK$ es subgrupo de $G$. Si $x = hk \in HK$ entonces $k^{-1}h^{-1} = x^{-1} \in HK$, luego $k^{-1}h^{-1} = uv$ con $u \in H$, $v \in K$ y así $x = hk = (k^{-1}h^{-1})^{-1} = (uv)^{-1} = v^{-1}u^{-1} \in KH$ y esto prueba $HK \subseteq KH$. Sea ahora $y = kh \in KH$. Entonces $z = h^{-1}k^{-1} \in HK$, y como $HK$ es subgrupo $y = kh = (h^{-1}k^{-1})^{-1} = z^{-1} \in HK$, y así $KH \subseteq HK$.
@@ -771,7 +772,7 @@ Por otro lado, $\pi^{-1}(Kx) \subseteq G/R_H$ luego también es finito, y así, 
 
 \end{proof}
 
-\begin{proposition}Sean $G$ un grupo y $H,K$ subgrupos de $G$ de orden finito. Se tiene $$card \hspace{0.1cm} HK = \dfrac{o(H)\cdot o(K)}{o(H \cap K)}.$$
+\begin{proposition}\label{prop:cardGrups} Sean $G$ un grupo y $H,K$ subgrupos de $G$ de orden finito. Se tiene $$card \hspace{0.1cm} HK = \dfrac{o(H)\cdot o(K)}{o(H \cap K)}.$$
 \end{proposition}
 \begin{proof}
 La relación $(h,k) R (h',k')$ si $hk = h'k'$ definida en $H \times K$ es, evidentemente, de equivalencia y la aplicación $$
@@ -1431,7 +1432,7 @@ Además la conmutatividad del diagrama es obvia, pues $\bar{f}$ se ha definido p
 \begin{definition}Un homomorfismo biyectivo entre dos grupos se llama \textbf{isomorfismo}. Cuando exista un isomorfismo $f \colon G \longrightarrow G'$ diremos que los grupos $G$ y $G'$ son \textbf{isomorfos}, y escribiremos $G \simeq G'$.
 \end{definition}
 
-\begin{observation}Algunas observaciones:
+\begin{observation}\label{ob:obsIso} Algunas observaciones:
 \begin{enumerate}
 \item El término «$G$ y $G'$ son isomorfos» no es ambiguo, pues si $f \colon G \longrightarrow G'$ es isomorfismo, también lo es $f^{-1}\colon G' \longrightarrow G$. 
 
@@ -1769,15 +1770,248 @@ Sustituyendo en $(\ast\ast)$ obtenemos finalmente $$(N_1(H_1 \cap H_2))/(N_1(H_1
 
 \textbf{\textit{Comentario}}. Terminamos este capítulo utilizando los teoremas de isomorfía para estudiar cuáles son los grupos abelianos finitos. Ya vimos en~\ref{prop:abnocic} que no todo grupo abeliano es cíclico. Sin embargo, vamos a probar que los finitos son \textit{producto directo de grupos cíclicos}. 
 
-\begin{lemma}Sea $G$ un grupo abeliano finito y $x \in G$ un elemento de orden máximo. Entonces, para cada $y \in G$ el orden de $y$ divide al de $x$.
+\begin{lemma}\label{lem:preEst2} Sea $G$ un grupo abeliano finito y $x \in G$ un elemento de orden máximo. Entonces, para cada $y \in G$ el orden de $y$ divide al de $x$.
 \end{lemma}
 \begin{proof}
 Sea $n=o(x)$ y sea $y \in G$ con $o(y) = m$. Si $m$ no dividiese a $n$, en la factorización de ambos como producto de primos aparecería un factor primo $p$ más veces en $m$ que en $n$, esto es, $$m = p^ka, \hspace{0.2cm} k \geq 1,~a~no~m\acute{u}ltiplo~de~p,$$ $$n = p^hb, \hspace{0.2cm} k >h \geq 0,~b~no~m\acute{u}ltiplo~de~p.$$ En virtud de~\ref{prop:ordenes} $(7)$ se deduce $$o(x^{p^h}) = n/p^h = b, \hspace{0.2cm} o(y^a) = m/a =p^k.$$ Como $G$ es abeliano y $mcd(b,p^k) = 1$, se sigue de~\ref{prop:ordenes} $(9)$ que el orden de $z = x^{p^h} \cdot y^a$ es $o(z) = bp^k >bp^h = o(x)$ en contradicción con la definición de $x$.
 
 \end{proof}
 
+\begin{observation}En el lema anterior la hipótesis de que $G$ sea abeliano es esencial. En la demostración de~ se vio que los elementos de $A_4$ tienen orden $1, 2$ ó $3$.
+\end{observation}
+
+\begin{lemma}\label{lem:preEst1} Sean $G$ un grupo abeliano finito y $x \in G$ de orden máximo. Sean $H = \langle x \rangle$ e $y \in G$. Entonces existe $z \in Hy$ tal que $$o(z) = o(Hy).$$ (Este último es el orden de $Hy$ en el grupo cociente $G/H$). Notar también que al ser $z \in Hy$ tenemos $Hy = Hz$.
+\end{lemma}
+\begin{proof}
+Sea $m = o(Hy)$. Así $H = H1 = (Hy)^m = Hy^m$, luego $y^m \in H$. Por tanto, existe $t \in \mathbb{N}$ tal que $y^m = x^t$. Vamos a probar que $t = md$ para cierto $d \in \mathbb{N}$. Si $l = o(y)$ es obvio que $(Hy)^l = H.$ En consecuencia, $l=mk$ para algún $k \in \mathbb{N}$. 
+
+La igualdad $y^m = x^t$ implica que $o(y^m) = o(x^t)$ y utilizando~\ref{prop:ordenes} $(7)$ con $o(x) = n$ se tiene $$\dfrac{l}{mcd(l,m)} = o(y^m) = o(x^t) = \dfrac{n}{mcd(t,n)}.$$ Como $l = mk$, se deduce que $mcd(l,m) = m$, luego $$k = \dfrac{n}{mcd(t,n)}$$ y de aquí $mcd(t,n) = \dfrac{n}{k} = m\dfrac{n}{l} \in m\mathbb{Z}$, ya que $l$ divide a $n$ por el lema anterior. 
+
+Así, $mcd(t,n)$ es múltiplo de $m$ y por ello también lo es $t$, como queríamos probar. 
+
+El elemento buscado es $z=x^{-d}y \in Hy$. Se trata únicamente de comprobar que $o(z) = m$. Pero $z^m = x^{-md}y^m = x^{-t}y^m = 1$, luego si $s=o(z)$, $m \in s \mathbb{Z}$.
+
+Recíprocamente, como $z \in Hy$, es $Hz = Hy$, y por tanto al ser $(Hz)^s = Hz^s = H1$, $s$ ha de ser múltiplo de $o(Hz) = o(Hy) = m$.
+
+Hemos probado pues que $o(z)=s = m = o(Hy)$.
+
+\end{proof}
+
+\begin{lemma}\label{lem:preEst} Sean $G$ un grupo, $H$ y $K$ subgrupos normales de $G$ tales que $H \cap K = \lbrace 1 \rbrace$. Entonces $$HK \simeq H \times K.$$
+\end{lemma}
+\begin{proof}
+El isomorfismo buscado es $$\begin{array}{rccl}
+f\colon &H\times K & \longrightarrow & HK\\
+&(h,k)& \longmapsto &hk.
+\end{array}
+$$ 
+Esta aplicación es evidentemente sobreyectiva. Veamos que es homomorfismo. Se trata de probar que $$h_1k_1h_2k_2 = h_1h_2k_1k_2~si~h_1,h_2 \in H, k_1,k_2\in K,$$ es decir, hay que ver $k_1h_2 = h_2k_1.$ En efecto, $h_2k_1 \in Hk_1 = k_1H$, $h_2k_1 \in h_2K = Kh_2$, usando la normalidad de $H$ y $K$. Por tanto $$h_2k_1 = k_1h_3, h_2k_1 = k_3h_2, h_3 \in H, k_3 \in K,$$ de donde $k_1h_3 = k_3h_2$ y así $k_3^{-1}k_1 = h_2h_3^{-1} \in K \cap H = \lbrace 1 \rbrace$, luego $k_3 = k_1$, $h_3 = h_2$. Por tanto, $$h_2k_1 = k_1h_3 = k_1h_2,$$ como queríamos ver. 
+
+Por último, $f$ es inyectiva, pues si $(h,k) \in ker f$ es $hk =1$, luego $h = k^{-1} \in H\cap K$, de donde $h = 1$, $k^{-1} = 1$, y así $(h,k)=(1,1)$.
+
+\end{proof}
+
+Obtenemos ya el llamado
+
+\begin{theorem}[\textbf{\textit{Teorema de estructura de grupos abelianos finitos}}] \label{the:teoEst}
+Si $G$ es un grupo abeliano finito, existen enteros positivos $m_1, \ldots, m_r$ tales que $$G \simeq \mathbb{Z}/m_1\mathbb{Z} \times \ldots \times \mathbb{Z}/m_r \mathbb{Z},$$ y cada $m_i$ divide a $m_{i-1}$. Evidentemente, $o(G) = m_1 \ldots m_r.$ Además, los números $r, m_1, \ldots, m_r$ son únicos con esta propiedad. Se dice que $m_1, \ldots, m_r$ son los \textbf{coeficientes de torsión de} $G$.
+\end{theorem}
+\begin{proof}
+Probaremos primero la existencia, por inducción sobre $n = o(G)$.
+
+Para $n=1$, el resultado es obvio, tomando $r=1$, $m_1 = 1$. 
+
+Sea $n>1$ y tomemos $x_1 \in G$ de orden máximo, $m_1 = o(x_1)$. Llamamos $H = \langle x_1 \rangle$ y consideramos el cociente $G/H$, que es abeliano y cumple $$o(G/H) = \dfrac{n}{m_1}<n$$ pues $m_1>1$ ya que $G \neq \lbrace 1 \rbrace.$
+
+Por hipótesis de inducción, existe un isomorfismo $$\begin{array}{rccl}
+\phi\colon &\mathbb{Z}/m_2\mathbb{Z} \times \ldots \times \mathbb{Z}/m_r\mathbb{Z}& \longrightarrow & G/H
+\end{array}
+$$ 
+para ciertos enteros positivos $m_2, \ldots, m_r$, tales que cada $m_j$ divide a $m_{j-1}$.
+
+Para cada $2 \leq j \leq r$ definimos $u_j =(0 + m_2 \mathbb{Z}, \ldots, 0 + m_{j-1}\mathbb{Z}, 1 + m_j\mathbb{Z}, 0 + m_{j+1}\mathbb{Z}, \ldots, 0 + m_r\mathbb{Z})$.
+
+Como $o(\phi(u_j)) = o(u_j) = m_j$, el lema~\ref{lem:preEst1} garantiza la existencia de $z_j \in G$, $2 \leq j \leq r$, tales que $$\phi(u_j)=Hz_j, o(z_j) = m_j.$$
+Llamemos $H_j = \langle z_j \rangle$ al subgrupo cíclico de $G$ generado por $z_j$ y $K = H_2 \ldots H_r$ que, por ser $G$ abeliano, es subgrupo de $G$, pues trivialmente se cumple~\ref{prop:subsSon}.
+
+Por~\ref{prop:cardGrups}, $o(K) \leq o(H_2) \ldots o(H_r) = m_2 \ldots m_r = o(G/H)$. Ahora bien, el homomorfismo  composición $$K \stackrel{f}{\longrightarrow} G \stackrel{\pi}{\longrightarrow} G/H$$ es sobreyectiva, pues dado $Hg \in G/H$ será $Hg = \phi(l_2 + m_2\mathbb{Z}, \ldots, l_r + m_r \mathbb{Z})$ para ciertos enteros $l_2, \ldots, l_r$, ya que $\phi$ es isomorfismo y por tanto $$ Hg = \phi(l_2u_2 + \ldots + l_ru_r) = Hz_2^{l_2}\ldots Hz_r^{l_r} = (\pi \circ j)(z_2^{l_2}\ldots z_r^{l_r}) \in \pi \circ j(K).$$ (Nótese que la operación en $G$ es multiplicativa y en $\mathbb{Z}/m_2\mathbb{Z} \times \ldots \times \mathbb{Z}/m_r\mathbb{Z}$ es aditiva).
+
+Como $\pi \circ j \colon K \longrightarrow G/H$ es sobreyectiva se tiene $$o(K) \geq o(G/H)$$ y por tanto se cumple la igualdad $$o(K) = o(G/H) =m_2 \ldots m_r = o(H_2) \ldots o(H_r).$$ De aquí, por el lema anterior, $$K \simeq H_2 \times \ldots \times H_r \simeq \mathbb{Z}/m_2 \mathbb{Z} \times \ldots \times \mathbb{Z}/m_r\mathbb{Z}.$$ Por otro lado, $H \cap K = \lbrace 1 \rbrace$, ya que en virtud del tercer teorema de isomorfía, $$\dfrac{o(K)}{o(K \cap H)} = o(K/K\cap H) = o(KH/H) = o(im (\pi \circ j)) = o(G/H) = o(K).$$ Usando de nuevo~\ref{lem:preEst}, $$H \times K \simeq HK$$ y como $$o(HK) = \dfrac{o(H)o(K)}{o(H\cap K)} = o(H)o(K) = m_1 m_2 \ldots m_r = n = o(G),$$ es $HK = G$ y así      $G \simeq H 	\times K$.
+
+Finalmente, por ser $H \simeq \mathbb{Z}/m_1\mathbb{Z}$ (pues $H$ es cíclico de orden $m_1$), y $K \simeq \mathbb{Z}/m_2\mathbb{Z} \times \ldots \times \mathbb{Z}/m_r \mathbb{Z}$, se deduce de~\ref{ob:obsIso} $(d)$ que $$G \simeq H \times K \simeq \mathbb{Z}/m_1\mathbb{Z} \times \ldots \times \mathbb{Z}/m_r\mathbb{Z}.$$ Como ya hemos probado que $m_j$ divide a $m_{j-1}$, para cada $3 \leq j \leq r$, sólo nos falta probar que $m_2 = o(z_2)$ divide a $m_1$. Siendo $m_1$ el orden máximo de los elementos de $G$, esto se deduce del lema~\ref{lem:preEst2}.
+
+Pasaremos ahora a probar la unicidad. 
+
+Supongamos que existen isomorfismos $$\phi \colon G_1 = \mathbb{Z}/m_1\mathbb{Z}\times \ldots \times \mathbb{Z}/m_r\mathbb{Z} \longrightarrow G,$$ $$\psi \colon G_2 = \mathbb{Z}/q_1\mathbb{Z} \times \ldots \times \mathbb{Z}/q_s\mathbb{Z} \longrightarrow G$$ de modo que cada $m_i$ divide a $m_{i-1}$, $2 \leq i \leq r$, y $q_j$ divide a $q_{j-1}$, $2 \leq j \leq s.$
+
+Hemos de probar que $r = s$ y cada $m_i = q_i$. Vamos a probar primero que $m_1 = q_1$.
+
+Antes introducimos algunas notaciones. Sean $$x_i = \phi(0 + m_1 \mathbb{Z}, \ldots, 0 + m_{i-1}\mathbb{Z}, 1 + m_i\mathbb{Z}, 0 + m_{i+1} \mathbb{Z}, \ldots, 0 + m_r \mathbb{Z}) \in G,$$ $$y_j = \psi(0 + q_1\mathbb{Z}, \ldots, 0 + q_{j-1}\mathbb{Z}, 1 + q_j\mathbb{Z}, 0 + q_{j+1}\mathbb{Z}, \ldots, 0 + q_s\mathbb{Z}) \in G.$$ Desde luego $o(x_1) = m_1$, $o(y_1) = q_1$. Como para cada $x \in G$ se tiene $$\phi^{-1}(x) = (k_1 + m_1\mathbb{Z}, \ldots, k_r + m_r \mathbb{Z}),$$ $$\psi^{-1}(x) = (l_1 + q_1 \mathbb{Z}, \ldots, l_s + q_s\mathbb{Z}),$$ y puesto que cada $m_i$ divide a $m_1$, y cada $q_i$ dicide a $q_1$, es $$\phi^{-1}(x)^{m_1} = 0, \hspace{0.2cm} \psi^{-1}(x)^{q_1} = 0,$$ y así $$x^{m_1} = \phi(\phi^{-1}(x)^{m_1}) = \phi(0) = 1,$$ $$x^{q_1}  = \psi(\psi^{-1}(x)^{q_1}) = \psi(0) = 1,$$ luego $o(x) \leq m_1$, $o(x)\leq q_1$.
+
+En particular, para $x = y_1$ deducimos $q_1 \leq m_1$ y para $x = x_1$ tenemos $m_1 \leq q_1$. Así, $m_1 = q_1$.
+
+Supongamos ahora por reducción al absurdo que no se cumple la igualdad $q_i = m_i$ para todo $i$. Sea entonces $k$ el menor índice con $m_k \neq q_k$, por ejemplo $m = m_k < q_k = q.$
+
+Construimos entonces el homomorfismo (pues $G$ es abeliano) $$\begin{array}{rccl}
+f\colon &G& \longrightarrow &G\\
+&a& \longmapsto &a^m.
+\end{array}
+$$
+Sea $A = im f$, que es subgrupo de $G$. Si $x = a^m \in A$ y ponemos $$\phi^{-1}(a) = (a_1 + m_1 \mathbb{Z}, \ldots, a_r + m_r \mathbb{Z}),$$ se cumple $$\phi^{-1}(x) = \phi^{-1}(a^m) = (ma_1 + m_1\mathbb{Z}, \ldots, ma_{k-1} + m_{k-1}\mathbb{Z}, 0 + m_k\mathbb{Z}, \ldots, 0 + m_r\mathbb{Z}),$$ pues $m = m_k$ es múltiplo de $m_k, m_{k+1}, \ldots, m_r.$
+
+Así pues, $$\phi^{-1}(A) \subseteq m\mathbb{Z}/m_1\mathbb{Z} \times \ldots \times m\mathbb{Z}/m_{k-1}\mathbb{Z} \times \lbrace 0 \rbrace \times \ldots \times \lbrace 0 \rbrace.$$ Como $$(\mathbb{Z}/m_i\mathbb{Z})/(m\mathbb{Z}/m_i\mathbb{Z}) \simeq \mathbb{Z}/m\mathbb{Z}$$ por el segundo teorema de isomorfía, resulta que $$m = o(\mathbb{Z}/m\mathbb{Z}) = \dfrac{o(\mathbb{Z}/m_i\mathbb{Z})}{o(m\mathbb{Z}/m_i\mathbb{Z})} = \dfrac{m_i}{o(m\mathbb{Z}/m_i\mathbb{Z})}$$ y por tanto $$o(m\mathbb{Z}/m_i \mathbb{Z}) = \dfrac{m_i}{m}.$$
+Así, $$o(A) = o(\phi^{-1}(A)) \leq \dfrac{m_1}{m}\ldots \dfrac{m_{k-1}}{m}. \hspace{0.2cm} (\ast)$$ 
+Razonemos ahora con $\psi$ en vez de con $\phi$. Nótese que $m = m_k$ divide a $m_1 = q_1, \ldots, m_{k-1} = q_{k-1}.$ Afirmamos que el conjunto $$m\mathbb{Z}/q_1\mathbb{Z} \times \ldots \times m\mathbb{Z}/q_{k-1}\mathbb{Z} \times \lbrace 0+ q_k\mathbb{Z}, m + q_k\mathbb{Z} \rbrace \times \lbrace 0 \rbrace \times \ldots \times \lbrace 0 \rbrace$$ está contenido en $\psi^{-1}(A)$, ya que 
+\begin{center}$\psi(mb_1 + q_1 \mathbb{Z}, \ldots, mb_{k-1} + q_{k-1}\mathbb{Z}, m + q_k\mathbb{Z}, 0 + q_{k+1}\mathbb{Z}, \ldots, 0 + q_s\mathbb{Z}) = \psi((b_1 + q_1\mathbb{Z}, \ldots, b_{k-1}+q_{k-1}\mathbb{Z}, 1 + q_k\mathbb{Z}, 0 + q_{k+1}\mathbb{Z}, \ldots, 0+q_s\mathbb{Z}))^m \in A.$\end{center}
+Por ser $m< q_k$ es $m + q_k\mathbb{Z} \neq 0 + q_k\mathbb{Z}$, luego $$o(A) = o(\psi^{-1}(A)) \geq \dfrac{q_1}{m} \ldots \dfrac{q_{k-1}}{m} \cdot 2 = \dfrac{m_1}{m} \ldots \dfrac{m_{k-1}}{m} \cdot 2.$$ Esto está en contradicción con $(\ast)$. 
+
+Hemos probado pues que cada $q_i = m_1$ para $1 \leq i \leq min(r,s)$. Como $o(G) = m_1 \ldots m_r = q_1 \ldots q_s$ se deduce también que $r=s$, lo que completa la demostración.
+
+\end{proof}
+
+El teorema anterior permite calcular el número de grupos abelianos finitos no isomorfos de orden dado.
+
+\begin{example} Calculemos los grupos abelianos no isomorfos de orden $36$.
+
+El teorema de estructura reduce esta cuestión a la de obtener todas las $(r+1)$-uplas\begin{center} $(r, m_{1}, \ldots, m_{r})$ tales que $m_{1} \ldots m_{r} = 36$, donde $m_{i}$ divide a $m_{i-1}$. \end{center}
+Para $r = 1$ ha de ser $m_{1} = 36$ y obtenemos $\mathbb{Z}/36\mathbb{Z}$.
+
+Para $r = 2$ tenemos $m_{1} = 18$, $m_{2} = 2$ y obtenemos $\mathbb{Z}/18\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z}$, ó también $m_{1} = 12$, $m_{2} = 3$ y obtenemos $\mathbb{Z}/12\mathbb{Z} \times \mathbb{Z}/3\mathbb{Z}$, ó también $m_{1} = 6$, $m_{2} = 6$ y obtenemos $\mathbb{Z}/6\mathbb{Z} \times \mathbb{Z}/6\mathbb{Z}$.
+
+El lector puedee comprobar que no se puede escribir $36$ como producto de $3$ ó más factores que se vayan dividiendo cada uno al siguiente, luego sólo existen (salvo isomorfismo) $4$ grupos abelianos de orden $36$.
+
+\end{example}
+
+$\hfill \blacksquare$
+
+Puede sorprender que no hayan «aparecido» los grupos abelianos $\mathbb{Z}/4\mathbb{Z} \times \mathbb{Z}/9\mathbb{Z}$ ó $\mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/9\mathbb{Z}$, que evidentemente tienen orden $36$.
+
+Desde luego han de ser isomorfos a alguno de los cuatro anteriores, y la siguiente proposición nos permite decidir a cuál.
+
+\begin{proposition} Sean $G_{1}$ y $G_{2}$ grupos cíclicos de órdenes $m$ y $n$ respectivamente, y $G = G_{1} \times G_{2}$. Son equivalentes:
+\begin{enumerate}
+\item $G$ es cíclico.
+\item $mcd(m,n) = 1$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Se hará una demostración circular.
+
+$(1) \Rightarrow (2)$ Sea $M$ el $mcm(m,n)$. Escribimos $M = ma$, $M = nb$, con $a,b$ enteros. Cada $u = (x,y) \in G$ cumplirá $$u^{M} = (x^{M}, y^{M}) = ((x^{m})^{a}, (y^{n})^{b}) = (1_{G_{1}}^{a}, 1_{G_{2}}^{b}) = 1_{G}.$$ Como $G$ es cíclico y $o(G) = mn$, alguno de sus elementos tiene orden $mn$. Así, $mn \leq M$ y de aquí $mn = M$, luego $mcd(m,n)=1$.
+
+$(2)  \Rightarrow (1)$ Sean $a \in G_{1}$, $b \in G_{2}$, tales que $G_{1} = \langle a \rangle$, $G_{2} = \langle b \rangle$. Veamos que $u = (a,b)$ tiene orden $mn$ y así $$G = \langle u \rangle,$$ y $G$ será cíclico. Sea $q = o(u)$. Entonces $$(a^{q}, b^{q}) = u^{q} = 1_{G} = (1_{G_{1}}, 1_{G_{2}}),$$ y por tanto $$a^{q} = 1_{G_{1}}, \hspace{0.1cm} b^{q} = 1_{G_{2}}.$$ Esto quiere decir que $q$ es múltiplo de $m = o(a)$ y de $n = o(b)$, que son primos entre sí. En consecuencia $q$ es múltiplo de $mn = o(G)$, de donde se deduce $$o(u) = q = o(G),$$ y así $G$ es cíclico. 
+
+\end{proof}
+
+\textbf{\textit{Comentario}}. En virtud de la proposición anterior, $$\mathbb{Z}/4\mathbb{Z} \times \mathbb{Z}/9\mathbb{Z} \simeq \mathbb{Z}/36\mathbb{Z}\hspace{0.3cm}~y~\hspace{0.3cm} \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/9\mathbb{Z} \simeq \mathbb{Z}/18\mathbb{Z}.$$
+De esto último se deduce $$\mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/9\mathbb{Z} \simeq \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/18\mathbb{Z}.$$
+
+\begin{observation}Si $p_1 < \ldots < p_s$ son primos, todo grupo abeliano de orden $n=p_1 \ldots p_s$ es cíclico.
+
+En efecto, $n$ no admite una factorización $n=m_1 \ldots m_r$, con $r>1$ y $m_{i+1}$ divisor de $m_i$. (Salvo la trivial $m_1 = n$, $m_2 = \ldots = m_r = 1$).
+\end{observation}
+
 \section{Grupos abelianos finitamente generados. Acciones de grupos sobre conjuntos}
-\subsection{Grupos abelianos finitamente generados}
+
+Nuestro primer objetivo en este capítulo es obtener la generalización natural, para grupos abelianos finitamente generados, del teorema~\ref{the:teoEst} sobre la estructura de los grupos abelianos finitos.
+
+\subsection{Teorema de estructura}
+
+\begin{definition}Si $G$ es un grupo denotaremos $$T(G) = \lbrace x \in G: o(x)~es~finito \rbrace.$$ Decimos que $G$ \textbf{tiene torsión} si $T(G) \neq \lbrace 1 \rbrace$ y que \textbf{no tiene torsión} en caso contrario.
+\end{definition}
+
+\begin{observation}Si $G$ es abeliano, entonces $T(G)$ es un subgrupo de $G$, pues no es vacío, ya que $o(1) = 1$, y dados $x,y \in T(G)$, el orden de $xy^{-1}$ divide al mínimo común múltiplo de $o(x)$ y $o(y^{-1}) = o(y)$ por~\ref{prop:ordenes}. Así, $xy^{-1} \in T(G)$. 
+
+Decimos que $T(G)$ es el \textbf{subgrupo de torsión} de $G$.
+\end{observation}
+
+\begin{observation}Sea $G$ un grupo abeliano y $T = T(G)$. El cociente $G/T$ no tiene torsión, pues si $xT$ tiene orden finito $n$, resulta $x^n \in T$ y por lo tanto $o(x^n)$ es finito, lo cual implica que $(x^n)^m = 1$ para cierto entero positivo $m$, y de aquí $x^{mn}=1$, luego $x \in T$ y así $xT = T$.
+\end{observation}
+
+\begin{observation}En general, si $G$ no es abeliano, $T(G)$ no es subgrupo de $G$. Consideremos, por ejemplo, el grupo $GL_2(\mathbb{R}) = G$ y \begin{align*} x=
+    \begin{pmatrix}
+        1 & 1 \\
+        0 & -1 \\
+    \end{pmatrix}, \quad y= \begin{pmatrix}
+        1 & 2 \\
+        0 & -1 \\
+    \end{pmatrix}.
+\end{align*}
+
+
+Evidentemente, $x^2 = y^2 = \begin{pmatrix}
+        1 & 0 \\
+        0 & 1 \\
+    \end{pmatrix} = 1_G$, luego $x,y \in T(G).$
+
+Sin embargo, $xy = \begin{pmatrix}
+        1 & 1 \\
+        0 & 1 \\
+    \end{pmatrix} \notin T(G)$, pues vamos a probar por inducción que, para cada $n \in \mathbb{N}$, $$(xy)^n = \begin{pmatrix}
+        1 & n \\
+        0 & 1 \\
+    \end{pmatrix} \notin 1_G.$$
+
+Esto es obvio para $n=1$, y si $n>1$, la hipótesis de inducción nos dice que $$(xy)^n = (xy)^{n-1} (xy) = \begin{pmatrix}
+        1 & n-1 \\
+        0 & 1 \\
+    \end{pmatrix} \begin{pmatrix}
+        1 & 1 \\
+        0 & 1 \\
+    \end{pmatrix} = \begin{pmatrix}
+        1 & n \\
+        0 & 1 \\
+    \end{pmatrix}.$$
+\end{observation}
+
+\begin{observation} El grupo $G = \underbrace{\mathbb{Z} \times \ldots \times \mathbb{Z}}_r$ no tiene torsión, pues si $x= (x_1, \ldots, x_r) \in G$ no es $1_G$, algún $x_i \neq 0$ y por lo tanto para cada $n \in \mathbb{N}$, $nx = (nx_1, \ldots, nx_r) \neq 1_G = (0, \ldots 0)$, ya que $nx_i \neq 0$. (Notar que aquí la notación es aditiva).
+\end{observation}
+
+\begin{observation}Si $G$ es finito, entonces $G = T(G)$ ya que si $n = o(G)$ se tiene $x^n = 1$ para cada $x \in G$.
+\end{observation}
+
+\begin{observation}El recíproco de la observación anterior es falso. Consideremos por ejemplo el grupo $G = \mathbb{Q}/\mathbb{Z}$ que evidentemente no es finito, pues si $p$ y $q$ son primos distintos, $$\dfrac{1}{p} + \mathbb{Z} \neq \dfrac{1}{q} + \mathbb{Z}.$$ (Recordar que existen infinitos números primos). 
+
+Sin embargo $T(G) = G$, ya que dado $x = \dfrac{m}{n} + \mathbb{Z} \in \mathbb{Q}/\mathbb{Z}$, resulta $nx = m+ \mathbb{Z} = 0 + \mathbb{Z} = 1_G$.
+\end{observation}
+
+\begin{observation}Si $G$ es abeliano y $K$ es un subgrupo de $G$, $T(K) = K \cap T(G)$. En particular, si $K$ no tiene torsión, $K \cap T(G) = \lbrace 1 \rbrace$ y si $G$ no tiene torsión, tampoco $K$ la tiene.
+\end{observation}
+
+\begin{observation}De lo anterior, para $K = T(G)$ se deduce $$T(T(G)) = T(K) = K \cap T(G) = T(G).$$
+\end{observation}
+
+\begin{example}Sea $G = \mathbb{Z}/m_1\mathbb{Z} \times \ldots \times \mathbb{Z}/m_r\mathbb{Z} \times \underbrace{\mathbb{Z} \times \ldots \times \mathbb{Z}}_s$. Entonces $$T(G) = \mathbb{Z}/m_1 \mathbb{Z} \times \ldots \times \mathbb{Z}/m_r\mathbb{Z} \times \lbrace 0 \rbrace \times \ldots \times \lbrace 0 \rbrace, \hspace{0.2cm} (\ast)$$ y en consecuencia, $T(G) \simeq \mathbb{Z}/m_1\mathbb{Z} \times \ldots \times \mathbb{Z}/m_r\mathbb{Z}$, mediante la aplicación $$(x_1, \ldots, x_k, 0, \ldots, 0) \longmapsto (x_1, \ldots, x_k).$$ En efecto, es inmediato comprobar que $T(G)$ contiene al segundo miembro de $(\ast)$. 
+
+Recíprocamente, ningún elemento $$x=(u_1 + m_1 \mathbb{Z}, \ldots, u_r + m_r\mathbb{Z}, a_1, \ldots, a_s)$$ con algún $a_i \neq 0$ tiene orden finito, pues $$nx=(nu_1 + m_1 \mathbb{Z}, \ldots, nu_r + m_r\mathbb{Z}, na_1, \ldots, na_s)$$ para cada $n \in \mathbb{Z}\setminus \lbrace 0 \rbrace$, y $na_i \neq 0.$
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}
+Sea $G = \mathbb{Z}/m_1\mathbb{Z} \times \ldots \times \mathbb{Z}/m_r\mathbb{Z} \times \underbrace{\mathbb{Z} \times \ldots \times \mathbb{Z}}_s$. Entonces $$G/T(G) \simeq \underbrace{\mathbb{Z} \times \ldots \times \mathbb{Z}}_s.$$
+
+\begin{proof}
+Escribimos $T= T(G)$ y consideremos $$\begin{array}{rccl}
+f\colon &\underbrace{\mathbb{Z}\times \mathbb{Z}}_s& \longrightarrow & G/T\\
+&(x_1, \ldots, x_s)& \longmapsto &(0 + m_1\mathbb{Z}, \ldots, 0 +m_r\mathbb{Z}, x_1, \ldots, x_s) + T.
+\end{array}
+$$ 
+Este es el isomorfismo buscado: Es obvio que se trata de un homomorfismo. Además es inyectivo, pues si $(0 + m_1\mathbb{Z}, \ldots, 0 + m_r\mathbb{Z}, x_1, \ldots, x_s) \in T$ ha de ser, por $(\ast)$ del ejemplo anterior, $x_1 = \ldots = x_s = 0.$
+
+Probamos la sobreyectividad de $f$. Dado $$u = (a_1 + m_1\mathbb{Z}, \ldots, a_r + m_r\mathbb{Z}, x_1, \ldots, x_s) + T \in G/T,$$ se sigue de~ que $$x = (a_1+ m_1\mathbb{Z}, \ldots, a_r+m_r\mathbb{Z}, 0, \ldots, 0) \in T,$$ luego $$u= u-(x+T) = f(x_1, \ldots, x_s).$$
+
+\end{proof}
+
+\end{example}
+
+$\hfill \blacksquare$
+
+
+
+
+
+
 \subsection{Algoritmo para la obtención del número de Betti y los coeficientes de torsión}
 \subsection{Generadores y relaciones}
 \subsection{Acciones de grupos sobre conjuntos}
