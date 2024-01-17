@@ -219,11 +219,35 @@ Como consecuencia inmediata de las definiciones tenemos:
 \end{enumerate}
 \end{proposition}
 
+Pasemos ahora a estudiar algunos límites básicos de funciones elementales.
 
+Si $f(x)$ representa una función cualquiera de las siguientes: $e^x$, $\log x$, $\sin x$, $\cos x$, $\tan x$, $\arcsin x$, $\arccos x$, $\arctan x$, $x^r$, entonces tendremos que $$\lim_{x\rightarrow a} f(x) = f(a)$$ par cualquier punto $a$ del dominio de la función. Algunos límites importantes son: \begin{enumerate}
+\item $\lim_{x \rightarrow - \infty} e^x = 0.$
+\item $\lim_{x \rightarrow +\infty} e^x = + \infty.$
+\item $\lim_{x \rightarrow 0^+} \log x = - \infty.$
+\item $\lim_{x \rightarrow +\infty} \log x = +\infty.$
+\item $\lim_{x \rightarrow (\pi /2 )^-} \tan x = +\infty.$
+\item $\lim_{x \rightarrow (\pi /2 )^+} \tan x = -\infty.$
+\item $\lim_{x \rightarrow -\infty} \arctan x = -\dfrac{\pi}{2}.$
+\item $\lim_{x \rightarrow +\infty} \arctan x = \dfrac{\pi}{2}.$
+\item $\lim_{x \rightarrow 0^+} x^r = 0$, si $r>0.$
+\item $\lim_{x \rightarrow +\infty} x^r = +\infty$, si $r>0$.
+\item $\lim_{x \rightarrow 0^+} x^r = +\infty$, si $r<0$.
+\item $\lim_{x \rightarrow +\infty} x^r = 0,$ si $r<0$.
+\item Si $f(x) = a_rx^r+a_{r-1}x^{r-1} + \ldots + a_0$ es un polinomio, con $r \in \mathbb{N}$ y $a_r \neq 0$, entonces $$\lim_{x \rightarrow +\infty} f(x) = +\infty \quad~si~a_r>0 ,$$ $$\lim_{x \rightarrow +\infty} f(x) = -\infty \quad~si~a_r<0.$$
+\end{enumerate}
 
+También tener en cuenta el conocido como \textit{orden de infinitud}, con $a>0$ y $b>1$: $$\log x \ll x^a \ll b^x \ll x^x \quad x \rightarrow + \infty.$$ Donde $f(x) \ll g(x)$ cuando $x \rightarrow + \infty$ significa que $$\lim_{x \rightarrow + \infty} \dfrac{f(x)}{g(x)} = 0.$$
 
+\begin{definition}Sean $D \subseteq \mathbb{R}$, $a \in \mathbb{R} \cup \lbrace \pm \infty \rbrace$ un punto de acumulación de $D$ y $f,g \colon D \rightarrow \mathbb{R}$. Diremos que $f$ es equivalente a $g$ cuando $x$ tiende al punto $a$, y escribiremos $$f(x) \sim g(x) \quad (x \rightarrow a)$$ si se cumple que $$\lim_{x \rightarrow x} \dfrac{f(x)}{g(x)} = 1.$$
+\end{definition}
 
-
+Se pueden trasladar las equivalencias clásicas de sucesiones a equivalencias entre funciones. Tenemos así: 
+\begin{enumerate}
+\item Equivalencias de infinitésimos, es decir, cuando $x$ se hace muy pequeño ($x \rightarrow 0$): 
+$$e^x - 1 \sim x$$ $$\log (1+x) \sim x$$ $$\sin x \sim x$$ $$1 - \cos x \sim x^2/2$$ $$\tan x \sim x$$ $$(1+x)^\alpha - 1 \sim \alpha x$$ $$\arcsin x \sim x$$ $$\arctan x \sim x.$$
+\item Equivalencias de infinitos, es decir, cuando $x$ se hace muy grande ($x \rightarrow +\infty$), sea $f(x) = a_rx^r + a_{r-1}x^{r-1} + \ldots + a_0$, con $a_r \neq 0$: $$f(x) \sim a_rx^r$$ $$\log f(x) \sim r\log x \quad~si~a_r>0.$$
+\end{enumerate}
 
 
 
